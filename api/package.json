@@ -1,0 +1,17 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.ts",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/grjorge/gebt.git"
+    },
+    "author": "Jorge Garcia Rodriguez",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/grjorge/gebt/issues"
+    },
+    "homepage": "https://github.com/grjorge/gebt#readme"
+}
