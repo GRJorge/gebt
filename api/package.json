@@ -4,7 +4,8 @@
     "description": "",
     "main": "app.ts",
     "scripts": {
-        "start": "tsc && node dist/app.js"
+        "start": "tsc && node dist/app.js",
+        "dev": "nodemon --exec ts-node app.ts"
     },
     "repository": {
         "type": "git",
