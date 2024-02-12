@@ -13,5 +13,8 @@
     "bugs": {
         "url": "https://github.com/grjorge/gebt/issues"
     },
-    "homepage": "https://github.com/grjorge/gebt#readme"
+    "homepage": "https://github.com/grjorge/gebt#readme",
+    "dependencies": {
+        "express": "^4.18.2"
+    }
 }
