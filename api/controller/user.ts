@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { ResponseInternalError } from '../utils/functions';
 import bcrypt from 'bcrypt';
 import User from '../model/user';
 
@@ -19,22 +20,30 @@ export default {
                     } else if (error.name === 'ValidationError') {
                         res.status(400).json({ msg: error.message, error });
                     } else {
-                        res.status(500).json({ msg: 'Internal Error', error });
+                        ResponseInternalError(res, error);
                     }
 
                     console.log(error);
                 }
             } else {
-                res.status(500).json({ msg: 'Internal Error', err });
+                ResponseInternalError(res, err)
             }
         });
     },
     signIn: async function (req: Request, res: Response) {
         const { email, password } = req.body;
+        let missingData: string[] = [];
 
         const user = await User.findOne({ email }).lean();
 
-        if (user?.email != null || user?.password != null) {
+        if(!email){
+            missingData.push('email');
+        }
+        if(!password){
+            missingData.push('password')
+        }
+
+        if (missingData.length === 0) {
             if (user) {
                 bcrypt.compare(password, user.password, (error, result) => {
                     if (!error) {
@@ -45,14 +54,14 @@ export default {
                             res.status(400).json({ msg: 'Incorrect Password' });
                         }
                     } else {
-                        res.status(500).json({ msg: 'Internal Error', error });
+                        ResponseInternalError(res, error)
                     }
                 });
             } else {
                 res.status(400).json({ msg: 'Unregistered user', valueError: email });
             }
         } else {
-            res.status(500).json({ msg: 'Data required' });
+            res.status(400).json({ msg: 'Data required', valuesWithError: missingData });
         }
     },
 };
