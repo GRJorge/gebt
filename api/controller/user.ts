@@ -26,7 +26,7 @@ export default {
                     console.log(error);
                 }
             } else {
-                ResponseInternalError(res, err)
+                ResponseInternalError(res, err);
             }
         });
     },
@@ -36,11 +36,11 @@ export default {
 
         const user = await User.findOne({ email }).lean();
 
-        if(!email){
+        if (!email) {
             missingData.push('email');
         }
-        if(!password){
-            missingData.push('password')
+        if (!password) {
+            missingData.push('password');
         }
 
         if (missingData.length === 0) {
@@ -54,7 +54,7 @@ export default {
                             res.status(400).json({ msg: 'Incorrect Password' });
                         }
                     } else {
-                        ResponseInternalError(res, error)
+                        ResponseInternalError(res, error);
                     }
                 });
             } else {
@@ -63,5 +63,23 @@ export default {
         } else {
             res.status(400).json({ msg: 'Data required', valuesWithError: missingData });
         }
+    },
+    signOut: function (req: Request, res: Response) {
+        if (req.session) {
+            res.json('SI hay session');
+            req.session.destroy((err) => {
+                if (err) throw err;
+            });
+        } else {
+            res.json('NO hay session');
+        }
+        /* req.session.destroy((err) => {
+            if (!err) {
+                res.status(200).json({msg: 'Successful Logout'})
+            }else{
+                ResponseInternalError(res, err);
+                console.log(err)
+            }
+        });*/
     },
 };
