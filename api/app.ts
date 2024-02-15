@@ -13,7 +13,7 @@ const app = express();
 
 const mongoDBStore = MongoDBStoreModule(session);
 const store = new mongoDBStore({
-    uri: process.env.DB_URL!,
+    uri: process.env.DB_URL! + process.env.DB_NAME!,
     collection: 'sessions',
 });
 
