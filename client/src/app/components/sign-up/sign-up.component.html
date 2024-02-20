@@ -1,0 +1,23 @@
+<main>
+    <section>
+        <div>Registrarse</div>
+        @if (step === 0) {
+            <div>
+                <input [formControl]="emailControl" type="email" placeholder="Correo electronico...">
+            </div>
+        }
+        <form [formGroup]="formPassword" [hidden]="!(step === 1)">
+            <input formControlName="password" type="password" placeholder="Contraseña...">
+            <input formControlName="confirm" type="password" placeholder="Confirmar...">
+        </form>
+        <form [formGroup]="formName" [hidden]="!(step === 2)">
+            <input formControlName="name" type="text" placeholder="Nombre...">
+            <input formControlName="lastname" type="text" placeholder="Apellido(s)...">
+        </form>
+        <div>
+            <a href="/">Iniciar sesion</a>
+            <button (click)="previousStep()">{{ "<" }}</button>
+            <button (click)="validForms()">Siguiente</button>
+        </div>
+    </section>
+</main>

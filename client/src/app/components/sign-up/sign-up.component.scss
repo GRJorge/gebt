@@ -1,0 +1,18 @@
+@import '../../../colors';
+
+main {
+    justify-content: center;
+    align-items: center;
+
+    section {
+        flex-direction: column;
+        padding: 8px;
+        border-radius: 8px;
+        background-color: $light2;
+        box-shadow: 0 0 4px $dark;
+
+        div {
+            flex-direction: column;
+        }
+    }
+}
