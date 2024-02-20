@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { User } from '../../interfaces/user.interface';
 
 @Component({
     selector: 'sign-up',
@@ -9,9 +11,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
+    constructor(private userService: UserService){}
+
     step = 0;
 
-    emailControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.email]);
+    emailControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.email]);
 
     formPassword = new FormGroup({
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -38,7 +42,21 @@ export class SignUpComponent {
             default:
                 if (this.formName.valid) {
                     this.nextStep();
-                    alert('Enviar post');
+
+                    const newUser: User = {
+                        name: this.formName.get('name')!.value!,
+                        lastname: this.formName.get('lastname')!.value!,
+                        email: this.emailControl!.value!,
+                        password: this.formPassword.get('confirm')!.value!,
+                    };
+
+                    this.userService.newUser(newUser).subscribe({
+                        next: () => {
+                            alert("Usuario guardado")
+                        },error: () => {
+                            alert("Error")
+                        }
+                    })
                 }
                 break;
         }
