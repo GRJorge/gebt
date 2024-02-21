@@ -1,23 +1,42 @@
 <main>
     <section>
-        <div>Registrarse</div>
+        <h1>Registrarse</h1>
         @if (step === 0) {
             <div>
-                <input [formControl]="emailControl" type="email" placeholder="Correo electronico...">
+                <div class="inputLight">
+                    <label for="email"><i class="fi fi-rr-envelope"></i></label>
+                    <input [formControl]="emailControl" id="email" type="email" placeholder="Correo electronico...">
+                </div>
             </div>
         }
         <form [formGroup]="formPassword" [hidden]="!(step === 1)">
-            <input formControlName="password" type="password" placeholder="Contraseña...">
-            <input formControlName="confirm" type="password" placeholder="Confirmar...">
+            <div class="inputLight">
+                <label for="password"><i class="fi fi-rr-lock"></i></label>
+                <input formControlName="password" id="password" type="password" placeholder="Contraseña...">
+            </div>
+            <div class="inputLight">
+                <label for="confirm"><i class="fi fi-rr-rotate-left"></i></label>
+                <input formControlName="confirm" id="confirm" type="password" placeholder="Confirmar...">
+            </div>
         </form>
         <form [formGroup]="formName" [hidden]="!(step === 2)">
-            <input formControlName="name" type="text" placeholder="Nombre...">
-            <input formControlName="lastname" type="text" placeholder="Apellido(s)...">
+            <div class="inputLight">
+                <label for="name"><i class="fi fi-rr-user"></i></label>
+                <input formControlName="name" id="name" type="text" placeholder="Nombre...">
+            </div>
+            <div class="inputLight">
+                <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
+                <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)...">    
+            </div>
         </form>
-        <div>
-            <a href="/">Iniciar sesion</a>
-            <button (click)="previousStep()">{{ "<" }}</button>
-            <button (click)="validForms()">Siguiente</button>
+        <div class="controls">
+            <div class="btnSteps">
+                <button (click)="previousStep()">{{ "<" }}</button>
+                <button (click)="validForms()">Siguiente</button>
+            </div>
+            <div>
+                <a href="/">Iniciar sesion</a>
+            </div>
         </div>
     </section>
 </main>
