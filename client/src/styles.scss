@@ -35,7 +35,6 @@ i {
         align-items: center;
         width: 36px;
         height: 36px;
-        background-color: $purple;
         padding-left: 4px;
         border-radius: 16px 0 0 16px;
         i{
@@ -54,4 +53,20 @@ i {
         opacity: 1;
         font-weight: 200;
     }
+}
+
+.bg-purple {
+    background-color: $purple;
+}
+.bg-blue {
+    background-color: $blue;
+}
+.bg-green {
+    background-color: $green;
+}
+.bg-yellow {
+    background-color: $yellow;
+}
+.bg-red {
+    background-color: $red;
 }
