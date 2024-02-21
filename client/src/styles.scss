@@ -1,4 +1,6 @@
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 @import './colors';
 
 * {
@@ -6,17 +8,50 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
+    font-weight: 500;
     color: $dark;
 }
 main,
 section,
-div {
+div,
+form {
     display: flex;
 }
 body {
-    background-color: $light3;
+    background-color: $dark;
 }
 main {
     width: 100%;
     height: 100vh;
+}
+i {
+    position: relative;
+    top: 2px;
+}
+.inputLight {
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        background-color: $purple;
+        padding-left: 4px;
+        border-radius: 16px 0 0 16px;
+        i{
+            top: 3px;
+        }
+    }
+    input {
+        height: 36px;
+        padding: 2px 16px 0 8px;
+        border-radius: 0 16px 16px 0;
+        border: none;
+        background-color: $light2;
+    }
+    input::placeholder{
+        color: $dark;
+        opacity: 1;
+        font-weight: 200;
+    }
 }
