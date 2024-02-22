@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-notification',
+    selector: 'notification',
     standalone: true,
     imports: [],
     templateUrl: './notification.component.html',
     styleUrl: './notification.component.scss',
 })
-export class NotificationComponent {}
+export class NotificationComponent {
+    @Input() color = "red";
+    @Input() icon = "exclamation";
+    @Input() text!: String;
+}

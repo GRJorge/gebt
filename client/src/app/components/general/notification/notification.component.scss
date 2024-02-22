@@ -1,0 +1,16 @@
+@import '../../../../colors';
+
+div {
+    width: 100%;
+    gap: 8px;
+    border-radius: 16px;
+    align-items: center;
+    padding: 4px 8px;
+    
+    i{
+        margin-left: 2px;
+    }
+    p {
+        font-size: 13px;
+    }
+}
