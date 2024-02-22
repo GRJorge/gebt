@@ -2,16 +2,17 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interface';
+import { NotificationComponent } from '../general/notification/notification.component';
 
 @Component({
     selector: 'sign-up',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, NotificationComponent],
     templateUrl: './sign-up.component.html',
     styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-    constructor(private userService: UserService){}
+    constructor(private userService: UserService) {}
 
     step = 0;
 
@@ -26,6 +27,10 @@ export class SignUpComponent {
         name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     });
+
+    getFormErrors(form: FormGroup, control: string, error: string): boolean {
+        return form.get(control)?.getError(error);
+    }
 
     validForms() {
         switch (this.step) {
@@ -52,11 +57,12 @@ export class SignUpComponent {
 
                     this.userService.newUser(newUser).subscribe({
                         next: () => {
-                            alert("Usuario guardado")
-                        },error: () => {
-                            alert("Error")
-                        }
-                    })
+                            alert('Usuario guardado');
+                        },
+                        error: () => {
+                            alert('Error');
+                        },
+                    });
                 }
                 break;
         }
