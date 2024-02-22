@@ -1,0 +1,73 @@
+@import '../../../../colors';
+
+$dotSize: 22px;
+$boxSize: $dotSize * 2;
+
+div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    
+    span {
+        font-size: 12px;
+        font-weight: 300;
+    }
+}
+.dot {
+    position: relative;
+    width: $boxSize;
+    height: $boxSize;
+}
+.dot::before {
+    content: "";
+    position: absolute;
+    border-radius: 16px;
+    background-color: $dark;
+    width: $dotSize;
+    height: $dotSize;
+    animation: loading 2s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    10% {
+        width: $dotSize * 1.2;
+    }
+    25% {
+        left: calc(100% - $dotSize);
+        top: 0;
+        width: $dotSize;
+        height: $dotSize;
+    }
+    35% {
+        height: $dotSize * 1.2;
+    }
+    50% {
+        left: calc(100% - $dotSize);
+        top: calc(100% - $dotSize);
+        width: $dotSize;
+        height: $dotSize;
+    }
+    60% {
+        width: $dotSize * 1.2;
+    }
+    75% {
+        left: 0;
+        top: calc(100% - $dotSize);
+        width: $dotSize;
+        height: $dotSize;
+    }
+    85% {
+        height: $dotSize * 1.2;
+    }
+    100% {
+        left: 0;
+        top: 0;
+        width: $dotSize;
+        height: $dotSize;
+    }
+}
