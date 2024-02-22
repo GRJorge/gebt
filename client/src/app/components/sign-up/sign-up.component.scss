@@ -3,7 +3,10 @@
 main {
     justify-content: center;
     align-items: center;
-
+    
+    h1{
+        margin-bottom: 4px;
+    }
     section {
         position: relative;
         flex-direction: column;
@@ -20,12 +23,12 @@ main {
             gap: 8px;
         }
         .controls {
-            background-color: red;
             width: 100%;
             align-items: center;
             
-            .btnSteps{
+            div{
                 width: 100%;
+                gap: 8px;
 
                 button:last-child{
                     flex-grow: 1;
