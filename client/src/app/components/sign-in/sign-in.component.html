@@ -1,1 +1,19 @@
-<p>sign-in works!</p>
+<main>
+    <section>
+        <h1>Iniciar sesión</h1>
+        <form>
+            <div class="inputLight">
+                <label for="email"><i class="fi fi-rr-envelope"></i></label>
+                <input id="email" type="email" placeholder="Correo electronico">
+            </div>
+            <div class="inputLight">
+                <label for="password"><i class="fi fi-rr-lock"></i></label>
+                <input id="password" type="password" placeholder="Contraseña">
+            </div>
+            <div class="controls">
+                <button class="btn bg-green">Acceder</button>
+                <button (click)="redirectSignUp()" class="btn bg-dark">Registrarse</button>
+            </div>
+        </form>
+    </section>
+</main>
