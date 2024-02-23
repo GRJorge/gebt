@@ -10,6 +10,7 @@
                 <notification text="El correo es obligatorio" [hidden]="!(emailControl.dirty && emailControl.getError('required'))"/>
                 <notification color="yellow" icon="circle-6" text="El correo debe contener minimo seis caracteres" [hidden]="!(emailControl.getError('minlength') && !emailControl.getError('email'))"/>
                 <notification color="yellow" icon="envelope-ban" text="El correo es invalido" [hidden]="!(emailControl.getError('email'))"/>
+                <notification text="Este correo esta en uso" [hidden]="!(errorDuplicatedEmail)" />
             </div>
         }
         @if (step === 1) {
@@ -44,14 +45,20 @@
                 <notification color="yellow" icon="circle-3" text="Apellido debe contener minimo tres caracteres" [hidden]="!(getFormErrors(formName, 'lastname', 'minlength'))"/>
             </form>
         }
-        <div class="controls">
-            <div class="btnSteps">
-                <button class="btn bg-blue" (click)="previousStep()"><i class="fi fi-rr-angle-left"></i></button>
-                <button [disabled]="!((step === 0 && emailControl.valid) || (step === 1 && formPassword.valid && formPassword.get('password')?.value === formPassword.get('confirm')?.value ) || (step === 2 && formName.valid))" class="btn bg-green" (click)="validForms()">Siguiente</button>
+        @if (step === 3) {
+            <div class="loading">
+                <loading text="Cargando"/>
             </div>
-            <div>
-                <button class="btn bg-dark">Iniciar sesión</button>
+        }@else {
+            <div class="controls">
+                <div class="btnSteps">
+                    <button class="btn bg-blue" (click)="previousStep()"><i class="fi fi-rr-angle-left"></i></button>
+                    <button [disabled]="!((step === 0 && emailControl.valid) || (step === 1 && formPassword.valid && formPassword.get('password')?.value === formPassword.get('confirm')?.value ) || (step === 2 && formName.valid))" class="btn bg-green" (click)="validForms()">Siguiente</button>
+                </div>
+                <div>
+                    <button class="btn bg-dark">Iniciar sesión</button>
+                </div>
             </div>
-        </div>
+        }
     </section>
 </main>
