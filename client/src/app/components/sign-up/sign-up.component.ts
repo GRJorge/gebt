@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interface';
 import { NotificationComponent } from '../general/notification/notification.component';
 import { LoadingComponent } from '../general/loading/loading.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'sign-up',
@@ -13,7 +14,7 @@ import { LoadingComponent } from '../general/loading/loading.component';
     styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private router: Router) {}
 
     step = 0;
     errorDuplicatedEmail = false;
@@ -38,7 +39,7 @@ export class SignUpComponent {
         switch (this.step) {
             case 0:
                 if (this.emailControl.valid) {
-                    this.errorDuplicatedEmail = false
+                    this.errorDuplicatedEmail = false;
                     this.nextStep();
                 }
                 break;
@@ -61,24 +62,27 @@ export class SignUpComponent {
 
                         this.userService.newUser(newUser).subscribe({
                             next: () => {
-                                alert('Usuario creado')
+                                this.nextStep();
+                                setTimeout(() => {
+                                    this.router.navigate(['/']);
+                                }, 1000);
                             },
                             error: (error) => {
-                                if(error.status === 400){
-                                    if(error.error.valueWithError === 'email'){
+                                if (error.status === 400) {
+                                    if (error.error.valueWithError === 'email') {
                                         this.errorDuplicatedEmail = true;
                                         this.step = 0;
                                     }
                                 }
-                            }
-                        })
+                            },
+                        });
                     }, 1000);
                 }
                 break;
         }
     }
     nextStep() {
-        if (this.step < 3) {
+        if (this.step < 4) {
             this.step += 1;
         }
     }

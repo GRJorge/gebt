@@ -39,5 +39,14 @@ main {
         .loading {
             padding: 32px;
         }
+        .successMessage{
+            align-items: center;
+
+            i {
+                font-size: 38px;
+                color: $green;
+                top: 8px;
+            }
+        }
     }
 }
