@@ -91,4 +91,7 @@ export class SignUpComponent {
             this.step -= 1;
         }
     }
+    redirectSignIn(){
+        this.router.navigate(['/signin'])
+    }
 }

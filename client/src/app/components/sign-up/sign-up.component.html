@@ -62,7 +62,7 @@
                     <button [disabled]="!((step === 0 && emailControl.valid) || (step === 1 && formPassword.valid && formPassword.get('password')?.value === formPassword.get('confirm')?.value ) || (step === 2 && formName.valid))" class="btn bg-green" (click)="validForms()">Siguiente</button>
                 </div>
                 <div>
-                    <button class="btn bg-dark">Iniciar sesión</button>
+                    <button (click)="redirectSignIn()" class="btn bg-dark">Iniciar sesión</button>
                 </div>
             </div>
         }
