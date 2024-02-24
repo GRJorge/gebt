@@ -51,14 +51,14 @@ export default {
                             req.session.user = user._id.toString();
                             res.status(200).json({ msg: 'Successful Login' });
                         } else {
-                            res.status(400).json({ msg: 'Incorrect Password' });
+                            res.status(400).json({ msg: 'Incorrect Password', valueWithError: 'password' });
                         }
                     } else {
                         ResponseInternalError(res, error);
                     }
                 });
             } else {
-                res.status(400).json({ msg: 'Unregistered user', valueError: email });
+                res.status(400).json({ msg: 'Unregistered user', valueWithError: 'email', valueError: email });
             }
         } else {
             res.status(400).json({ msg: 'Data required', valuesWithError: missingData });
