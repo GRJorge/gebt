@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ResponseInternalError } from '../utils/functions';
 import bcrypt from 'bcrypt';
+import jwt, { JsonWebTokenError } from 'jsonwebtoken';
 import User from '../model/user';
 
 export default {
@@ -11,8 +12,14 @@ export default {
             if (!err) {
                 try {
                     const newUser = await new User({ name, lastname, email, password: hashPassword }).save();
-
-                    res.status(200).json({ msg: 'User created', data: newUser });
+                    //CREACION DE TOKEN
+                    jwt.sign({ user: newUser._id }, process.env.SECRET_KEY!, { expiresIn: '30 days' }, (error: any, token: any) => {
+                        if (!error) {
+                            res.status(200).json({ msg: 'User created', data: newUser, token });
+                        } else {
+                            ResponseInternalError(res, error);
+                        }
+                    });
                 } catch (error: any) {
                     if (error.code === 11000 && error.keyPattern.email) {
                         res.status(400).json({ msg: 'Email in use', valueWithError: 'email', valueError: error.keyValue.email, error: error });
