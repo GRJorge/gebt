@@ -64,22 +64,4 @@ export default {
             res.status(400).json({ msg: 'Data required', valuesWithError: missingData });
         }
     },
-    signOut: function (req: Request, res: Response) {
-        if (req.session) {
-            res.json('SI hay session');
-            req.session.destroy((err) => {
-                if (err) throw err;
-            });
-        } else {
-            res.json('NO hay session');
-        }
-        /* req.session.destroy((err) => {
-            if (!err) {
-                res.status(200).json({msg: 'Successful Logout'})
-            }else{
-                ResponseInternalError(res, err);
-                console.log(err)
-            }
-        });*/
-    },
 };
