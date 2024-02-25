@@ -11,7 +11,6 @@ export default {
             if (!err) {
                 try {
                     const newUser = await new User({ name, lastname, email, password: hashPassword }).save();
-                    req.session.user = newUser._id.toString();
 
                     res.status(200).json({ msg: 'User created', data: newUser });
                 } catch (error: any) {
@@ -48,7 +47,6 @@ export default {
                 bcrypt.compare(password, user.password, (error, result) => {
                     if (!error) {
                         if (result) {
-                            req.session.user = user._id.toString();
                             res.status(200).json({ msg: 'Successful Login' });
                         } else {
                             res.status(400).json({ msg: 'Incorrect Password', valueWithError: 'password' });
