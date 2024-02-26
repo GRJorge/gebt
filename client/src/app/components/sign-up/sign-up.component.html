@@ -58,7 +58,7 @@
         } @else {
             <div class="controls">
                 <div class="btnSteps">
-                    <button class="btn bg-blue" (click)="previousStep()"><i class="fi fi-rr-angle-left"></i></button>
+                    <button [hidden]="!(step !== 0)" class="btn bg-blue" (click)="previousStep()"><i class="fi fi-rr-angle-left"></i></button>
                     <button [disabled]="!((step === 0 && emailControl.valid) || (step === 1 && formPassword.valid && formPassword.get('password')?.value === formPassword.get('confirm')?.value ) || (step === 2 && formName.valid))" class="btn bg-green" (click)="validForms()">Siguiente</button>
                 </div>
                 <div>
