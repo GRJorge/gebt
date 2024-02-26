@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ResponseInternalError } from '../utils/functions';
+import { createUserToken } from '../utils/token';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import User from '../model/user';
 
 export default {
@@ -13,12 +13,8 @@ export default {
                 try {
                     const newUser = await new User({ name, lastname, email, password: hashPassword }).save(); //GUARDADO EN LA DB
                     //CREACION DE TOKEN
-                    jwt.sign({ user: newUser._id }, process.env.SECRET_KEY!, { expiresIn: '30 days' }, (error: any, token: any) => {
-                        if (!error) {
-                            res.status(200).json({ msg: 'User created', data: newUser, token }); //OK
-                        } else {
-                            ResponseInternalError(res, error);
-                        }
+                    createUserToken(res, newUser._id.toString(), (token: string) => {
+                        res.status(200).json({ msg: 'User created', data: newUser, token }); //OK
                     });
                 } catch (error: any) {
                     if (error.code === 11000 && error.keyPattern.email) {
@@ -55,7 +51,9 @@ export default {
                 bcrypt.compare(password, user.password, (error, result) => {
                     if (!error) {
                         if (result) {
-                            res.status(200).json({ msg: 'Successful Login' });
+                            createUserToken(res, user._id.toString(), (token: string) => {
+                                res.status(200).json({ msg: 'Successful Login', token });
+                            });
                         } else {
                             //SI LA CONTRASEÑA PROPORCIONADA ES INCORRECTA
                             res.status(400).json({ msg: 'Incorrect Password', valueWithError: 'password' });
