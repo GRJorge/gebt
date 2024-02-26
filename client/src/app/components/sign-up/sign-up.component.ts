@@ -30,11 +30,11 @@ export class SignUpComponent {
         name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     });
-
+    //OBTENCION DE ERRORES EN CONTROLES ESPECIFICOS DE FORMULARIOS
     getFormErrors(form: FormGroup, control: string, error: string): boolean {
         return form.get(control)?.getError(error);
     }
-
+    //FUNCION QUE VALIDA SI TODOS LOS FORMULARIOS SON CORRECTOS
     validForms() {
         switch (this.step) {
             case 0:
@@ -53,13 +53,14 @@ export class SignUpComponent {
                     this.nextStep();
 
                     setTimeout(() => {
+                        //CREAR NUEVO OBJETO DE USUARIO
                         const newUser: User = {
                             name: this.formName.get('name')!.value!,
                             lastname: this.formName.get('lastname')!.value!,
                             email: this.emailControl!.value!,
                             password: this.formPassword.get('confirm')!.value!,
                         };
-
+                        //ENVIAR NUEVO USUARIO AL API
                         this.userService.newUser(newUser).subscribe({
                             next: () => {
                                 this.nextStep();
@@ -69,6 +70,7 @@ export class SignUpComponent {
                             },
                             error: (error) => {
                                 if (error.status === 400) {
+                                    //ERROR DE CORREO DUPLICADO
                                     if (error.error.valueWithError === 'email') {
                                         this.errorDuplicatedEmail = true;
                                         this.step = 0;
