@@ -5,6 +5,7 @@ import { User } from '../../interfaces/user.interface';
 import { NotificationComponent } from '../general/notification/notification.component';
 import { LoadingComponent } from '../general/loading/loading.component';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'sign-up',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
     styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(private userService: UserService, private router: Router, private cookieService: CookieService) {}
 
     step = 0;
     errorDuplicatedEmail = false;
@@ -62,7 +63,11 @@ export class SignUpComponent {
                         };
                         //ENVIAR NUEVO USUARIO AL API
                         this.userService.newUser(newUser).subscribe({
-                            next: () => {
+                            next: (result: any) => {
+                                let expirationDate = new Date();
+                                expirationDate.setDate(expirationDate.getDate() + 30);
+                                this.cookieService.set('user', result.token, { expires: expirationDate, sameSite: 'Strict' });
+
                                 this.nextStep();
                                 setTimeout(() => {
                                     this.router.navigate(['/']);
@@ -93,7 +98,7 @@ export class SignUpComponent {
             this.step -= 1;
         }
     }
-    redirectSignIn(){
-        this.router.navigate(['/signin'])
+    redirectSignIn() {
+        this.router.navigate(['/signin']);
     }
 }

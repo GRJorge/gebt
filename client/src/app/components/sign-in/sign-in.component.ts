@@ -5,6 +5,7 @@ import { NotificationComponent } from '../general/notification/notification.comp
 import { UserService } from '../../services/user.service';
 import { UserSignIn } from '../../interfaces/user.interface';
 import { LoadingComponent } from '../general/loading/loading.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-sign-in',
@@ -14,7 +15,7 @@ import { LoadingComponent } from '../general/loading/loading.component';
     styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(private userService: UserService, private router: Router, private cookieService: CookieService) {}
 
     valid = false;
     unregisteredUserError = false;
@@ -44,7 +45,11 @@ export class SignInComponent {
                 };
 
                 this.userService.signin(user).subscribe({
-                    next: () => {
+                    next: (result: any) => {
+                        let expirationDate = new Date();
+                        expirationDate.setDate(expirationDate.getDate() + 30);
+                        this.cookieService.set('user', result.token, { expires: expirationDate, sameSite: 'Strict' });
+
                         this.router.navigate(['/']);
                     },
                     error: (error) => {
