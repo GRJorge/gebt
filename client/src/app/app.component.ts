@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from './services/user.service';
 
 @Component({
     selector: 'app-root',
@@ -10,12 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-    constructor(private router: Router, private cookieService: CookieService) {}
-
-    ngOnInit(): void {
-        if (!this.cookieService.check('user')) {
-            this.router.navigate(['/signin']);
-        }
+export class AppComponent {
+    constructor(private userService: UserService) {
+        this.userService.verifyToken();
     }
 }
