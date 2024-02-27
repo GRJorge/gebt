@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 export class UserService {
     constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {}
 
-    private url = `${environment.apiUrl}/user/`;
+    private url = `${environment.apiUrl}user/`;
 
     newUser(user: User) {
         return this.http.post(this.url + 'new', user);
