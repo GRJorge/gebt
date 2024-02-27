@@ -6,6 +6,7 @@ import { NotificationComponent } from '../general/notification/notification.comp
 import { LoadingComponent } from '../general/loading/loading.component';
 import { Router } from '@angular/router';
 import { CookiesService } from '../../services/cookies.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'sign-up',
@@ -15,7 +16,7 @@ import { CookiesService } from '../../services/cookies.service';
     styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-    constructor(private userService: UserService, private router: Router, private cookies: CookiesService) {}
+    constructor(private userService: UserService, private router: Router, private cookies: CookiesService, private cookieService: CookieService) {}
 
     step = 0;
     errorDuplicatedEmail = false;
@@ -97,5 +98,13 @@ export class SignUpComponent {
     }
     redirectSignIn() {
         this.router.navigate(['/signin']);
+    }
+
+    redirectHome() {
+        this.router.navigate(['/']);
+    }
+
+    hiddenHomeCookie(): boolean {
+        return this.cookieService.check('session');
     }
 }

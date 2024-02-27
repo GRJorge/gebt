@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { UserSignIn } from '../../interfaces/user.interface';
 import { LoadingComponent } from '../general/loading/loading.component';
 import { CookiesService } from '../../services/cookies.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-sign-in',
@@ -15,7 +16,7 @@ import { CookiesService } from '../../services/cookies.service';
     styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
-    constructor(private userService: UserService, private router: Router, private cookies: CookiesService) {}
+    constructor(private userService: UserService, private router: Router, private cookies: CookiesService, private cookieService: CookieService) {}
 
     valid = false;
     unregisteredUserError = false;
@@ -32,6 +33,14 @@ export class SignInComponent {
 
     redirectSignUp() {
         this.router.navigate(['/signup']);
+    }
+
+    redirectHome() {
+        this.router.navigate(['/']);
+    }
+
+    hiddenHomeCookie(): boolean {
+        return this.cookieService.check('session');
     }
 
     signIn() {

@@ -22,7 +22,10 @@
                 <notification text="Contraseña incorrecta, vuelve a intentarlo" [hidden]="!(incorrectPasswordError)" />
                 <div class="controls">
                     <button (click)="signIn()" [disabled]="!form.valid" class="btn bg-green">Acceder</button>
-                    <button (click)="redirectSignUp()" class="btn bg-dark">Registrarse</button>
+                    <div>
+                        <button [hidden]="!(hiddenHomeCookie())" (click)="redirectHome()" class="btn bg-purple"><i class="fi fi-rr-home"></i></button>
+                        <button (click)="redirectSignUp()" class="btn bg-dark">Registrarse</button>
+                    </div>
                 </div>
             </form>
         } @else {
