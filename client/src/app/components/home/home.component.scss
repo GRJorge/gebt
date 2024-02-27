@@ -1,0 +1,12 @@
+@import '../../../colors';
+
+main {
+    flex-direction: column;
+
+    section {
+        flex: 1;
+        background-color: $light;
+        border-radius: 16px;
+        margin: 8px;
+    }
+}
