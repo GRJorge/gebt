@@ -3,7 +3,7 @@
         <h1>Registrarse</h1>
         @if (step === 0) {
             <div>
-                <div class="inputLight">
+                <div class="input bg-light2">
                     <label for="email"><i class="fi fi-rr-envelope"></i></label>
                     <input [formControl]="emailControl" id="email" type="email" placeholder="Correo electronico">
                 </div>
@@ -15,13 +15,13 @@
         }
         @if (step === 1) {
             <form [formGroup]="formPassword" [hidden]="!(step === 1)">
-                <div class="inputLight">
+                <div class="input bg-light2">
                     <label for="password"><i class="fi fi-rr-lock"></i></label>
                     <input formControlName="password" id="password" type="password" placeholder="Contraseña">
                 </div>
                 <notification text="La contraseña es obligatorio" [hidden]="!(getFormErrors(formPassword, 'password', 'required') && formPassword.get('password')?.dirty)"/>
                 <notification color="yellow" icon="circle-6" text="La contraseña debe contener minimo seis caracteres" [hidden]="!(getFormErrors(formPassword, 'password', 'minlength'))"/>
-                <div class="inputLight">
+                <div class="input bg-light2">
                     <label for="confirm"><i class="fi fi-rr-rotate-left"></i></label>
                     <input formControlName="confirm" id="confirm" type="password" placeholder="Confirmar">
                 </div>
@@ -31,13 +31,13 @@
         }
         @if (step === 2) {
             <form [formGroup]="formName" [hidden]="!(step === 2)">
-                <div class="inputLight">
+                <div class="input bg-light2">
                     <label for="name"><i class="fi fi-rr-user"></i></label>
                     <input formControlName="name" id="name" type="text" placeholder="Nombre">
                 </div>
                 <notification text="Nombre es obligatorio" [hidden]="!(getFormErrors(formName, 'name', 'required') && formName.get('name')?.dirty)"/>
                 <notification color="yellow" icon="circle-3" text="Nombre debe contener minimo tres caracteres" [hidden]="!(getFormErrors(formName, 'name', 'minlength'))"/>
-                <div class="inputLight">
+                <div class="input bg-light2">
                     <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
                     <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)">    
                 </div>

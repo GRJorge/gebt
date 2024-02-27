@@ -14,7 +14,8 @@
 main,
 section,
 div,
-form {
+form,
+nav {
     display: flex;
 }
 body {
@@ -34,9 +35,8 @@ h3,
 h4 {
     font-weight: 800;
 }
-.inputLight {
+.input {
     height: 36px;
-    background-color: $light2;
     border-radius: 16px;
 
     label {
@@ -83,6 +83,14 @@ h4 {
 .bg-dark {
     background-color: $dark;
     color: $light;
+    input,
+    i {
+        color: $light;
+    }
+}
+.bg-dark2 {
+    background-color: $dark2;
+    input,
     i {
         color: $light;
     }
