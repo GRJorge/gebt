@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User, UserSignIn } from '../interfaces/user.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserService {
     constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {}
 
-    private url = 'http://localhost:3000/user/';
+    private url = `${environment.apiUrl}/user/`;
 
     newUser(user: User) {
         return this.http.post(this.url + 'new', user);
