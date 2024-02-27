@@ -5,8 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
     const cookieService = inject(CookieService);
 
-    if (cookieService.check('user')) {
-        const token = cookieService.get('user');
+    if (cookieService.check('session')) {
+        const token = cookieService.get('session');
 
         req = req.clone({
             setHeaders: {
