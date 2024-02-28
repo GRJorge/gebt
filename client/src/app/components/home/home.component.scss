@@ -4,9 +4,16 @@ main {
     flex-direction: column;
 
     section {
+        justify-content: center;
         flex: 1;
         background-color: $light;
         border-radius: 16px;
         margin: 8px;
+    }
+    .content{
+        flex: 1;
+        background-color: $light2;
+        border-radius: 16px;
+        z-index: 2;
     }
 }
