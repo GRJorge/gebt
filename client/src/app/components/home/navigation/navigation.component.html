@@ -1,1 +1,17 @@
-<p>navigation works!</p>
+<nav [class.hide]="hide">
+    <div class="start">
+        <div class="current">
+            <i class="fi fi-rr-house-blank"></i>
+            <span>Home</span>
+        </div>
+        <div class="sections">
+            <button><i class="fi fi-rr-house-blank"></i><span>Inicio</span></button>
+            <button><i class="fi fi-rr-user"></i><span>Pacientes</span></button>
+            <button><i class="fi fi-rr-calendar-day"></i><span>Citas</span></button>
+            <button><i class="fi fi-rr-apple-whole"></i><span>Dietas</span></button>
+        </div>
+    </div>
+    <div class="end">
+        <button (click)="changeHide()" class="btn bg-dark"><span><i class="fi fi-rr-angle-double-small-left"></i></span></button>
+    </div>
+</nav>
