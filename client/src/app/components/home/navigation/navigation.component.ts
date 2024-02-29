@@ -13,7 +13,15 @@ export class NavigationComponent {
     constructor() {
         this.updateViewportSize();
     }
+    titleSection = 'Inicio';
+    iconSection = 'house-blank';
 
+    changeSection(numSection: number, title: string, icon: string) {
+        this.titleSection = title;
+        this.iconSection = icon;
+    }
+
+    //RESPONSIVE EN NAVIGATION
     updateViewportSize() {
         if (window.innerWidth <= 900) {
             this.hide = true;
