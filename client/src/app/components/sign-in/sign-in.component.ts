@@ -7,11 +7,12 @@ import { UserSignIn } from '../../interfaces/user.interface';
 import { LoadingComponent } from '../general/loading/loading.component';
 import { CookiesService } from '../../services/cookies.service';
 import { CookieService } from 'ngx-cookie-service';
+import { LogoComponent } from '../general/logo/logo.component';
 
 @Component({
     selector: 'app-sign-in',
     standalone: true,
-    imports: [ReactiveFormsModule, NotificationComponent, LoadingComponent],
+    imports: [ReactiveFormsModule, NotificationComponent, LoadingComponent, LogoComponent],
     templateUrl: './sign-in.component.html',
     styleUrl: './sign-in.component.scss',
 })

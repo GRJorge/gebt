@@ -7,11 +7,12 @@ import { LoadingComponent } from '../general/loading/loading.component';
 import { Router } from '@angular/router';
 import { CookiesService } from '../../services/cookies.service';
 import { CookieService } from 'ngx-cookie-service';
+import { LogoComponent } from '../general/logo/logo.component';
 
 @Component({
     selector: 'sign-up',
     standalone: true,
-    imports: [ReactiveFormsModule, NotificationComponent, LoadingComponent],
+    imports: [ReactiveFormsModule, NotificationComponent, LoadingComponent, LogoComponent],
     templateUrl: './sign-up.component.html',
     styleUrl: './sign-up.component.scss',
 })
