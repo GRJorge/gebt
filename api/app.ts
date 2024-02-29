@@ -6,6 +6,7 @@ import 'dotenv/config';
 import './config/db';
 
 import userRouter from './routes/user';
+import patientRouter from './routes/patient';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/user', userRouter);
+app.use('/patient', patientRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Listen on ${process.env.PORT}`);
