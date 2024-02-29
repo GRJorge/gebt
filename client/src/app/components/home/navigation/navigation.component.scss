@@ -78,6 +78,7 @@ nav {
 }
 .end button:hover {
     background-color: $yellow;
+    transition: background-color 0.3s ease-in-out;
 }
 .hide {
     width: 48px;

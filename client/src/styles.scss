@@ -27,7 +27,7 @@ main {
 }
 i {
     position: relative;
-    top: 2px;
+    top: 3px;
 }
 h1,
 h2,
@@ -57,25 +57,35 @@ h4 {
 }
 
 .btn {
+    position: relative;
     height: 36px;
     border-radius: 16px;
     border: none;
     min-width: 36px;
     padding: 0 16px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
 
     i {
         font-size: 16px;
     }
-}
-.btn:hover {
-    background-color: $light2;
-    color: $dark;
-}
-.btn:disabled {
-    background: none;
-    border: 1px solid $light3;
-    color: $dark;
+    &:hover {
+        color: $dark;
+        background: $light3;
+
+        i {
+            color: $dark;
+        }
+    }
+    &:disabled {
+        background: none;
+        border: 1px solid $light3;
+        color: $dark;
+
+        i {
+            color: $dark;
+        }
+    }
 }
 
 .bg-light2 {
