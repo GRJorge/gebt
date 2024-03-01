@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Component({
     selector: 'navigation',
@@ -13,12 +13,17 @@ export class NavigationComponent {
     constructor() {
         this.updateViewportSize();
     }
+
+    //CAMBIO DE SECCION Y ENVIO DE DATOS
     titleSection = 'Inicio';
     iconSection = 'house-blank';
+
+    @Output() numSectionEvent = new EventEmitter<number>();
 
     changeSection(numSection: number, title: string, icon: string) {
         this.titleSection = title;
         this.iconSection = icon;
+        this.numSectionEvent.emit(numSection);
     }
 
     //RESPONSIVE EN NAVIGATION
