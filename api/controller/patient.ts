@@ -16,7 +16,26 @@ export default {
                 console.log(error);
             }
         } else {
-            ResponseInternalError(res, { Error: 'Data required' });
+            ResponseInternalError(res, { error: 'Data required' });
+        }
+    },
+    delete: async function (req: Request, res: Response) {
+        const { id } = req.body;
+        const patient = await Patient.findById(id).lean();
+
+        if (id) {
+            if(patient){
+                try {
+                    await Patient.findByIdAndDelete(id);
+                    res.status(200).json({ msg: 'Patient deleted' });
+                } catch (error: any) {
+                    ResponseInternalError(res, error);
+                }
+            }else{
+                res.status(400).json({msg: 'Patient not found in DB'})
+            }
+        } else {
+            ResponseInternalError(res, 'Id required');
         }
     },
 };
