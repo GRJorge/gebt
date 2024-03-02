@@ -1,0 +1,27 @@
+@import '../../../../colors';
+
+.card {
+    flex-direction: column;
+    align-items: center;
+
+    .info {
+        cursor: pointer;
+        width: 100%;
+        background-color: $light;
+        height: 54px;
+        border-radius: 16px;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex: 1;
+            height: 100%;
+
+            &:not(:last-child) {
+                border-right: 1px solid $light3;
+            }
+        }
+    }
+}
