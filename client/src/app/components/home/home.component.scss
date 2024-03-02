@@ -15,5 +15,9 @@ main {
         background-color: $light2;
         border-radius: 16px;
         z-index: 2;
+
+        patients {
+            width: 100%;
+        }
     }
 }
