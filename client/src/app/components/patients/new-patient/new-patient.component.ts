@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-new-patient',
+    selector: 'new-patient',
     standalone: true,
     imports: [],
     templateUrl: './new-patient.component.html',

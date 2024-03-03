@@ -1,0 +1,14 @@
+@import '../../../../colors';
+
+form {
+    width: max-content;
+    flex-direction: column;
+    background-color: $light;
+    padding: 16px;
+    gap: 8px;
+    border-radius: 16px;
+
+    button {
+        flex: 1;
+    }
+}
