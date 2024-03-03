@@ -3,6 +3,7 @@
 .box {
     padding: 16px;
     height: 100%;
+    gap: 8px;
 
     .info {
         flex-direction: column;
@@ -29,5 +30,6 @@
     }
     .content {
         flex: 1;
+        gap: 8px;
     }
 }
