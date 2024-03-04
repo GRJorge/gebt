@@ -45,7 +45,9 @@ nav {
             padding-right: 16px;
             border: none;
             background: none;
+            border-radius: 16px 0 0 16px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
 
             i {
                 display: flex;
@@ -56,19 +58,9 @@ nav {
                 width: $size;
                 top: 0;
             }
-        }
-        button::after {
-            content: '';
-            position: absolute;
-            height: 0;
-            width: 4px;
-            left: calc(100% - 4px);
-            border-radius: 16px;
-            background-color: $yellow;
-            transition: height 0.16s ease-in;
-        }
-        button:hover:after {
-            height: 100%;
+            &:hover{
+                background-color: $light2;
+            }
         }
     }
 }
