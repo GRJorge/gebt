@@ -1,29 +1,35 @@
-<form>
+<form [formGroup]="newForm">
     <h1><i class="fi fi-rr-user-add"></i><span>Nuevo paciente</span></h1>
     <div class="input bg-light2">
         <label for="name"><i class="fi fi-rr-user"></i></label>
-        <input id="name" type="text" placeholder="Nombre">
+        <input formControlName="name" id="name" type="text" placeholder="Nombre" />
     </div>
+    <notification [hidden]="!(getControlError('name', 'required') && newForm.get('name')!.dirty)" text="El nombre es obligatorio" />
+    <notification [hidden]="!getControlError('name', 'minlength')" color="yellow" icon="circle-3" text="El nombre debe contener minimo tres caracteres" />
     <div class="input bg-light2">
         <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
-        <input id="lastname" type="text" placeholder="Apellido(s)">
+        <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)" />
     </div>
+    <notification [hidden]="!(getControlError('lastname', 'required') && newForm.get('lastname')!.dirty)" text="El apellido es obligatorio" />
+    <notification [hidden]="!getControlError('lastname', 'minlength')" color="yellow" icon="circle-3" text="El apellido debe contener minimo tres caracteres" />
     <div class="input bg-light2">
         <label for="phone"><i class="fi fi-rr-mobile-notch"></i></label>
-        <input id="phone" type="text" placeholder="Telefono">
+        <input formControlName="phone" id="phone" type="text" placeholder="Telefono" />
     </div>
+    <notification [hidden]="!getControlError('phone', 'minlength')" color="yellow" icon="triangle-warning" text="El telefono debe contener minimo diez caracteres" />
     <div class="input bg-light2">
         <label for="birthday"><i class="fi fi-rr-calendar-day"></i></label>
-        <input id="birthday" type="date" placeholder="Fecha de nacimiento">
+        <input formControlName="birthday" id="birthday" type="date" placeholder="Fecha de nacimiento" />
     </div>
+    <notification [hidden]="!(getControlError('birthday', 'required') && newForm.get('birthday')!.dirty)" text="La fecha de nacimiento es obligatoria" />
     <div class="input bg-light2">
         <label for="gender"><i class="fi fi-rr-venus-mars"></i></label>
-        <select id="gender">
+        <select formControlName="gender" id="gender">
             <option value="F">Femenino</option>
             <option value="M">Masculino</option>
         </select>
     </div>
     <div>
-        <button class="btn bg-green">Guardar</button>
+        <button [disabled]="!newForm.valid" class="btn bg-green">Guardar</button>
     </div>
 </form>
