@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../general/notification/notification.component';
+import { PatientService } from '../../../services/patient.service';
+import { Patient } from '../../../interfaces/patient.interface';
 
 @Component({
     selector: 'new-patient',
@@ -10,6 +12,8 @@ import { NotificationComponent } from '../../general/notification/notification.c
     styleUrl: './new-patient.component.scss',
 })
 export class NewPatientComponent {
+    constructor(private patientService: PatientService) {}
+
     newForm = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.nullValidator]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -20,5 +24,25 @@ export class NewPatientComponent {
 
     getControlError(control: string, error: string) {
         return this.newForm.get(control)!.getError(error);
+    }
+    getControlValue(control: string): string {
+        return this.newForm.get(control)!.value;
+    }
+
+    //ENVIO DE NUEVO PACIENTE
+    submitForm() {
+        const newPatient: Patient = {
+            name: this.getControlValue('name'),
+            lastname: this.getControlValue('lastname'),
+            phone: this.getControlValue('phone'),
+            birthday: new Date(this.getControlValue('birthday')),
+            gender: this.getControlValue('gender'),
+        };
+
+        this.patientService.newPatient(newPatient).subscribe({
+            next: () => {
+                alert('Paciente creado')
+            }
+        })
     }
 }

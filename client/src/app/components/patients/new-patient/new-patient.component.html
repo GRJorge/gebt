@@ -1,4 +1,4 @@
-<form [formGroup]="newForm">
+<form (submit)="submitForm()" [formGroup]="newForm">
     <h1><i class="fi fi-rr-user-add"></i><span>Nuevo paciente</span></h1>
     <div class="input bg-light2">
         <label for="name"><i class="fi fi-rr-user"></i></label>
