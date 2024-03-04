@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { PatientCardComponent } from './patient-card/patient-card.component';
 import { NewPatientComponent } from './new-patient/new-patient.component';
 
 @Component({
     selector: 'patients',
     standalone: true,
-    imports: [PatientCardComponent, NewPatientComponent],
+    imports: [NewPatientComponent],
     templateUrl: './patients.component.html',
     styleUrl: './patients.component.scss',
 })
