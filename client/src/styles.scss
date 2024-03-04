@@ -36,26 +36,32 @@ h4 {
     font-weight: 800;
 }
 .input {
-    height: 36px;
+    position: relative;
     border-radius: 16px;
-
-    label {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 36px;
-        width: 36px;
-    }
     input,
     select {
         width: 100%;
         height: 36px;
-        border-radius: 16px;
-        background: none;
         border: none;
+        background: none;
         outline: none;
-        padding-top: 2px;
-        margin-right: 8px;
+        padding: 2px 16px 0 36px;
+        border-radius: 16px;
+
+        &:focus {
+            box-shadow: inset 0px 0px 0px 4px rgba($color: #000, $alpha: 0.2);
+        }
+    }
+    select {
+        margin-right: 12px;
+    }
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: 36px;
+        height: 36px;
     }
 }
 
@@ -73,12 +79,7 @@ h4 {
         font-size: 16px;
     }
     &:hover {
-        color: $dark;
-        background: $light3;
-
-        i {
-            color: $dark;
-        }
+        box-shadow: inset 0px 0px 0px 4px rgba($color: #ffffff, $alpha: 0.2);
     }
     &:disabled {
         background: none;
