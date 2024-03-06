@@ -14,4 +14,7 @@ export class PatientService {
     newPatient(patient: Patient) {
         return this.http.post(this.url + 'new', patient);
     }
+    get(sort: string = 'createdAt', order: string = 'asc') {
+        return this.http.get(this.url + 'get', { params: { sort, order } });
+    }
 }
