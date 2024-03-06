@@ -12,10 +12,10 @@ import { Patients } from '../../interfaces/patient.interface';
     styleUrl: './patients.component.scss',
 })
 export class PatientsComponent implements OnInit {
+    constructor(private patientService: PatientService) {}
+    
     patients!: Patients[];
     newForm = false;
-
-    constructor(private patientService: PatientService) {}
 
     ngOnInit(): void {
         this.patientService.get().subscribe((data: any) => {

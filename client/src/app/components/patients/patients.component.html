@@ -20,5 +20,6 @@
         @if (newForm) {
             <new-patient />
         }
+        <app-table [head]="['Nombre','Apellido','Telefono','Nacimiento','Genero']" [body]="patients" />
     </div>
 </div>
