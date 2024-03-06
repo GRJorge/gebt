@@ -20,6 +20,13 @@ export class PatientsComponent implements OnInit {
     ngOnInit(): void {
         this.patientService.get().subscribe((data: any) => {
             this.patients = data;
+            for(let patient of this.patients){
+                if(patient.gender === "M"){
+                    patient.gender = '♂'
+                }else{
+                    patient.gender = '♀'
+                }
+            }
         });
     }
 
