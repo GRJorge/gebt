@@ -31,9 +31,8 @@ export default {
         const { name, lastname, phone, birthday, gender } = req.body;
 
         if (name || lastname || phone || birthday || gender) {
-            const birthdayFormat = new Date(birthday);
             try {
-                const newPatient = await new Patient({ name, lastname, phone, birthday: birthdayFormat, gender, user: req.user }).save();
+                const newPatient = await new Patient({ name, lastname, phone, birthday: new Date(birthday), gender, user: req.user }).save();
                 res.status(200).json({ msg: 'Patient created', data: newPatient });
             } catch (error: any) {
                 ResponseInternalError(res, error);
