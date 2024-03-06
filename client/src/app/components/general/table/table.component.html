@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            @for (headItem of head; track $index) {
+                <th>{{headItem}}</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of body; track $index) {
+            <tr>
+                @for (key of getObjectKeys(item); track $index) {
+                    @if (key !== '_id') {
+                        <td>{{ getKeysValue(item, key) }}</td>       
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
