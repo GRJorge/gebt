@@ -18,6 +18,22 @@ export class PatientsComponent implements OnInit {
     newForm = false;
 
     ngOnInit(): void {
+        this.updatePatients();
+    }
+
+    toggleNewForm() {
+        this.newForm = !this.newForm;
+    }
+    //ELIMINAR PACIENTE
+    delete(id: string) {
+        this.patientService.delete(id).subscribe({
+            next: () => {
+                this.updatePatients();
+            },
+        });
+    }
+    //LLENAR PACIENTES
+    updatePatients() {
         this.patientService.get('createdAt', 'desc').subscribe((data: any) => {
             this.patients = data;
             for (let patient of this.patients) {
@@ -28,14 +44,5 @@ export class PatientsComponent implements OnInit {
                 }
             }
         });
-    }
-
-    toggleNewForm() {
-        this.newForm = !this.newForm;
-    }
-    //ELIMINAR PACIENTE
-    delete(id: string) {
-        this.patientService.delete(id).subscribe();
-        this.patients = []
     }
 }
