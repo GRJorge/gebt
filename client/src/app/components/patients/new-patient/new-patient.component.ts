@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { PatientService } from '../../../services/patient.service';
@@ -29,6 +29,8 @@ export class NewPatientComponent {
         return this.newForm.get(control)!.value;
     }
 
+    @Output() newPatientOk = new EventEmitter();
+
     //ENVIO DE NUEVO PACIENTE
     submitForm() {
         const newPatient: Patient = {
@@ -41,8 +43,8 @@ export class NewPatientComponent {
 
         this.patientService.newPatient(newPatient).subscribe({
             next: () => {
-                alert('Paciente creado')
-            }
-        })
+                this.newPatientOk.emit();
+            },
+        });
     }
 }

@@ -18,7 +18,7 @@
     </div>
     <div class="content">
         @if (newForm) {
-            <new-patient />
+            <new-patient (newPatientOk)="updatePatients()" (newPatientOk)="toggleNewForm()" />
         }
         <app-table [head]="['Nombre','Apellido','Telefono','Nacimiento','Genero']" [body]="patients" (deleteEvent)="delete($event)" />
     </div>
