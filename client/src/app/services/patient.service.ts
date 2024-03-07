@@ -17,4 +17,7 @@ export class PatientService {
     get(sort: string = 'createdAt', order: string = 'asc') {
         return this.http.get(this.url + 'get', { params: { sort, order } });
     }
+    delete(id: string) {
+        return this.http.delete(this.url + 'delete', { body: { id } });
+    }
 }
