@@ -1,20 +1,29 @@
-<table>
-    <thead>
-        <tr>
-            @for (headItem of head; track $index) {
-                <th>{{headItem}}</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @for (item of body; track $index) {
-            <tr>
-                @for (key of getObjectKeys(item); track $index) {
-                    @if (key !== '_id') {
-                        <td>{{ getKeysValue(item, key) }}</td>       
+@if (body) {
+    <div class="tableBox">
+        <table>
+            <thead>
+                <tr>
+                    @for (headItem of head; track $index) {
+                        <th>{{headItem}}</th>
                     }
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of body; track $index) {
+                    <tr>
+                        @for (key of getObjectKeys(item); track $index) {
+                            @if (key !== '_id') {
+                                <td>{{ getKeysValue(item, key) }}</td>       
+                            }
+                        }
+                    </tr>
                 }
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+} @else {
+    <div class="empty">
+        <i class="fi fi-rr-grimace"></i>
+        <p>Aun no hay datos que mostrar.</p>
+    </div>
+}
