@@ -18,7 +18,7 @@ export class PatientsComponent implements OnInit {
     newForm = false;
 
     ngOnInit(): void {
-        this.patientService.get().subscribe((data: any) => {
+        this.patientService.get('createdAt','desc').subscribe((data: any) => {
             this.patients = data;
             for(let patient of this.patients){
                 if(patient.gender === "M"){
