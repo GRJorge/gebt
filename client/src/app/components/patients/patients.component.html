@@ -20,6 +20,6 @@
         @if (newForm) {
             <new-patient />
         }
-        <app-table [head]="['Nombre','Apellido','Telefono','Nacimiento','Genero']" [body]="patients" />
+        <app-table [head]="['Nombre','Apellido','Telefono','Nacimiento','Genero']" [body]="patients" (deleteEvent)="delete($event)" />
     </div>
 </div>

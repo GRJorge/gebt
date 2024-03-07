@@ -13,18 +13,18 @@ import { Patients } from '../../interfaces/patient.interface';
 })
 export class PatientsComponent implements OnInit {
     constructor(private patientService: PatientService) {}
-    
+
     patients!: Patients[];
     newForm = false;
 
     ngOnInit(): void {
-        this.patientService.get('createdAt','desc').subscribe((data: any) => {
+        this.patientService.get('createdAt', 'desc').subscribe((data: any) => {
             this.patients = data;
-            for(let patient of this.patients){
-                if(patient.gender === "M"){
-                    patient.gender = '♂'
-                }else{
-                    patient.gender = '♀'
+            for (let patient of this.patients) {
+                if (patient.gender === 'M') {
+                    patient.gender = '♂';
+                } else {
+                    patient.gender = '♀';
                 }
             }
         });
@@ -32,5 +32,10 @@ export class PatientsComponent implements OnInit {
 
     toggleNewForm() {
         this.newForm = !this.newForm;
+    }
+    //ELIMINAR PACIENTE
+    delete(id: string) {
+        this.patientService.delete(id).subscribe();
+        this.patients = []
     }
 }
