@@ -30,19 +30,37 @@
         }
         tbody {
             tr {
+                position: relative;
+                border-radius: 16px;
                 cursor: pointer;
+                outline: 1px solid rgba($color: #000000, $alpha: 0);
+                transition: border-color 0.2s ease-in-out;
+                transition: outline-color 0.1s ease-in-out;
                 
                 &:not(:last-child){
                     border-bottom: 1px solid $light2;
                 }
                 &:hover {
-                    outline: 1px solid $dark;
-                    border-radius: 16px;
+                    outline-color: $dark;
+                    .options {
+                        opacity: 1;
+                    }
+                }
+
+                .options {
+                    
+                    opacity: 0;
+                    z-index: 2;
+                    gap: 8px;
+                    position: absolute;
+                    top: calc(100% - 18px);
+                    right: 0;
+                    transition: all 0.1s ease-in-out;
                 }
             }
             &:hover {
                 tr {
-                    border-bottom: none;
+                    border-color: rgba($color: #000000, $alpha: 0);
                 }
             }
         }
