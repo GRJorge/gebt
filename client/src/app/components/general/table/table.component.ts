@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'app-table',
@@ -22,6 +22,18 @@ export class TableComponent {
             return `${date.getDate() + 1 < 10 ? '0' : ''}${date.getDate() + 1}/${date.getMonth() + 1 < 10 ? '0' : ''}${date.getMonth() + 1}/${date.getFullYear()}`;
         } else {
             return value;
+        }
+    }
+
+    @Output() deleteEvent = new EventEmitter<string>();
+    sureDelete = false;
+
+    delete(id: string) {
+        if (this.sureDelete) {
+            this.deleteEvent.emit(id);
+            this.sureDelete = false;
+        } else {
+            this.sureDelete = true;
         }
     }
 }
