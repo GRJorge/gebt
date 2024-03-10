@@ -36,4 +36,10 @@ export class TableComponent {
             this.sureDelete = true;
         }
     }
+
+    @Output() editEvent = new EventEmitter<object>();
+
+    edit(data: object) {
+        this.editEvent.emit(data);
+    }
 }

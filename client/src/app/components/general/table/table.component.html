@@ -17,7 +17,7 @@
                             }
                         }
                         <div class="options">
-                            <button class="btn bg-yellow"><i class="fi fi-rr-pencil"></i></button>
+                            <button (click)="edit(item)" class="btn bg-yellow"><i class="fi fi-rr-pencil"></i></button>
                             <button (mouseleave)="sureDelete = false" (click)="delete(getKeysValue(item, '_id'))" class="btn bg-red">
                                 @if (sureDelete) {
                                     ¿Estas seguro?
