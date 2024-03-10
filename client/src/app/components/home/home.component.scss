@@ -1,20 +1,11 @@
 @import '../../../colors';
 
-main {
+section {
+    width: 100%;
     flex-direction: column;
 
-    section {
-        justify-content: center;
+    .content {
         flex: 1;
-        background-color: $light;
-        border-radius: 16px;
-        margin: 8px;
-    }
-    .content{
-        flex: 1;
-        background-color: $light2;
-        border-radius: 16px;
-        z-index: 2;
 
         patients {
             width: 100%;
