@@ -1,46 +1,28 @@
 @import '../../../../colors';
 
-* {
-    color: $light;
-}
-nav {
+.top-panel {
+    margin: 8px 8px 8px 16px;
     justify-content: space-between;
-    margin: 8px 8px 0 13px;
-    gap: 8px;
 
-    .logo {
-        gap: 8px;
-
-        div {
-            flex-direction: column;
-
-            span:first-child {
-                font-weight: 700;
-            }
-            span:last-child {
-                font-size: 12px;
-                font-weight: 300;
-            }
-        }
+    div {
+        align-items: center;
+        gap: 16px;
     }
-    .input input {
-        flex: 1;
-    }
-    > div {
-        position: relative;
-        flex: 1;
-    }
-    > div:last-child {
-        justify-content: flex-end;
-
-        > button {
+    .start {
+        span {
             display: flex;
             align-items: center;
-            gap: 8px;
+            font-size: 28px;
+            font-weight: 700;
 
-            i {
-                font-size: 20px;
-                top: 4px;
+            &::before {
+                content: '';
+                display: block;
+                height: 8px;
+                width: 8px;
+                margin-right: 8px;
+                background-color: $dark;
+                border-radius: 50%;
             }
         }
     }
