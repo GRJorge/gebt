@@ -1,33 +1,31 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { LogoComponent } from '../../general/logo/logo.component';
 
 @Component({
     selector: 'navigation',
     standalone: true,
-    imports: [],
+    imports: [LogoComponent],
     templateUrl: './navigation.component.html',
     styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent {
-    hide = false;
+    //hide = false;
 
     constructor() {
-        this.updateViewportSize();
+        //this.updateViewportSize();
     }
 
     //CAMBIO DE SECCION Y ENVIO DE DATOS
-    titleSection = 'Inicio';
-    iconSection = 'house-blank';
-
     @Output() numSectionEvent = new EventEmitter<number>();
+    numSection = 0;
 
-    changeSection(numSection: number, title: string, icon: string) {
-        this.titleSection = title;
-        this.iconSection = icon;
+    changeSection(numSection: number) {
+        this.numSection = numSection;
         this.numSectionEvent.emit(numSection);
     }
 
     //RESPONSIVE EN NAVIGATION
-    updateViewportSize() {
+    /*updateViewportSize() {
         if (window.innerWidth <= 900) {
             this.hide = true;
         } else {
@@ -46,5 +44,5 @@ export class NavigationComponent {
     @HostListener('window:resize', ['$event'])
     onResize(event: Event) {
         this.updateViewportSize();
-    }
+    }*/
 }
