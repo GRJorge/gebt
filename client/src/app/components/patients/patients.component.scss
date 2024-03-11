@@ -1,0 +1,9 @@
+.main {
+    flex-direction: column;
+    height: calc(100% - 16px);
+    margin: 8px;
+
+    .content {
+        flex: 1;
+    }
+}
