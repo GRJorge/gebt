@@ -1,12 +1,12 @@
 @import '../../../../colors';
 
 .top-panel {
-    margin: 8px 8px 8px 16px;
+    margin: 8px 8px 0 16px;
     justify-content: space-between;
 
     div {
         align-items: center;
-        gap: 16px;
+        gap: 8px;
     }
     .start {
         span {
