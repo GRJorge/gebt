@@ -1,0 +1,13 @@
+@import '../../../../colors';
+
+form {
+    background-color: $light;
+    border-radius: 16px;
+    padding: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .input, .btn {
+        flex-grow: 1;
+    }
+}
