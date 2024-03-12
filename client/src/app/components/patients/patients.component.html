@@ -21,6 +21,10 @@
         @if (viewNewForm) {
             <new-patient />
         }
-        <div class="patients"></div>
+        <div class="patients">
+                @for (patient of patients; track $index) {
+                    <patient-card [patient]="patient" />
+                }
+        </div>
     </div>
 </div>

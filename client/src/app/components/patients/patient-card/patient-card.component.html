@@ -1,14 +1,26 @@
 <div class="card">
     <div>
-        <span class="name">Jorge</span>
-        <span class="lastname">Garcia Rodriguez</span>
+        <span class="name">{{ patient.name }}</span>
+        <span class="lastname">{{ patient.lastname }}</span>
     </div>
     <div>
-        <span>13 años</span>
-        <span><i class="fi fi-rr-mars"></i></span>
+        <span>
+            @if (calculateAge() < '0 años ') {
+                <i class="fi fi-rr-child-head"></i>
+            } @else {
+                {{ calculateAge() }}
+            }
+        </span>
+        <span>
+            @if (patient.gender === "M") {
+                <i class="fi fi-rr-mars"></i>
+            } @else {
+                <i class="fi fi-rr-venus"></i>
+            }
+        </span>
     </div>
     <div>
-        <span class="phone"><i class="fi fi-rr-mobile-notch"></i>3481143851</span>
+        <span class="phone"><i class="fi fi-rr-mobile-notch"></i>{{ patient.phone }}</span>
         <button class="more"><i class="fi fi-rr-menu-dots"></i></button>
     </div>
 </div>
