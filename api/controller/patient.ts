@@ -32,7 +32,7 @@ export default {
 
         if (name || lastname || phone || birthday || gender) {
             try {
-                const newPatient = await new Patient({ name, lastname, phone, birthday: new Date(birthday), gender, user: req.user }).save();
+                const newPatient = await new Patient({ name, lastname, phone, birthday, gender, user: req.user }).save();
                 res.status(200).json({ msg: 'Patient created', data: newPatient });
             } catch (error: any) {
                 ResponseInternalError(res, error);
