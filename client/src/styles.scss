@@ -53,7 +53,7 @@ h4 {
         }
     }
     select {
-        margin-right: 12px;
+        appearance: none;
     }
     label {
         display: flex;
@@ -66,7 +66,6 @@ h4 {
 }
 
 .btn {
-    position: relative;
     height: 36px;
     border-radius: 16px;
     border: none;
