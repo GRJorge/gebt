@@ -1,0 +1,53 @@
+@import '../../../../colors';
+
+.card {
+    cursor: pointer;
+    gap: 8px;
+    flex-direction: column;
+    background-color: $light2;
+    padding: 16px 16px 8px 16px;
+    border-radius: 16px;
+
+    div {
+        align-items: center;
+        justify-content: space-between;
+
+        &:first-child {
+            justify-content: flex-start;
+        }
+        span {
+            width: max-content;
+        }
+    }
+    .name {
+        font-size: 20px;
+        font-weight: 700;
+        margin-right: 4px;
+    }
+    .lastname {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .phone {
+        font-size: 12px;
+        font-weight: 300;
+        margin-right: 4px;
+        i {
+            top: 1px;
+            margin-right: 2px;
+        }
+    }
+    .more {
+        cursor: pointer;
+        background: none;
+        border: none;
+        height: 26px;
+        width: 26px;
+        top: 0;
+        border-radius: 16px;
+
+        &:hover {
+            background-color: $light2;
+        }
+    }
+}
