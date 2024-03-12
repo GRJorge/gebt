@@ -1,9 +1,53 @@
+@import '../../../colors';
+
 .main {
     flex-direction: column;
-    height: calc(100% - 16px);
+    height: calc(100vh - 46px - 16px);
     margin: 8px;
+    gap: 8px;
+
+    .info {
+        gap: 8px;
+
+        button {
+            height: 100%;
+        }
+        div {
+            flex-direction: column;
+            align-items: center;
+            background-color: $light;
+            border-radius: 16px;
+            padding: 16px;
+            flex: 1;
+
+            span {
+                &:first-child {
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
 
     .content {
         flex: 1;
+        gap: 8px;
+
+        .patients {
+            flex: 1;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+            gap: 8px;
+            height: max-content;
+            max-height: calc(100vh - 46px - 16px - 87px - 8px);
+            background-color: $light;
+            border-radius: 16px;
+            padding: 16px;
+
+            patient-card {
+                flex-grow: 1;
+                min-width: 25%;
+            }
+        }
     }
 }

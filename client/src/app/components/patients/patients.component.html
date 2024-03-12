@@ -1,6 +1,26 @@
 <div class="main">
     <div class="info">
-        <button class="btn bg-green">Nuevo paciente</button>
+        <button (click)="toggleNewForm()" [class.bg-green]="!viewNewForm" [class.bg-red]="viewNewForm" class="btn">
+            @if (!viewNewForm) {
+                <i class="fi fi-rr-plus-small"></i>
+                Nuevo paciente
+            } @else {
+                Cancelar
+            }
+        </button>
+        <div>
+            <span>113</span>
+            <span>Pacientes registrados</span>
+        </div>
+        <div>
+            <span>13</span>
+            <span>Pacientes con cita</span>
+        </div>
     </div>
-    <div class="content"></div>
+    <div class="content">
+        @if (viewNewForm) {
+            <new-patient />
+        }
+        <div class="patients"></div>
+    </div>
 </div>
