@@ -4,12 +4,15 @@ form {
     flex-direction: column;
     background-color: $light;
     max-width: 256px;
+    height: 100%;
     border-radius: 16px;
     padding: 16px;
     flex-wrap: wrap;
     gap: 8px;
+    justify-content: space-between;
 
     > div {
+        flex-direction: column;
         gap: 8px;
     }
 

@@ -1,32 +1,35 @@
-<form [formGroup]="form">
-    <div class="input bg-light2">
-        <label for="name"><i class="fi fi-rr-user"></i></label>
-        <input formControlName="name" id="name" type="text" placeholder="Nombre" />
-    </div>
-    <notification text="El nombre es obligatorio" [hidden]="!(getControlError('name', 'required') && form.get('name')!.dirty)" />
-    <notification icon="circle-3" color="yellow" text="El nombre debe contener minimo tres caracteres" [hidden]="!getControlError('name', 'minlength')" />
-    <div class="input bg-light2">
-        <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
-        <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)" />
-    </div>
-    <notification text="El apellido es obligatorio" [hidden]="!(getControlError('lastname', 'required') && form.get('lastname')!.dirty)" />
-    <notification icon="circle-3" color="yellow" text="El apellido debe contener minimo tres caracteres" [hidden]="!getControlError('lastname', 'minlength')" />
-    <div class="input bg-light2">
-        <label for="phone"><i class="fi fi-rr-mobile-notch"></i></label>
-        <input formControlName="phone" id="phone" type="text" placeholder="Telefono" />
-    </div>
-    <notification color="yellow" icon="diamond-exclamation" text="El telefono debe contener 10 caracteres" [hidden]="!(getControlError('phone', 'minlength') || getControlError('phone', 'maxlength'))" />
-    <div class="input bg-light2">
-        <label for="birthday"><i class="fi fi-rr-cake-birthday"></i></label>
-        <input formControlName="birthday" id="birthday" type="date" placeholder="Fecha de nacimiento" />
-    </div>
-    <notification text="La fecha de nacimiento es obligatoria" [hidden]="!(getControlError('birthday', 'required') && form.get('birthday')!.dirty)" />
-    <div class="input bg-light2">
-        <label for="gender"><i class="fi fi-rr-venus-mars"></i></label>
-        <select formControlName="gender" id="gender">
-            <option value="F">Femenino</option>
-            <option value="M">Masculino</option>
-        </select>
+<form [formGroup]="form" (submit)="submitForm()">
+    <div>
+        <h1>Nuevo paciente</h1>
+        <div class="input bg-light2">
+            <label for="name"><i class="fi fi-rr-user"></i></label>
+            <input formControlName="name" id="name" type="text" placeholder="Nombre" />
+        </div>
+        <notification text="El nombre es obligatorio" [hidden]="!(getControlError('name', 'required') && form.get('name')!.dirty)" />
+        <notification icon="circle-3" color="yellow" text="El nombre debe contener minimo tres caracteres" [hidden]="!getControlError('name', 'minlength')" />
+        <div class="input bg-light2">
+            <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
+            <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)" />
+        </div>
+        <notification text="El apellido es obligatorio" [hidden]="!(getControlError('lastname', 'required') && form.get('lastname')!.dirty)" />
+        <notification icon="circle-3" color="yellow" text="El apellido debe contener minimo tres caracteres" [hidden]="!getControlError('lastname', 'minlength')" />
+        <div class="input bg-light2">
+            <label for="phone"><i class="fi fi-rr-mobile-notch"></i></label>
+            <input formControlName="phone" id="phone" type="text" placeholder="Telefono" />
+        </div>
+        <notification color="yellow" icon="diamond-exclamation" text="El telefono debe contener 10 caracteres" [hidden]="!(getControlError('phone', 'minlength') || getControlError('phone', 'maxlength'))" />
+        <div class="input bg-light2">
+            <label for="birthday"><i class="fi fi-rr-cake-birthday"></i></label>
+            <input formControlName="birthday" id="birthday" type="date" placeholder="Fecha de nacimiento" />
+        </div>
+        <notification text="La fecha de nacimiento es obligatoria" [hidden]="!(getControlError('birthday', 'required') && form.get('birthday')!.dirty)" />
+        <div class="input bg-light2">
+            <label for="gender"><i class="fi fi-rr-venus-mars"></i></label>
+            <select formControlName="gender" id="gender">
+                <option value="F">Femenino</option>
+                <option value="M">Masculino</option>
+            </select>
+        </div>
     </div>
     <button [disabled]="!form.valid" class="btn bg-green">Guardar</button>
 </form>
