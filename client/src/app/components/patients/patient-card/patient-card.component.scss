@@ -48,8 +48,8 @@
 
         button {
             cursor: pointer;
-            background: none;
             border: none;
+            background-color: $light2;
             height: 28px;
             width: 28px;
             border-radius: 16px;
@@ -60,6 +60,14 @@
             }
             i {
                 font-size: 14px;
+            }
+        }
+        .sureDelete {
+            width: max-content;
+            padding: 0 8px;
+
+            &:hover {
+                background-color: $red;
             }
         }
     }
