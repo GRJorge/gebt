@@ -19,12 +19,12 @@
     </div>
     <div class="content">
         @if (viewNewForm) {
-            <new-patient />
+            <new-patient (update)="updatePatient()" />
         }
         @if (patients!.length > 0 && patients) {
             <div class="patients">
                     @for (patient of patients; track $index) {
-                        <patient-card [patient]="patient" />
+                        <patient-card (update)="updatePatient()" [patient]="patient" />
                     }
             </div>
         } @else {

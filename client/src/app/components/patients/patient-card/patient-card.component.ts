@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Patient } from '../../../interfaces/patient.interface';
 import { PatientService } from '../../../services/patient.service';
 
@@ -13,6 +13,7 @@ export class PatientCardComponent {
     constructor(private patientService: PatientService) {}
 
     @Input() patient!: Patient;
+    @Output() update = new EventEmitter();
     sureDelete = false;
 
     calculateAge(): string {
@@ -35,7 +36,11 @@ export class PatientCardComponent {
 
     delete() {
         if (this.sureDelete) {
-            this.patientService.delete(this.patient._id).subscribe();
+            this.patientService.delete(this.patient._id).subscribe({
+                next: () => {
+                    this.update.emit();
+                },
+            });
         }
         this.sureDelete = true;
     }

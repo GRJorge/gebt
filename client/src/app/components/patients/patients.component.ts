@@ -18,14 +18,19 @@ export class PatientsComponent implements OnInit {
     viewNewForm = false;
 
     ngOnInit(): void {
-        this.patientService.get().subscribe({
-            next: (data: Patients | any) => {
-                this.patients = data;
-            },
-        });
+        this.updatePatient();
     }
 
     toggleNewForm() {
         this.viewNewForm = !this.viewNewForm;
+    }
+
+    updatePatient(sort: string = 'createdAt', order: string = 'asc') {
+        this.patientService.get(sort, order).subscribe({
+            next: (data: Patients | any) => {
+                this.patients = data;
+                this.viewNewForm = false;
+            },
+        });
     }
 }
