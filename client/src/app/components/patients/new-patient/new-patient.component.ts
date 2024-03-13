@@ -17,7 +17,7 @@ export class NewPatientComponent {
     form = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        phone: new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]),
+        phone: new FormControl('', Validators.pattern('^[0-9]{10}$')),
         birthday: new FormControl('', Validators.required),
         gender: new FormControl('F', Validators.required),
     });

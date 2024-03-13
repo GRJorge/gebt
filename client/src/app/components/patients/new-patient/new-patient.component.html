@@ -17,7 +17,7 @@
             <label for="phone"><i class="fi fi-rr-mobile-notch"></i></label>
             <input formControlName="phone" id="phone" type="text" placeholder="Telefono" />
         </div>
-        <notification color="yellow" icon="diamond-exclamation" text="El telefono debe contener 10 caracteres" [hidden]="!(getControlError('phone', 'minlength') || getControlError('phone', 'maxlength'))" />
+        <notification color="yellow" icon="diamond-exclamation" text="Ingresa un numero de telefono valido" [hidden]="!(getControlError('phone','pattern'))" />
         <div class="input bg-light2">
             <label for="birthday"><i class="fi fi-rr-cake-birthday"></i></label>
             <input formControlName="birthday" id="birthday" type="date" placeholder="Fecha de nacimiento" />
