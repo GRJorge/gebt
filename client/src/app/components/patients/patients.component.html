@@ -2,14 +2,14 @@
     <div class="info">
         <button (click)="toggleNewForm()" [class.bg-green]="!viewNewForm" [class.bg-red]="viewNewForm" class="btn">
             @if (!viewNewForm) {
-                <i class="fi fi-rr-plus-small"></i>
+                <i class="fi fi-rr-add"></i>
                 Nuevo paciente
             } @else {
                 Cancelar
             }
         </button>
         <div>
-            <span>113</span>
+            <span>{{ patients?.length }}</span>
             <span>Pacientes registrados</span>
         </div>
         <div>
@@ -21,10 +21,17 @@
         @if (viewNewForm) {
             <new-patient />
         }
-        <div class="patients">
-                @for (patient of patients; track $index) {
-                    <patient-card [patient]="patient" />
-                }
-        </div>
+        @if (patients!.length > 0 && patients) {
+            <div class="patients">
+                    @for (patient of patients; track $index) {
+                        <patient-card [patient]="patient" />
+                    }
+            </div>
+        } @else {
+            <div class="notPatients">
+                <i class="fi fi-rr-face-disappointed"></i>
+                <span>Aun no hay pacientes</span>
+            </div>
+        }
     </div>
 </div>

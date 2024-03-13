@@ -49,5 +49,20 @@
                 min-width: 25%;
             }
         }
+        .notPatients {
+            flex-direction: column;
+            background-color: $light;
+            width: 100%;
+            border-radius: 16px;
+            justify-content: center;
+            align-items: center;
+
+            i {
+                font-size: 38px;
+            }
+            span {
+                font-weight: 400;
+            }
+        }
     }
 }
