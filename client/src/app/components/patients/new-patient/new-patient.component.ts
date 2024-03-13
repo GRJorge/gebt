@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { PatientService } from '../../../services/patient.service';
-import { Patient } from '../../../interfaces/patient.interface';
+import { NewPatient } from '../../../interfaces/patient.interface';
 
 @Component({
     selector: 'new-patient',
@@ -30,7 +30,7 @@ export class NewPatientComponent {
     }
 
     submitForm() {
-        const newPatient: Patient = {
+        const newPatient: NewPatient = {
             name: this.getControlValue('name'),
             lastname: this.getControlValue('lastname'),
             phone: this.getControlValue('phone'),
