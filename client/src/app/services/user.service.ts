@@ -23,7 +23,11 @@ export class UserService {
         //VERIFICAR SI EXISTE EL COOKIE
         if (this.cookieService.check('session')) {
             //VERIFICAR EN EL SERVIDOR SI EL TOKEN ES VALIDO
-            this.http.post(this.url + 'verifytoken', {}).subscribe();
+            this.http.post(this.url + 'verifytoken', {}).subscribe({
+                error: () => {
+                    this.router.navigate(['/signin']);
+                },
+            });
         } else {
             this.router.navigate(['/signin']);
         }
