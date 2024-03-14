@@ -9,7 +9,6 @@
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
     font-weight: 500;
-    color: $dark;
 }
 main,
 section,
@@ -19,7 +18,8 @@ nav {
     display: flex;
 }
 body {
-    background-color: $light2;
+    background-color: $bg2;
+    color: $ct;
 }
 main {
     width: 100%;
@@ -82,34 +82,34 @@ h4 {
     }
     &:disabled {
         background: none;
-        border: 1px solid $light3;
-        color: $dark;
+        border: 1px solid $bg3;
+        color: $ct;
 
         i {
-            color: $dark;
+            color: $ct;
         }
     }
 }
 
 .bg-light {
-    background-color: $light;
+    background-color: $bg;
 }
 .bg-light2 {
-    background-color: $light2;
+    background-color: $bg2;
 }
 .bg-dark {
-    background-color: $dark;
-    color: $light;
+    background-color: $ct;
+    color: $bg;
     input,
     i {
-        color: $light;
+        color: $bg;
     }
 }
 .bg-dark2 {
-    background-color: $dark2;
+    background-color: $ct2;
     input,
     i {
-        color: $light;
+        color: $bg;
     }
 }
 .bg-purple {

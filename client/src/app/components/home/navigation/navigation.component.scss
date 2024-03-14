@@ -4,7 +4,7 @@ $paddingNav: 16px 26px;
 $marginNav: 8px;
 
 nav {
-    background-color: $light;
+    background-color: $bg;
     flex-direction: column;
     justify-content: space-between;
     height: calc(100% - $marginNav * 2);
@@ -45,7 +45,7 @@ nav {
             }
 
             &:hover {
-                background-color: $light2;
+                background-color: $bg2;
             }
         }
         .active {

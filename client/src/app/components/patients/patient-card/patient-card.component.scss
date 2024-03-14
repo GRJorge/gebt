@@ -5,7 +5,7 @@
     cursor: pointer;
     gap: 8px;
     flex-direction: column;
-    background-color: $light2;
+    background-color: $bg2;
     padding: 16px 16px 8px 16px;
     border-radius: 16px;
 
@@ -43,14 +43,14 @@
         button {
             cursor: pointer;
             border: none;
-            background-color: $light2;
+            background-color: $bg2;
             height: 28px;
             width: 28px;
             border-radius: 16px;
             transition: all 0.2s ease-in-out;
 
             &:hover {
-                background-color: $light;
+                background-color: $bg;
             }
             i {
                 font-size: 14px;
