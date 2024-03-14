@@ -36,10 +36,19 @@ export default {
                 res.status(200).json({ msg: 'Patient created', data: newPatient });
             } catch (error: any) {
                 ResponseInternalError(res, error);
-                console.log(error);
             }
         } else {
             ResponseInternalError(res, { error: 'Data required' });
+        }
+    },
+    edit: async function (req: Request, res: Response) {
+        const { _id, name, lastname, phone, birthday, gender } = req.body;
+
+        try {
+            await Patient.find({ _id, user: req.user }).updateOne({ name, lastname, phone, birthday, gender });
+            res.sendStatus(200);
+        } catch (error: any) {
+            ResponseInternalError(res, error);
         }
     },
     delete: async function (req: Request, res: Response) {
