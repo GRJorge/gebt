@@ -66,7 +66,22 @@ export class NewPatientComponent implements OnInit, OnChanges {
                 },
             });
         } else {
-            console.log('edit');
+            const { name, lastname, phone, birthday, gender } = newPatient;
+
+            const patient: Patient = {
+                _id: this.patientEdit!._id,
+                name,
+                lastname,
+                phone,
+                birthday,
+                gender,
+            };
+
+            this.patientService.edit(patient).subscribe({
+                next: () => {
+                    this.update.emit()
+                },
+            });
         }
     }
 }

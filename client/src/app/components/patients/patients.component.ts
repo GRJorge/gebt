@@ -30,7 +30,7 @@ export class PatientsComponent implements OnInit {
         this.viewNewForm = !this.viewNewForm;
     }
 
-    updatePatient(sort: string = 'createdAt', order: string = 'asc') {
+    updatePatient(sort: string = 'createdAt', order: string = 'desc') {
         this.patientService.get(sort, order).subscribe({
             next: (data: Patients | any) => {
                 this.patients = data;
