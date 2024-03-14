@@ -1,6 +1,12 @@
 <form [formGroup]="form" (submit)="submitForm()">
     <div>
-        <h1>Nuevo paciente</h1>
+        <h1>
+            @if(!modeEdit){
+                Nuevo paciente
+            } @else {
+                Editar paciente
+            }
+        </h1>
         <div class="input bg-light2">
             <label for="name"><i class="fi fi-rr-user"></i></label>
             <input formControlName="name" id="name" type="text" placeholder="Nombre" />
@@ -31,5 +37,11 @@
             </select>
         </div>
     </div>
-    <button [disabled]="!form.valid" class="btn bg-green">Guardar</button>
+    <button [disabled]="!form.valid" class="btn" [class.bg-green]="!modeEdit" [class.bg-yellow]="modeEdit">
+        @if(!modeEdit){
+            Guardar
+        } @else {
+            Editar
+        }
+    </button>
 </form>

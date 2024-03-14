@@ -13,7 +13,9 @@ export class PatientCardComponent {
     constructor(private patientService: PatientService) {}
 
     @Input() patient!: Patient;
+
     @Output() update = new EventEmitter();
+    @Output() edit = new EventEmitter<Patient>();
     sureDelete = false;
 
     calculateAge(): string {
@@ -32,6 +34,10 @@ export class PatientCardComponent {
         }
 
         return `${age} ${text}`;
+    }
+
+    editEvent() {
+        this.edit.emit(this.patient);
     }
 
     delete() {

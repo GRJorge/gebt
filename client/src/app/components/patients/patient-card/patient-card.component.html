@@ -22,7 +22,7 @@
     <div>
         <span class="phone"><i [hidden]="!patient.phone" class="fi fi-rr-mobile-notch"></i>{{ patient.phone }}</span>
         <div class="controls">
-            <button><i class="fi fi-rr-pencil"></i></button>
+            <button (click)="editEvent()"><i class="fi fi-rr-pencil"></i></button>
             <button (mouseleave)="sureDelete = false" (click)="delete()" [class.sureDelete]="sureDelete">
                 @if (!sureDelete) {
                     <i class="fi fi-rr-trash"></i>

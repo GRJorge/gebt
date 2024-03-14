@@ -3,7 +3,7 @@ import { NewPatientComponent } from './new-patient/new-patient.component';
 import { PatientCardComponent } from './patient-card/patient-card.component';
 import { TableComponent } from '../general/table/table.component';
 import { PatientService } from '../../services/patient.service';
-import { Patients } from '../../interfaces/patient.interface';
+import { Patient, Patients } from '../../interfaces/patient.interface';
 
 @Component({
     selector: 'patients',
@@ -14,14 +14,19 @@ import { Patients } from '../../interfaces/patient.interface';
 })
 export class PatientsComponent implements OnInit {
     constructor(private patientService: PatientService) {}
-    patients?: Patients[];
+    patients: Patients[] = [];
+
     viewNewForm = false;
+    patientEdit?: Patient;
+    modeEdit = false;
 
     ngOnInit(): void {
         this.updatePatient();
     }
 
     toggleNewForm() {
+        this.modeEdit = false;
+        this.patientEdit = undefined;
         this.viewNewForm = !this.viewNewForm;
     }
 
@@ -32,5 +37,12 @@ export class PatientsComponent implements OnInit {
                 this.viewNewForm = false;
             },
         });
+    }
+
+    editPatient(patient: Patient) {
+        this.modeEdit = true;
+        this.patientEdit = patient;
+        this.viewNewForm = true;
+        console.log(this.patientEdit);
     }
 }
