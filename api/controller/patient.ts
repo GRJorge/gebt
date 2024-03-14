@@ -46,7 +46,7 @@ export default {
 
         try {
             await Patient.find({ _id, user: req.user }).updateOne({ name, lastname, phone, birthday, gender });
-            res.sendStatus(200);
+            res.status(200).json({ msg: 'Patient edited' });
         } catch (error: any) {
             ResponseInternalError(res, error);
         }
