@@ -2,10 +2,12 @@
     <navigation (numSectionEvent)="changeSection($event)"/>
 
     <section>
-        <top-panel />
+        <top-panel [title]="titleTopPanel[numSection]" />
 
         <div class="content">
-            <patients />
+            @if (numSection === 1) {
+                <patients />
+            }
         </div>
     </section>
 </main>

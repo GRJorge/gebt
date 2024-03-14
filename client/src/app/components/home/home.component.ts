@@ -12,6 +12,7 @@ import { PatientsComponent } from '../patients/patients.component';
 })
 export class HomeComponent {
     numSection = 0;
+    titleTopPanel = ['Dashboard', 'Pacientes', 'Citas', 'Dietas'];
     //CAMBIO DE NUMSECTION
     changeSection(numSection: number) {
         this.numSection = numSection;
