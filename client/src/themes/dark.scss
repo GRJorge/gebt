@@ -1,0 +1,55 @@
+@import '../colors';
+
+.principal.darkTheme {
+    background-color: $dark2;
+    * {
+        color: $light;
+    }
+
+    .btn {
+        &:hover {
+            box-shadow: inset 0px 0px 0px 4px rgba($color: #000000, $alpha: 0.2);
+        }
+        &:disabled {
+            border: 1px solid $dark3;
+            color: $light;
+
+            i {
+                color: $light;
+            }
+        }
+    }
+
+    .bg-current {
+        background-color: $dark;
+        color: $light;
+    }
+    .bg-current2 {
+        background-color: $dark2;
+    }
+    .bg-current2-hover:hover {
+        background-color: $dark2;
+    }
+    .bg-current3 {
+        background-color: $dark3;
+    }
+    .bg-contrast {
+        background-color: $light;
+        color: $dark;
+    }
+    .bg-contrast2 {
+        background-color: $light2;
+    }
+    .bg-contrast3 {
+        background-color: $light3;
+    }
+    .bg-contrast,
+    .bg-contrast2,
+    .bg-contrast3 {
+        color: $dark;
+        input,
+        i {
+            color: $dark;
+        }
+    }
+}
