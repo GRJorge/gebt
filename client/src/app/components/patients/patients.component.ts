@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NewPatientComponent } from './new-patient/new-patient.component';
 import { PatientCardComponent } from './patient-card/patient-card.component';
-import { TableComponent } from '../general/table/table.component';
 import { PatientService } from '../../services/patient.service';
 import { Patient, Patients } from '../../interfaces/patient.interface';
 
 @Component({
     selector: 'patients',
     standalone: true,
-    imports: [NewPatientComponent, PatientCardComponent, TableComponent],
+    imports: [NewPatientComponent, PatientCardComponent],
     templateUrl: './patients.component.html',
     styleUrl: './patients.component.scss',
 })
