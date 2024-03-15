@@ -10,7 +10,6 @@ main {
     section {
         flex-direction: column;
         align-items: center;
-        background-color: $bg;
         border-radius: 16px;
         padding: 16px 48px;
         max-width: 304px;
@@ -19,8 +18,8 @@ main {
         .controls {
             flex-direction: column;
 
-            div{
-                button:last-child{
+            div {
+                button:last-child {
                     flex-grow: 1;
                 }
             }

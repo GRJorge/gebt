@@ -9,6 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class LogoComponent {
     @Input() variant = "isotype"
-    @Input() color = "dark"
+    @Input() color = "contrast"
     @Input() size = "64"
 }

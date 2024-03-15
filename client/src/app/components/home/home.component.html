@@ -5,9 +5,7 @@
         <top-panel [title]="titleTopPanel[numSection]" />
 
         <div class="content">
-            @if (numSection === 1) {
-                <patients />
-            }
+            <patients [hidden]="!(numSection === 1)" />
         </div>
     </section>
 </main>

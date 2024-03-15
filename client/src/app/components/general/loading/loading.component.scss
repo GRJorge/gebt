@@ -23,7 +23,7 @@ div {
     content: "";
     position: absolute;
     border-radius: 16px;
-    background-color: $ct;
+    background-color: $dark;
     width: $dotSize;
     height: $dotSize;
     animation: loading 1.6s ease-in-out infinite;

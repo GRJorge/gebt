@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { RouterOutlet } from '@angular/router';
 import { UserService } from './services/user.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
     selector: 'app-root',
@@ -11,8 +11,10 @@ import { UserService } from './services/user.service';
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
-export class AppComponent {
-    constructor(private userService: UserService) {
+export class AppComponent implements OnInit {
+    constructor(private userService: UserService, public themeService: ThemeService) {}
+
+    ngOnInit(): void {
         this.userService.verifyToken();
     }
 }

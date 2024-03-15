@@ -1,16 +1,16 @@
-<nav>
+<nav class="bg-current">
     <div class="start">
         <div class="logo">
             <logo variant="icon" color="purple" size="42" />
             <span>Gebt</span>
         </div>
-        <button [class.active]="numSection === 0" class="btn" (click)="changeSection(0)"><i class="fi fi-rr-house-blank"></i><span>Inicio</span></button>
-        <button [class.active]="numSection === 1" class="btn" (click)="changeSection(1)"><i class="fi fi-rr-user"></i><span>Pacientes</span></button>
-        <button [class.active]="numSection === 2" class="btn" (click)="changeSection(2)"><i class="fi fi-rr-calendar-day"></i><span>Citas</span></button>
-        <button [class.active]="numSection === 3" class="btn" (click)="changeSection(3)"><i class="fi fi-rr-apple-whole"></i><span>Dietas</span></button>
+        <button [class.active]="numSection === 0" class="btn bg-current bg-current2-hover" (click)="changeSection(0)"><i class="fi fi-rr-house-blank"></i><span>Inicio</span></button>
+        <button [class.active]="numSection === 1" class="btn bg-current bg-current2-hover" (click)="changeSection(1)"><i class="fi fi-rr-user"></i><span>Pacientes</span></button>
+        <button [class.active]="numSection === 2" class="btn bg-current bg-current2-hover" (click)="changeSection(2)"><i class="fi fi-rr-calendar-day"></i><span>Citas</span></button>
+        <button [class.active]="numSection === 3" class="btn bg-current bg-current2-hover" (click)="changeSection(3)"><i class="fi fi-rr-apple-whole"></i><span>Dietas</span></button>
     </div>
     <div class="end">
-        <button class="btn bg-dark"><i class="fi fi-rr-moon"></i></button>
-        <button class="btn bg-dark"><i class="fi fi-rr-angle-double-small-left"></i></button>
+        <button class="btn bg-contrast3"><i class="fi fi-rr-moon"></i></button>
+        <button class="btn bg-contrast3"><i class="fi fi-rr-angle-double-small-left"></i></button>
     </div>
 </nav>

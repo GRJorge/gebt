@@ -43,10 +43,7 @@ h4 {
         outline: none;
         padding: 2px 16px 0 36px;
         border-radius: 16px;
-
-        &:focus {
-            box-shadow: inset 0px 0px 0px 4px rgba($color: #000, $alpha: 0.2);
-        }
+        transition: all 0.3s ease-in-out;
     }
     select {
         appearance: none;

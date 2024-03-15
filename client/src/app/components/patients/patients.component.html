@@ -8,11 +8,11 @@
                 Cancelar
             }
         </button>
-        <div>
+        <div class="bg-current">
             <span>{{ patients!.length }}</span>
             <span>Pacientes registrados</span>
         </div>
-        <div>
+        <div class="bg-current">
             <span>13</span>
             <span>Pacientes con cita</span>
         </div>
@@ -22,13 +22,13 @@
             <new-patient (update)="updatePatient()" [patientEdit]="patientEdit" [modeEdit]="modeEdit" />
         }
         @if (patients!.length > 0) {
-            <div class="patients">
+            <div class="patients bg-current">
                 @for (patient of patients; track $index) {
                     <patient-card (update)="updatePatient()" (edit)="editPatient($event)" [patient]="patient" />
                 }
             </div>
         } @else {
-            <div class="notPatients">
+            <div class="notPatients bg-current">
                 <i class="fi fi-rr-face-disappointed"></i>
                 <span>Aun no hay pacientes</span>
             </div>

@@ -4,7 +4,6 @@ $paddingNav: 16px 26px;
 $marginNav: 8px;
 
 nav {
-    background-color: $bg;
     flex-direction: column;
     justify-content: space-between;
     height: calc(100% - $marginNav * 2);
@@ -30,7 +29,6 @@ nav {
             display: flex;
             cursor: pointer;
             border: none;
-            background: none;
             align-items: center;
             padding: 8px 16px;
             border-radius: 16px;
@@ -42,10 +40,6 @@ nav {
             span {
                 font-size: 16px;
                 font-weight: 800;
-            }
-
-            &:hover {
-                background-color: $bg2;
             }
         }
         .active {

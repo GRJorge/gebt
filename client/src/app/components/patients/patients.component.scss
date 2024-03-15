@@ -17,7 +17,6 @@
         div {
             flex-direction: column;
             align-items: center;
-            background-color: $bg;
             border-radius: 16px;
             padding: 16px;
             flex: 1;
@@ -42,7 +41,6 @@
             gap: 8px;
             height: max-content;
             max-height: calc(100vh - 46px - 16px - 87px - 8px);
-            background-color: $bg;
             border-radius: 16px;
             padding: 16px;
 
@@ -53,7 +51,6 @@
         }
         .notPatients {
             flex-direction: column;
-            background-color: $bg;
             width: 100%;
             border-radius: 16px;
             justify-content: center;
