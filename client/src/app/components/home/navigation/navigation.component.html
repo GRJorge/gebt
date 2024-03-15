@@ -10,7 +10,13 @@
         <button [class.active]="numSection === 3" class="btn bg-current bg-current2-hover" (click)="changeSection(3)"><i class="fi fi-rr-apple-whole"></i><span>Dietas</span></button>
     </div>
     <div class="end">
-        <button class="btn bg-contrast3"><i class="fi fi-rr-moon"></i></button>
+        <button (click)="themeService.updateTheme()" class="btn bg-contrast3">
+            @if (themeService.theme() === 'lightTheme') {
+                <i class="fi fi-rr-moon"></i>
+            } @else {
+                <i class="fi fi-rr-brightness"></i>
+            }
+        </button>
         <button class="btn bg-contrast3"><i class="fi fi-rr-angle-double-small-left"></i></button>
     </div>
 </nav>

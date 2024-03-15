@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { LogoComponent } from '../../general/logo/logo.component';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
     selector: 'navigation',
@@ -11,7 +12,7 @@ import { LogoComponent } from '../../general/logo/logo.component';
 export class NavigationComponent {
     //hide = false;
 
-    constructor() {
+    constructor(public themeService: ThemeService) {
         //this.updateViewportSize();
     }
 
