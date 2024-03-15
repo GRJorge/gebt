@@ -31,7 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/themes/dark.scss"
+              "src/themes/dark.scss",
+              "src/themes/light.scss"
             ],
             "scripts": []
           },
@@ -98,7 +99,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/themes/dark.scss"
+              "src/themes/dark.scss",
+              "src/themes/light.scss"
             ],
             "scripts": []
           }
