@@ -11,15 +11,9 @@ import { UserService } from '../../services/user.service';
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-    constructor(private userService: UserService) {}
-
+export class HomeComponent {
     numSection = 0;
     titleTopPanel = ['Dashboard', 'Pacientes', 'Citas', 'Dietas'];
-
-    ngOnInit(): void {
-        this.userService.verifyToken();
-    }
 
     //CAMBIO DE NUMSECTION
     changeSection(numSection: number) {

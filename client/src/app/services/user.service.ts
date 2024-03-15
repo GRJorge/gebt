@@ -26,6 +26,7 @@ export class UserService {
             this.http.post(this.url + 'verifytoken', {}).subscribe({
                 error: () => {
                     this.router.navigate(['/signin']);
+                    this.cookieService.delete('session')
                 },
             });
         } else {
