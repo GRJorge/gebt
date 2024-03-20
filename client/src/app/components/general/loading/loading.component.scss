@@ -27,6 +27,7 @@ div {
     width: $dotSize;
     height: $dotSize;
     animation: loading 1.6s ease-in-out infinite;
+    outline: 2px solid $light;
 }
 
 @keyframes loading {
