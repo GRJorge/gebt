@@ -11,7 +11,7 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
             if (error.status === 0) {
                 router.navigate(['/unknow']);
             } else if (error.status === 500) {
-                console.log('Internal error');
+                router.navigate(['/internal'])
             } else if (error.status === 403) {
                 router.navigate(['/signin']);
             }
