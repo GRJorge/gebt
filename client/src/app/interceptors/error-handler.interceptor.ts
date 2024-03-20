@@ -9,7 +9,7 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req).pipe(
         catchError((error: HttpErrorResponse) => {
             if (error.status === 0) {
-                console.log('Error desconocido');
+                router.navigate(['/unknow']);
             } else if (error.status === 500) {
                 console.log('Internal error');
             } else if (error.status === 403) {

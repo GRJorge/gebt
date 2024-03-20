@@ -1,0 +1,22 @@
+@import '../../../../colors';
+
+div {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    i {
+        font-size: 48px;
+    }
+    .title {
+        color: $red;
+        font-weight: 800;
+        font-size: 22px;
+    }
+    .msg {
+        font-size: 14px;
+        font-weight: 300;
+        margin-bottom: 16px;
+    }
+}
