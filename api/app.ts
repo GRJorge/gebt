@@ -7,6 +7,7 @@ import './config/db';
 
 import userRouter from './routes/user';
 import patientRouter from './routes/patient';
+import dateRouter from './routes/date';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 app.use('/user', userRouter);
 app.use('/patient', patientRouter);
+app.use('/date', dateRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Listen on ${process.env.PORT}`);
