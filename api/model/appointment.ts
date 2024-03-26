@@ -8,8 +8,8 @@ const schema = new Schema({
     weight: { type: Number, required: true },
     imc: { type: Number, required: true },
     af: { type: Number, required: true },
-    geb: { type: Number, required: true },
-    get: { type: Number, required: true },
+    gebData: { type: Number, required: true },
+    getData: { type: Number, required: true },
     patient: { type: Types.ObjectId, ref: 'Patient', required: true },
     user: { type: Types.ObjectId, ref: 'User', required: true },
 });

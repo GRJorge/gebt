@@ -12,8 +12,8 @@ export default {
 
             if (patientInfo) {
                 const imc = calculateIMC(weight, height);
-                const geb = calculateGEB(weight, height, imc, patientInfo.gender, getAge(patientInfo.birthday));
-                const get = calculateGET(geb, af, imc);
+                const gebData = calculateGEB(weight, height, imc, patientInfo.gender, getAge(patientInfo.birthday));
+                const getData = calculateGET(gebData, af, imc);
 
                 await new Appointment({
                     date,
@@ -23,8 +23,8 @@ export default {
                     weight,
                     imc,
                     af,
-                    geb,
-                    get,
+                    gebData,
+                    getData,
                     patient,
                     user: req.user,
                 }).save();
