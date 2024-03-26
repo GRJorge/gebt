@@ -5,6 +5,20 @@ export function ResponseInternalError(res: Response, error: any) {
     console.log(error);
 }
 
+export function getAge(birthday: Date): number {
+    const birthdayDate = new Date(birthday);
+    const date = new Date();
+
+    let age = date.getFullYear() - birthdayDate.getFullYear();
+    const month = date.getMonth() - birthdayDate.getMonth();
+
+    if (month < 0 || (month === 0 && date.getDate() < birthday.getDate() + 1)) {
+        age--;
+    }
+
+    return age;
+}
+
 export function calculateIMC(weight: number, height: number): number {
     return weight / Math.pow(height / 100, 2);
 }
