@@ -6,8 +6,10 @@
     margin: 8px;
     gap: 8px;
 
+    $infoHeight: 70px;
     .info {
         gap: 8px;
+        height: $infoHeight;
 
         button {
             width: 145px;
@@ -17,14 +19,18 @@
         div {
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             border-radius: 16px;
-            padding: 16px;
             flex: 1;
 
             span {
                 &:first-child {
-                    font-size: 24px;
+                    font-size: 22px;
                     font-weight: 600;
+                }
+                &:last-child {
+                    font-size: 14px;
+                    font-weight: 400;
                 }
             }
         }
