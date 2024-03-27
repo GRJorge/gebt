@@ -15,6 +15,17 @@
         <button disabled class="btn bg-green">Agendar</button>
     </form>
     <div class="patients bg-current">
-        <h1>Selecciona un paciente</h1>
+        <div class="header">
+            <h1>Selecciona un paciente</h1>
+            <div class="input bg-current2">
+                <label for="search"><i class="fi fi-rr-search"></i></label>
+                <input type="text" id="search" placeholder="Buscar...">
+            </div>
+        </div>
+        <div class="content">
+            @for (patient of patients; track patient._id) {
+                <patient-appointment [name]="patient.name" [lastname]="patient.lastname" [gender]="patient.gender" [id]="patient._id" />
+            }
+        </div>
     </div>
 </div>

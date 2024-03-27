@@ -15,8 +15,23 @@
         }
     }
     .patients {
+        flex-direction: column;
         flex: 1;
         border-radius: 16px;
         padding: 16px;
+        flex-wrap: wrap;
+
+        .header {
+            width: 100%;
+            justify-content: space-between;
+            height: max-content;
+        }
+        .content {
+            margin-top: 8px;
+            gap: 8px;
+        }
+        patient-appointment {
+            flex: 1;
+        }
     }
 }
