@@ -1,0 +1,22 @@
+.main {
+    height: 100%;
+    gap: 8px;
+
+    form {
+        width: 256px;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 16px;
+        padding: 16px;
+
+        > div {
+            gap: 8px;
+            flex-direction: column;
+        }
+    }
+    .patients {
+        flex: 1;
+        border-radius: 16px;
+        padding: 16px;
+    }
+}

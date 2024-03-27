@@ -1,0 +1,38 @@
+.main {
+    gap: 8px;
+    height: calc(100% - 16px);
+    flex-direction: column;
+    margin: 8px;
+
+    $infoHeight: 70px;
+    .info {
+        gap: 8px;
+        height: $infoHeight;
+
+        button {
+            height: $infoHeight;
+        }
+        div {
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+
+            span {
+                &:first-child {
+                    font-size: 22px;
+                    font-weight: 600;
+                }
+                &:last-child {
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    new-appointment {
+        height: 100%;
+    }
+}
