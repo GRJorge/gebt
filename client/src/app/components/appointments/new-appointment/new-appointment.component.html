@@ -26,7 +26,7 @@
         </div>
         <div class="content">
             @for (patient of patients; track patient._id) {
-                <patient-appointment (patientClickedEvent)="setPatient($event)" [name]="patient.name" [lastname]="patient.lastname" [gender]="patient.gender" [id]="patient._id" />
+                <patient-appointment (patientClickedEvent)="setPatient($event)" [name]="patient.name" [lastname]="patient.lastname" [gender]="patient.gender" [birthday]="patient.birthday" [id]="patient._id" />
             }
         </div>
     </div>
