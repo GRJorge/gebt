@@ -5,11 +5,7 @@
     </div>
     <div>
         <span>
-            @if (calculateAge() < '0 años ') {
-                <i class="fi fi-rr-child-head"></i>
-            } @else {
-                {{ calculateAge() }}
-            }
+            {{ patientService.getAge(patient.birthday) }}
         </span>
         <span>
             @if (patient.gender === "M") {
