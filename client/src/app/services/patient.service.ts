@@ -23,4 +23,21 @@ export class PatientService {
     delete(id: string) {
         return this.http.delete(this.url + 'delete', { body: { id } });
     }
+    getAge(birthday: Date): string{
+        const birthdayDate = new Date(birthday);
+        const date = new Date();
+
+        let age = date.getFullYear() - birthdayDate.getFullYear();
+        const month = date.getMonth() - birthdayDate.getMonth();
+        let text = 'años';
+
+        if (month < 0 || (month === 0 && date.getDate() < birthdayDate.getDate() + 1)) {
+            age--;
+        }
+        if (age === 1) {
+            text = 'año';
+        }
+
+        return `${age} ${text}`;
+    }
 }
