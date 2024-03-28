@@ -1,18 +1,20 @@
 <div class="main">
-    <form class="bg-current">
+    <form class="bg-current" [formGroup]="appointmentForm">
         <div>
             <h1>Nueva cita</h1>
             <div class="input bg-current2">
                 <label for="date"><i class="fi fi-rr-calendar"></i></label>
-                <input type="date" id="date">
+                <input formControlName="date" type="date" id="date">
             </div>
+            <notification text="La fecha de la cita es obligatoria" [hidden]="!(appointmentForm.get('date')!.dirty && appointmentForm.get('date')!.getError('required'))" />
             <div class="input bg-current2">
                 <label for="hour"><i class="fi fi-rr-clock"></i></label>
-                <input type="time" id="hour">
+                <input formControlName="datetime" type="time" id="hour">
             </div>
-            <button class="btn bg-current2">Paciente<i class="fi fi-rr-angle-small-right"></i></button>
+            <notification text="La hora de la cita es obligatoria" [hidden]="!(appointmentForm.get('datetime')!.dirty && appointmentForm.get('datetime')!.getError('required'))" />
+            <button class="patientSelect btn bg-current2">{{ namePatient }} {{ lastnamePatient }}<i class="fi fi-rr-angle-small-right"></i></button>
         </div>
-        <button disabled class="btn bg-green">Agendar</button>
+        <button [disabled]="!(appointmentForm.valid && idPatient)" class="btn bg-green">Agendar</button>
     </form>
     <div class="patients bg-current">
         <div class="header">
@@ -24,7 +26,7 @@
         </div>
         <div class="content">
             @for (patient of patients; track patient._id) {
-                <patient-appointment [name]="patient.name" [lastname]="patient.lastname" [gender]="patient.gender" [id]="patient._id" />
+                <patient-appointment (patientClickedEvent)="setPatient($event)" [name]="patient.name" [lastname]="patient.lastname" [gender]="patient.gender" [id]="patient._id" />
             }
         </div>
     </div>

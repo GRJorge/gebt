@@ -13,6 +13,11 @@
             gap: 8px;
             flex-direction: column;
         }
+        .patientSelect {
+            padding: 4px;
+            min-height: 36px;
+            height: max-content;
+        }
     }
     .patients {
         flex-direction: column;
