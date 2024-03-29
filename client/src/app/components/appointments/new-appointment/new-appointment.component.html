@@ -1,20 +1,15 @@
 <div class="main">
-    <form class="bg-current" [formGroup]="appointmentForm">
+    <form (submit)="submitForm($event)" class="bg-current">
         <div>
             <h1>Nueva cita</h1>
             <div class="input bg-current2">
-                <label for="date"><i class="fi fi-rr-calendar"></i></label>
-                <input formControlName="date" type="date" id="date">
-            </div>
-            <notification text="La fecha de la cita es obligatoria" [hidden]="!(appointmentForm.get('date')!.dirty && appointmentForm.get('date')!.getError('required'))" />
-            <div class="input bg-current2">
                 <label for="hour"><i class="fi fi-rr-clock"></i></label>
-                <input formControlName="datetime" type="time" id="hour">
+                <input [formControl]="datetime" type="datetime-local" id="hour">
             </div>
-            <notification text="La hora de la cita es obligatoria" [hidden]="!(appointmentForm.get('datetime')!.dirty && appointmentForm.get('datetime')!.getError('required'))" />
-            <button class="patientSelect btn bg-current2">{{ namePatient }} {{ lastnamePatient }}<i class="fi fi-rr-angle-small-right"></i></button>
+            <notification text="La fecha y hora de la cita es obligatoria" [hidden]="!(datetime.dirty && datetime.getError('required'))" />
+            <button type="button" class="patientSelect btn bg-current2">{{ namePatient }} {{ lastnamePatient }}<i class="fi fi-rr-angle-small-right"></i></button>
         </div>
-        <button [disabled]="!(appointmentForm.valid && idPatient)" class="btn bg-green">Agendar</button>
+        <button [disabled]="!(datetime.valid && idPatient)" class="btn bg-green">Agendar</button>
     </form>
     <div class="patients bg-current">
         <div class="header">

@@ -5,29 +5,14 @@ import { ResponseInternalError, calculateGEB, calculateGET, calculateIMC, getAge
 
 export default {
     new: async function (req: Request, res: Response) {
-        const { date, datetime, state, height, weight, af, patient } = req.body; //imc, geb, get
+        const { datetime, patient } = req.body;
 
         try {
             const patientInfo = await Patient.findById(patient).select('gender birthday').lean();
 
             if (patientInfo) {
-                const imc = calculateIMC(weight, height);
-                const gebData = calculateGEB(weight, height, imc, patientInfo.gender, getAge(patientInfo.birthday));
-                const getData = calculateGET(gebData, af, imc);
-
-                await new Appointment({
-                    date,
-                    datetime,
-                    state,
-                    height,
-                    weight,
-                    imc,
-                    af,
-                    gebData,
-                    getData,
-                    patient,
-                    user: req.user,
-                }).save();
+                await new Appointment({ datetime, patient, user: req.user }).save();
+                res.status(200).json({ msg: 'Appointment created' });
             } else {
                 res.status(400).json({ msg: 'Patient not found' });
             }

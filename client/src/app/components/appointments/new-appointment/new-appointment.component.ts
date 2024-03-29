@@ -4,6 +4,8 @@ import { Patients } from '../../../interfaces/patient.interface';
 import { PatientAppointmentComponent } from './patient-appointment/patient-appointment.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../general/notification/notification.component';
+import { NewAppointment } from '../../../interfaces/appointment.interface';
+import { AppointmentService } from '../../../services/appointment.service';
 
 @Component({
     selector: 'new-appointment',
@@ -13,7 +15,7 @@ import { NotificationComponent } from '../../general/notification/notification.c
     styleUrl: './new-appointment.component.scss',
 })
 export class NewAppointmentComponent implements OnInit {
-    constructor(private patientService: PatientService) {}
+    constructor(private patientService: PatientService, private appointmentService: AppointmentService) {}
 
     patients?: Patients[];
 
@@ -25,10 +27,7 @@ export class NewAppointmentComponent implements OnInit {
         });
     }
 
-    appointmentForm = new FormGroup({
-        date: new FormControl('', Validators.required),
-        datetime: new FormControl('', Validators.required),
-    });
+    datetime = new FormControl('', Validators.required);
 
     idPatient?: string;
     namePatient: string = 'Selecciona un paciente';
@@ -38,5 +37,16 @@ export class NewAppointmentComponent implements OnInit {
         this.idPatient = data[0];
         this.namePatient = data[1];
         this.lastnamePatient = data[2];
+    }
+
+    submitForm(event: Event) {
+        event.preventDefault();
+
+        const newAppointment: NewAppointment = {
+            datetime: new Date(this.datetime.value!),
+            patient: this.idPatient ?? '',
+        };
+
+        this.appointmentService.new(newAppointment).subscribe();
     }
 }
