@@ -49,6 +49,16 @@ h4 {
         border-radius: 16px;
         transition: all 0.3s ease-in-out;
     }
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+    input[type='number'] {
+        appearance: textfield;
+        -moz-appearance: textfield;
+    }
     select {
         appearance: none;
     }
