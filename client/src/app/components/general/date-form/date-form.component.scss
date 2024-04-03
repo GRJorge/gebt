@@ -1,0 +1,16 @@
+form {
+    flex-direction: column;
+    gap: 8px;
+
+    > div {
+        gap: 8px;
+
+        .input {
+            flex: 1;
+
+            &:last-child{
+                min-width: max-content;
+            }
+        }
+    }
+}
