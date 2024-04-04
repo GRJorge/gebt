@@ -2,7 +2,13 @@ import { Schema, Types, model } from 'mongoose';
 
 const schema = new Schema(
     {
-        datetime: { type: Date, required: true },
+        date: {
+            day: { type: Number, required: true },
+            month: { type: Number, required: true },
+            year: { type: Number, required: true },
+            hour: { type: Number, required: true },
+            minute: { type: Number, required: true },
+        },
         state: { type: Number, required: true, default: 0 }, //0: Activo, 1: Pendiente, 2: Cancelado, 3: No asistido
         patient: { type: Types.ObjectId, ref: 'Patient', required: true },
         user: { type: Types.ObjectId, ref: 'User', required: true },
