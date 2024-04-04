@@ -1,16 +1,12 @@
 <div class="main">
-    <form (submit)="submitForm($event)" class="bg-current">
+    <div class="data bg-current">
         <div>
             <h1>Nueva cita</h1>
-            <div class="input bg-current2">
-                <label for="hour"><i class="fi fi-rr-clock"></i></label>
-                <input [formControl]="datetime" type="datetime-local" id="hour">
-            </div>
-            <notification text="La fecha y hora de la cita es obligatoria" [hidden]="!(datetime.dirty && datetime.getError('required'))" />
+            <date-form (sendDateEvent)="setDate($event)" [hours]="true" [now]="true" />
             <button type="button" class="patientSelect btn bg-current2">{{ namePatient }} {{ lastnamePatient }}<i class="fi fi-rr-angle-small-right"></i></button>
         </div>
-        <button [disabled]="!(datetime.valid && idPatient)" class="btn bg-green">Agendar</button>
-    </form>
+        <button (click)="saveAppointment()" [disabled]="!idPatient" class="btn bg-green">Agendar</button>
+    </div>
     <div class="patients bg-current">
         <div class="header">
             <h1>Selecciona un paciente</h1>
