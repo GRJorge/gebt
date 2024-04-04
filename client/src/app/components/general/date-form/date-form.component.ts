@@ -1,17 +1,30 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'date-form',
     standalone: true,
-    imports: [],
+    imports: [FormsModule],
     templateUrl: './date-form.component.html',
     styleUrl: './date-form.component.scss',
 })
 export class DateFormComponent {
-    @Input() hours = false
-    datetime = new Date();
+    @Input() hours = false;
+    @Input() now = false;
 
+    @Output() sendDateEvent = new EventEmitter<Object>();
+
+    datetime = new Date();
     months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+    date = {
+        day: this.datetime.getDate().toString(),
+        month: this.datetime.getMonth().toString(),
+        year: this.datetime.getFullYear().toString(),
+        hour: this.getHour(),
+        minute: 0,
+        time: this.getTime(),
+    };
 
     getRange(start: number, end: number): number[] {
         const length = end - start + 1;
@@ -21,5 +34,12 @@ export class DateFormComponent {
         let hour = this.datetime.getUTCHours() + 6;
 
         return hour > 12 ? hour - 12 : hour;
+    }
+    getTime(): string {
+        return this.datetime.getHours() > 12 ? 'pm' : 'am';
+    }
+
+    sendDate() {
+        this.sendDateEvent.emit(this.date);
     }
 }

@@ -1,25 +1,31 @@
 <form>
     <div class="input bg-current2">
         <label for="year"><i class="fi fi-rr-calendar"></i></label>
-        <select id="day">
+        <select id="day" [(ngModel)]="date.day" (change)="sendDate()" name="day">
             @for (item of getRange(1,31); track $index) {
-                <option [selected]="item === datetime.getMonth()" value="{{ item.toString().padStart(2,'0') }}">{{ item }}</option>
+                <option [value]="item">{{ item }}</option>
             }
         </select>
     </div>
     <div class="input bg-current2">
         <label for="year"><i class="fi fi-rr-calendar"></i></label>
-        <select id="month">
+        <select id="month" [(ngModel)]="date.month" (change)="sendDate()" name="month">
             @for (month of months; track $index) {
-                <option [selected]="$index === datetime.getMonth()" value="{{ $index }}">{{ month }}</option>
+                <option [value]="$index">{{ month }}</option>
             }
         </select>
     </div>
     <div class="input bg-current2">
         <label for="year"><i class="fi fi-rr-calendar"></i></label>
-        <select id="year">
-            @for (item of getRange(-2024, -1930); track $index) {
-                <option value="{{ item * -1 }}">{{ item * -1 }}</option>
+        <select id="year" [(ngModel)]="date.year" (change)="sendDate()" name="year">
+            @if (now) {
+                @for (item of getRange(datetime.getFullYear(),datetime.getFullYear() + 10); track $index) {
+                    <option [value]="item">{{ item }}</option>
+                }
+            } @else {
+                @for (item of getRange(-2024, -1930); track $index) {
+                    <option [value]="item * -1">{{ item * -1 }}</option>
+                }
             }
         </select>
     </div>
@@ -27,15 +33,15 @@
         <div>
             <div class="input bg-current2">
                 <label for="hour"><i class="fi fi-rr-clock"></i></label>
-                <input type="number" id="hour" value="{{ getHour() }}" max="12" min="1">
+                <input type="number" id="hour" [(ngModel)]="date.hour" (change)="sendDate()" max="12" min="1" name="hour">
             </div>
             <div class="input bg-current2">
                 <label for="minute"><i class="fi fi-rr-clock"></i></label>
-                <input type="number" id="minute" value="00" step="30" max="59" min="0">
+                <input type="number" id="minute" [(ngModel)]="date.minute" (change)="sendDate()" step="30" max="59" min="0" name="minute">
             </div>
             <div class="input bg-current2">
                 <label for="time"><i class="fi fi-rr-eclipse"></i></label>
-                <select id="time">
+                <select id="time" [(ngModel)]="date.time" (change)="sendDate()" name="time">
                     <option value="am">AM</option>
                     <option value="pm">PM</option>
                 </select>
