@@ -49,5 +49,7 @@ export class NewAppointmentComponent implements OnInit {
     }
     setDate(date: DateObject) {
         this.date = date;
+
+        this.appointmentService.overlap(date).subscribe()
     }
 }

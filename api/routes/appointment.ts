@@ -4,5 +4,6 @@ import controller from '../controller/appointment';
 const router = Router();
 
 router.post('/new', verifyToken, controller.new);
+router.post('/overlap', verifyToken, controller.overlapAppointment);
 
 export default router;
