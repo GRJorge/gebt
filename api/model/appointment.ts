@@ -8,8 +8,9 @@ const schema = new Schema(
             year: { type: Number, required: true },
             hour: { type: Number, required: true },
             minute: { type: Number, required: true },
+            time: { type: String, required: true },
         },
-        state: { type: Number, required: true, default: 0 }, //0: Activo, 1: Pendiente, 2: Cancelado, 3: No asistido
+        state: { type: Number, required: true, default: 0 }, //0: Pendiente, 1: Activo, 2: Cancelado, 3: No asistido
         patient: { type: Types.ObjectId, ref: 'Patient', required: true },
         user: { type: Types.ObjectId, ref: 'User', required: true },
     },
