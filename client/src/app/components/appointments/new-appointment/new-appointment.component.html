@@ -3,9 +3,21 @@
         <div>
             <h1>Nueva cita</h1>
             <date-form (sendDateEvent)="setDate($event)" [hours]="true" [now]="true" />
+            <notification text="Ya hay una cita a esta hora" icon="time-delete" [hidden]="!equalAppointment" />
+            @if (approximateAppointments){
+                <div class="approximateAppointments bg-current2">
+                    <span class="title">Citas cercanas:</span>
+                    @for (appointment of approximateAppointments; track appointment._id) {
+                        <div class="bg-current3">
+                            <span>{{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
+                            <span>{{ appointment.date.hour.toString().padStart(2,'0') }}:{{ appointment.date.minute.toString().padStart(2,'0') }}{{ appointment.date.time }}</span>
+                        </div>    
+                    }
+                </div>
+            }
             <button type="button" class="patientSelect btn bg-current2">{{ namePatient }} {{ lastnamePatient }}<i class="fi fi-rr-angle-small-right"></i></button>
         </div>
-        <button (click)="saveAppointment()" [disabled]="!idPatient" class="btn bg-green">Agendar</button>
+        <button (click)="saveAppointment()" [disabled]="!(idPatient && !equalAppointment)" class="btn bg-green">Agendar</button>
     </div>
     <div class="patients bg-current">
         <div class="header">

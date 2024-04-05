@@ -5,7 +5,7 @@ import { PatientAppointmentComponent } from './patient-appointment/patient-appoi
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { AppointmentService } from '../../../services/appointment.service';
 import { DateFormComponent } from '../../general/date-form/date-form.component';
-import { DateObject, NewAppointment } from '../../../interfaces/appointment.interface';
+import { ApproximateAppointment, DateObject, NewAppointment } from '../../../interfaces/appointment.interface';
 
 @Component({
     selector: 'new-appointment',
@@ -47,9 +47,26 @@ export class NewAppointmentComponent implements OnInit {
         this.namePatient = data[1];
         this.lastnamePatient = data[2];
     }
+
+    approximateAppointments?: ApproximateAppointment[];
+    equalAppointment = false;
+
     setDate(date: DateObject) {
         this.date = date;
 
-        this.appointmentService.overlap(date).subscribe()
+        this.approximateAppointments = undefined;
+        this.equalAppointment = false;
+
+        this.appointmentService.overlap(date).subscribe({
+            error: (error) => {
+                if (error.status === 400) {
+                    if (error.error.type === 'approximate') {
+                        this.approximateAppointments = error.error.appointments;
+                    } else {
+                        this.equalAppointment = true;
+                    }
+                }
+            },
+        });
     }
 }
