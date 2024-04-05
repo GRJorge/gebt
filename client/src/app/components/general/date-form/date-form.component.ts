@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DateObject } from '../../../interfaces/appointment.interface';
 
 @Component({
     selector: 'date-form',
@@ -12,15 +13,15 @@ export class DateFormComponent {
     @Input() hours = false;
     @Input() now = false;
 
-    @Output() sendDateEvent = new EventEmitter<Object>();
+    @Output() sendDateEvent = new EventEmitter<DateObject>();
 
     datetime = new Date();
     months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
-    date = {
-        day: this.datetime.getDate().toString(),
-        month: this.datetime.getMonth().toString(),
-        year: this.datetime.getFullYear().toString(),
+    date: DateObject = {
+        day: this.datetime.getDate(),
+        month: this.datetime.getMonth(),
+        year: this.datetime.getFullYear(),
         hour: this.getHour(),
         minute: 0,
         time: this.getTime(),

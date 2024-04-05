@@ -1,10 +1,18 @@
 export interface NewAppointment {
     date: {
-        day: { type: Number, required: true },
-        month: { type: Number, required: true },
-        year: { type: Number, required: true },
-        hour: { type: Number, required: true },
-        minute: { type: Number, required: true },
-    },
+        day: number;
+        month: number;
+        year: number;
+        hour: number;
+        minute: number;
+    };
     patient: string;
+}
+export interface DateObject {
+    day: number;
+    month: number;
+    year: number;
+    hour: number;
+    minute: number;
+    time: string;
 }
