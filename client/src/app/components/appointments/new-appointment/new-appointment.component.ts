@@ -5,6 +5,7 @@ import { PatientAppointmentComponent } from './patient-appointment/patient-appoi
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { AppointmentService } from '../../../services/appointment.service';
 import { DateFormComponent } from '../../general/date-form/date-form.component';
+import { DateObject, NewAppointment } from '../../../interfaces/appointment.interface';
 
 @Component({
     selector: 'new-appointment',
@@ -30,16 +31,23 @@ export class NewAppointmentComponent implements OnInit {
     namePatient: string = 'Selecciona un paciente';
     lastnamePatient: string = '';
 
-    date!: Object;
+    date!: DateObject;
 
-    saveAppointment() {}
+    saveAppointment() {
+        const newAppointment: NewAppointment = {
+            date: this.date,
+            patient: this.idPatient!,
+        };
+
+        this.appointmentService.new(newAppointment).subscribe();
+    }
 
     setPatient(data: string[]) {
         this.idPatient = data[0];
         this.namePatient = data[1];
         this.lastnamePatient = data[2];
     }
-    setDate(date: Object) {
+    setDate(date: DateObject) {
         this.date = date;
     }
 }
