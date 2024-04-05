@@ -54,10 +54,10 @@ export default {
                 if (approximateAppointment.length <= 0) {
                     res.status(200).json({ msg: 'Not appointments' });
                 } else {
-                    res.status(400).json({ msg: 'Approximate appointment', appointments: approximateAppointment });
+                    res.status(400).json({ type: 'approximate', msg: 'Approximate appointment', appointments: approximateAppointment });
                 }
             } else {
-                res.status(400).json({ msg: 'Appointment at the same time', appointment: equalAppointment });
+                res.status(400).json({ type: 'same', msg: 'Appointment at the same time', appointment: equalAppointment });
             }
         } catch (error: any) {
             ResponseInternalError(res, error);
