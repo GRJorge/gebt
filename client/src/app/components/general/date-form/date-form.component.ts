@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DateObject } from '../../../interfaces/appointment.interface';
 
@@ -9,11 +9,15 @@ import { DateObject } from '../../../interfaces/appointment.interface';
     templateUrl: './date-form.component.html',
     styleUrl: './date-form.component.scss',
 })
-export class DateFormComponent {
+export class DateFormComponent implements OnInit {
     @Input() hours = false;
     @Input() now = false;
 
     @Output() sendDateEvent = new EventEmitter<DateObject>();
+
+    ngOnInit(): void {
+        this.sendDate();
+    }
 
     datetime = new Date();
     months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
