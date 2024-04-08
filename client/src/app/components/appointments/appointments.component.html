@@ -9,7 +9,13 @@ TODO
 -->
 <div class="main">
     <div class="info">
-        <button class="btn bg-green"><i class="fi fi-rr-add"></i> Agendar una cita</button>
+        <button (click)="newForm = !newForm" class="btn" [class.bg-green]="!newForm" [class.bg-red]="newForm">
+            @if (!newForm) {
+                <i class="fi fi-rr-add"></i> Agendar una cita
+            } @else {
+                Cancelar
+            }
+        </button>
         <div class="bg-current">
             <span>15</span>
             <span>Citas registradas</span>
@@ -20,5 +26,7 @@ TODO
         </div>
     </div>
     
-    <new-appointment />
+    @if (newForm) {
+        <new-appointment />
+    }
 </div>

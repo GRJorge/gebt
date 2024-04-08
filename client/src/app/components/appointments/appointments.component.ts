@@ -8,4 +8,6 @@ import { NewAppointmentComponent } from './new-appointment/new-appointment.compo
     templateUrl: './appointments.component.html',
     styleUrl: './appointments.component.scss',
 })
-export class AppointmentsComponent {}
+export class AppointmentsComponent {
+    newForm = false;
+}
