@@ -3,7 +3,7 @@ TODO
 - Cita activa 
 (Si una cita ya paso no se puede registrar los datos y se cambia como no asistida, se tendria que crear una nueva cita)
 - Citas proximas
-- Crear citas
+X Crear citas
 - Citas pasadas
 - Todas las citas
 -->
@@ -11,10 +11,8 @@ TODO
     <div class="info">
         <button (click)="newForm = !newForm" class="btn" [class.bg-green]="!newForm" [class.bg-red]="newForm">
             @if (!newForm) {
-                <i class="fi fi-rr-add"></i> Agendar una cita
-            } @else {
-                Cancelar
-            }
+                <i class="fi fi-rr-add"></i> Agendar una cita 
+            } @else { Cancelar }
         </button>
         <div class="bg-current">
             <span>15</span>
@@ -25,8 +23,25 @@ TODO
             <span>Citas realizadas</span>
         </div>
     </div>
-    
+
     @if (newForm) {
         <new-appointment />
+    } @else {
+        <div class="content">
+            <div class="active bg-yellow">
+                
+            </div>
+            <div class="appointments">
+                <div class="approximate bg-current">
+                    <h1>Proximas citas:</h1>
+                </div>
+                <div class="past bg-current">
+                    <h1>Citas anteriores:</h1>
+                </div>
+            </div>
+            <div class="all bg-current">
+                
+            </div>
+        </div>
     }
 </div>
