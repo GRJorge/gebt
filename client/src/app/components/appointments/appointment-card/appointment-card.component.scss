@@ -1,0 +1,33 @@
+.card {
+    flex-direction: column;
+    padding: 16px 16px 8px 16px;
+    border-radius: 16px;
+    gap: 4px;
+
+    > div {
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+            gap: 8px;
+
+            span:last-child,
+            span:first-child {
+                font-weight: 800;
+            }
+        }
+        .state {
+            padding: 2px 8px;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: default;
+        }
+        .options {
+            gap: 2px;
+
+            button {
+                padding: 0;
+            }
+        }
+    }
+}
