@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../services/patient.service';
-import { Patients } from '../../../interfaces/patient.interface';
+import { Patient } from '../../../interfaces/patient.interface';
 import { PatientAppointmentComponent } from './patient-appointment/patient-appointment.component';
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { AppointmentService } from '../../../services/appointment.service';
 import { DateFormComponent } from '../../general/date-form/date-form.component';
-import { ApproximateAppointment, DateObject, NewAppointment } from '../../../interfaces/appointment.interface';
+import { Appointment, DateObject, NewAppointment } from '../../../interfaces/appointment.interface';
 
 @Component({
     selector: 'new-appointment',
@@ -17,11 +17,11 @@ import { ApproximateAppointment, DateObject, NewAppointment } from '../../../int
 export class NewAppointmentComponent implements OnInit {
     constructor(private patientService: PatientService, private appointmentService: AppointmentService) {}
 
-    patients?: Patients[];
+    patients?: Patient[];
 
     ngOnInit(): void {
         this.patientService.get('createdAt', 'asc').subscribe({
-            next: (result: Patients[] | any) => {
+            next: (result: Patient[] | any) => {
                 this.patients = result;
             },
         });
@@ -48,7 +48,7 @@ export class NewAppointmentComponent implements OnInit {
         this.lastnamePatient = data[2];
     }
 
-    approximateAppointments?: ApproximateAppointment[];
+    approximateAppointments?: Appointment[];
     equalAppointment = false;
 
     setDate(date: DateObject) {
