@@ -16,7 +16,7 @@ export interface DateObject {
     minute: number;
     time: string;
 }
-export interface ApproximateAppointment {
+export interface Appointment {
     _id: string;
     date: DateObject;
     state: number;
@@ -25,14 +25,6 @@ export interface ApproximateAppointment {
         name: string;
         lastname: string;
     };
-    user: string;
-    createdAt: Date;
-}
-export interface Appointment {
-    _id: string;
-    date: DateObject;
-    state: number;
-    patient: string;
     user: string;
     createdAt: Date;
 }
