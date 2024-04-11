@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 import { AppointmentCardComponent } from './appointment-card/appointment-card.component';
+import { AppointmentService } from '../../services/appointment.service';
+import { Appointment } from '../../interfaces/appointment.interface';
 
 @Component({
     selector: 'appointments',
@@ -9,6 +11,17 @@ import { AppointmentCardComponent } from './appointment-card/appointment-card.co
     templateUrl: './appointments.component.html',
     styleUrl: './appointments.component.scss',
 })
-export class AppointmentsComponent {
+export class AppointmentsComponent implements OnInit {
+    constructor(private appointmentService: AppointmentService) {}
+
     newForm = false;
+    appointmentsActive: Appointment[] = [];
+
+    ngOnInit(): void {
+        this.appointmentService.get().subscribe({
+            next: (data: Appointment[] | any) => {
+                this.appointmentsActive = data;
+            },
+        });
+    }
 }
