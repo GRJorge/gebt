@@ -63,4 +63,15 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    get: async function (req: Request, res: Response) {
+        const { state } = req.query;
+
+        try {
+            const appointments = await Appointment.find({ user: req.user, state }).populate('patient', 'name lastname').lean();
+
+            res.status(200).json(appointments);
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
 };
