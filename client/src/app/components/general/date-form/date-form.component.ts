@@ -20,6 +20,7 @@ export class DateFormComponent implements OnInit {
     }
 
     datetime = new Date();
+    weekday!: string;
     months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
     date: DateObject = {
@@ -46,5 +47,11 @@ export class DateFormComponent implements OnInit {
 
     sendDate() {
         this.sendDateEvent.emit(this.date);
+        this.setWeekday();
+    }
+    setWeekday() {
+        const days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+        const date = new Date(`${this.date.year}-${parseInt(this.date.month.toString()) + 1}-${this.date.day}`);
+        this.weekday = days[date.getDay()];
     }
 }
