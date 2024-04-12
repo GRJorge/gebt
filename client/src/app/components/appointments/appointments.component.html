@@ -11,8 +11,7 @@ X Crear citas
     <div class="info">
         <button (click)="newForm = !newForm" class="btn" [class.bg-green]="!newForm" [class.bg-red]="newForm">
             @if (!newForm) {
-                <i class="fi fi-rr-add"></i> Agendar una cita 
-            } @else { Cancelar }
+            <i class="fi fi-rr-add"></i> Agendar una cita } @else { Cancelar }
         </button>
         <div class="bg-current">
             <span>15</span>
@@ -25,23 +24,22 @@ X Crear citas
     </div>
 
     @if (newForm) {
-        <new-appointment />
+    <new-appointment />
     } @else {
-        <div class="content">
-            <div class="active bg-yellow">
-                
+    <div class="content">
+        <div class="active bg-yellow"></div>
+        <div class="appointments">
+            <div class="approximate bg-current">
+                <h1>Proximas citas:</h1>
+                @for (appointment of appointmentsActive; track appointment._id) {
+                    <appointment-card [appointment]="appointment" />
+                }
             </div>
-            <div class="appointments">
-                <div class="approximate bg-current">
-                    <h1>Proximas citas:</h1>
-                </div>
-                <div class="past bg-current">
-                    <h1>Citas anteriores:</h1>
-                </div>
-            </div>
-            <div class="all bg-current">
-                
+            <div class="past bg-current">
+                <h1>Citas anteriores:</h1>
             </div>
         </div>
+        <div class="all bg-current"></div>
+    </div>
     }
 </div>
