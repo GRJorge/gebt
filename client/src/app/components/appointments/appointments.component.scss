@@ -3,6 +3,8 @@
     height: calc(100% - 16px);
     flex-direction: column;
     margin: 8px;
+    overflow: auto;
+    max-height: calc(100vh - 62px);
 
     $infoHeight: 70px;
     .info {
