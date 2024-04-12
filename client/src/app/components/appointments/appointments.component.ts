@@ -15,12 +15,12 @@ export class AppointmentsComponent implements OnInit {
     constructor(private appointmentService: AppointmentService) {}
 
     newForm = false;
-    appointmentsActive: Appointment[] = [];
+    pendingAppointments: Appointment[] = [];
 
     ngOnInit(): void {
         this.appointmentService.get().subscribe({
             next: (data: Appointment[] | any) => {
-                this.appointmentsActive = data;
+                this.pendingAppointments = data;
             },
         });
     }
