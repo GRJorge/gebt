@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Appointment } from '../../../interfaces/appointment.interface';
+import { DatetimeService } from '../../../services/datetime.service';
 
 @Component({
     selector: 'appointment-card',
@@ -9,6 +10,8 @@ import { Appointment } from '../../../interfaces/appointment.interface';
     styleUrl: './appointment-card.component.scss',
 })
 export class AppointmentCardComponent {
+    constructor(private datetimeService: DatetimeService) {}
+
     @Input() appointment!: Appointment;
 
     //ESTADO DE LA CITA
@@ -28,7 +31,7 @@ export class AppointmentCardComponent {
     //DIA DE LA CITA
     dayWeekString(): string {
         const date = new Date();
-        const dateAppointment = new Date(`${this.appointment.date.year}-${this.appointment.date.month + 1}-${this.appointment.date.day}`);
+        const dateAppointment = new Date(this.appointment.date);
 
         switch (dateAppointment.getDate() - date.getDate()) {
             case 0:
@@ -44,5 +47,10 @@ export class AppointmentCardComponent {
 
             return days[day];
         }
+    }
+    hourString(): string {
+        const date = new Date(this.appointment.date);
+
+        return this.datetimeService.to12(date.getHours(), date.getMinutes());
     }
 }

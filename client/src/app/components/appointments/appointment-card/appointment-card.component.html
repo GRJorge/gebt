@@ -3,7 +3,7 @@
         <div>
             <span>{{ dayWeekString() }}</span>
             <span>-</span>
-            <span class="datetime">{{ appointment.date.hour.toString().padStart(2,'0') }}:{{ appointment.date.minute.toString().padStart(2,'0') }}{{ appointment.date.time }}</span>
+            <span class="datetime">{{ hourString() }}</span>
         </div>
         <span class="state bg-yellow">{{ stateString() }}</span>
     </div>

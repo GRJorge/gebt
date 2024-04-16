@@ -5,7 +5,8 @@ import { PatientAppointmentComponent } from './patient-appointment/patient-appoi
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { AppointmentService } from '../../../services/appointment.service';
 import { DateFormComponent } from '../../general/date-form/date-form.component';
-import { Appointment, DateObject, NewAppointment } from '../../../interfaces/appointment.interface';
+import { Appointment, NewAppointment } from '../../../interfaces/appointment.interface';
+import { DatetimeService } from '../../../services/datetime.service';
 
 @Component({
     selector: 'new-appointment',
@@ -15,7 +16,7 @@ import { Appointment, DateObject, NewAppointment } from '../../../interfaces/app
     styleUrl: './new-appointment.component.scss',
 })
 export class NewAppointmentComponent implements OnInit {
-    constructor(private patientService: PatientService, private appointmentService: AppointmentService) {}
+    constructor(private patientService: PatientService, private appointmentService: AppointmentService, private datetimeService: DatetimeService) {}
 
     patients?: Patient[];
 
@@ -31,7 +32,7 @@ export class NewAppointmentComponent implements OnInit {
     namePatient: string = 'Selecciona un paciente';
     lastnamePatient: string = '';
 
-    date!: DateObject;
+    date!: Date;
 
     saveAppointment() {
         const newAppointment: NewAppointment = {
@@ -51,9 +52,9 @@ export class NewAppointmentComponent implements OnInit {
     approximateAppointments?: Appointment[];
     equalAppointment = false;
 
-    setDate(date: DateObject) {
+    setDate(date: Date) {
         this.date = date;
-
+        console.log(date);
         this.approximateAppointments = undefined;
         this.equalAppointment = false;
 
@@ -68,5 +69,9 @@ export class NewAppointmentComponent implements OnInit {
                 }
             },
         });
+    }
+    stringDate(date: Date): string {
+        const datetime = new Date(date);
+        return this.datetimeService.to12(datetime.getHours(), datetime.getMinutes());
     }
 }

@@ -32,9 +32,11 @@ X Crear citas
         <div class="appointments">
             <div class="approximate bg-current">
                 <h1>Proximas citas:</h1>
-                @for (appointment of pendingAppointments; track appointment._id) {
-                    <appointment-card [appointment]="appointment" />
-                }
+                <div>
+                    @for (appointment of pendingAppointments; track appointment._id) {
+                        <appointment-card [appointment]="appointment" />
+                    }
+                </div>
             </div>
             <div class="past bg-current">
                 <h1>Citas anteriores:</h1>

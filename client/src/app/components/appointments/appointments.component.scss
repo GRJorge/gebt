@@ -51,6 +51,11 @@
             flex: 1;
             padding: 16px;
             border-radius: 16px;
+
+            div {
+                gap: 8px;
+                flex-direction: column-reverse;
+            }
         }
         .appointments {
             gap: 8px;

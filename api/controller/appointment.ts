@@ -11,7 +11,7 @@ export default {
             const patientInfo = await Patient.findById(patient).select('gender birthday').lean();
 
             if (patientInfo) {
-                await new Appointment({ date, patient, user: req.user }).save();
+                await new Appointment({ date: new Date(date), patient, user: req.user }).save();
                 res.status(200).json({ msg: 'Appointment created' });
             } else {
                 res.status(400).json({ msg: 'Patient not found' });
@@ -23,41 +23,32 @@ export default {
     overlapAppointment: async function (req: Request, res: Response) {
         const { date } = req.body;
 
-        const dateInt = {
-            day: parseInt(date.day),
-            month: parseInt(date.month),
-            year: parseInt(date.year),
-            hour: parseInt(date.hour),
-            minute: parseInt(date.minute),
-            time: date.time,
-        };
-
         try {
-            const equalAppointment = await Appointment.find({ date: dateInt, state: { $nin: [2, 3] }, user: req.user }).lean();
+            const equalAppointment = await Appointment.find({ date, user: req.user }).lean();
 
-            if (equalAppointment.length <= 0) {
+            if (equalAppointment.length > 0) {
+                res.status(400).json({ type: 'same', msg: 'Appointment at the same time', appointment: equalAppointment });
+            } else {
+                const startDate = new Date(date);
+                startDate.setHours(startDate.getHours() - 2);
+                const endDate = new Date(date);
+                endDate.setHours(endDate.getHours() + 2);
+
                 const approximateAppointment = await Appointment.find({
-                    'date.day': dateInt.day,
-                    'date.month': dateInt.month,
-                    'date.year': dateInt.year,
-                    'date.time': dateInt.time,
-                    'date.hour': {
-                        $gte: dateInt.hour - 2,
-                        $lte: dateInt.hour + 2,
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
                     },
-                    state: { $nin: [2, 3] },
                     user: req.user,
                 })
                     .populate('patient', 'name lastname')
                     .lean();
 
-                if (approximateAppointment.length <= 0) {
-                    res.status(200).json({ msg: 'Not appointments' });
+                if (approximateAppointment.length > 0) {
+                    res.status(400).json({ type: 'approximate', msg: 'Appointment approximate', appointments: approximateAppointment });
                 } else {
-                    res.status(400).json({ type: 'approximate', msg: 'Approximate appointment', appointments: approximateAppointment });
+                    res.status(200).json({ msg: 'Not overlap appointments' });
                 }
-            } else {
-                res.status(400).json({ type: 'same', msg: 'Appointment at the same time', appointment: equalAppointment });
             }
         } catch (error: any) {
             ResponseInternalError(res, error);
@@ -67,7 +58,7 @@ export default {
         const { state } = req.query;
 
         try {
-            const appointments = await Appointment.find({ user: req.user, state }).populate('patient', 'name lastname').lean();
+            const appointments = await Appointment.find({ user: req.user, state }).sort({ date: 'desc' }).populate('patient', 'name lastname').lean();
 
             res.status(200).json(appointments);
         } catch (error: any) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { DateObject, NewAppointment } from '../interfaces/appointment.interface';
+import { NewAppointment } from '../interfaces/appointment.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -14,7 +14,7 @@ export class AppointmentService {
     new(appointment: NewAppointment) {
         return this.http.post(this.url + 'new', appointment);
     }
-    overlap(date: DateObject) {
+    overlap(date: Date) {
         return this.http.post(this.url + 'overlap', { date });
     }
     get(state: number = 0) {

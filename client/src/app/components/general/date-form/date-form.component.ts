@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DateObject } from '../../../interfaces/appointment.interface';
+import { DatetimeService } from '../../../services/datetime.service';
 
 @Component({
     selector: 'date-form',
@@ -10,10 +10,12 @@ import { DateObject } from '../../../interfaces/appointment.interface';
     styleUrl: './date-form.component.scss',
 })
 export class DateFormComponent implements OnInit {
+    constructor(private datetimeService: DatetimeService) {}
+
     @Input() hours = false;
     @Input() now = false;
 
-    @Output() sendDateEvent = new EventEmitter<DateObject>();
+    @Output() sendDateEvent = new EventEmitter<Date>();
 
     ngOnInit(): void {
         this.sendDate();
@@ -23,14 +25,12 @@ export class DateFormComponent implements OnInit {
     weekday!: string;
     months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
-    date: DateObject = {
-        day: this.datetime.getDate(),
-        month: this.datetime.getMonth(),
-        year: this.datetime.getFullYear(),
-        hour: this.getHour(),
-        minute: 0,
-        time: this.getTime(),
-    };
+    day = this.datetime.getDate();
+    month = this.datetime.getMonth();
+    year = this.datetime.getFullYear();
+    hour = this.getHour();
+    minute = 0;
+    time = this.getTime();
 
     getRange(start: number, end: number): number[] {
         const length = end - start + 1;
@@ -46,12 +46,12 @@ export class DateFormComponent implements OnInit {
     }
 
     sendDate() {
-        this.sendDateEvent.emit(this.date);
+        this.sendDateEvent.emit(new Date(this.year, this.month, this.day, this.datetimeService.to24(this.hour, this.time), this.minute));
         this.setWeekday();
     }
     setWeekday() {
         const days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
-        const date = new Date(`${this.date.year}-${parseInt(this.date.month.toString()) + 1}-${this.date.day}`);
+        const date = new Date(`${this.year}-${parseInt(this.month.toString()) + 1}-${this.day}`);
         this.weekday = days[date.getDay()];
     }
 }

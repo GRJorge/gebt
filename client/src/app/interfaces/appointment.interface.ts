@@ -1,24 +1,10 @@
 export interface NewAppointment {
-    date: {
-        day: number;
-        month: number;
-        year: number;
-        hour: number;
-        minute: number;
-    };
+    date: Date;
     patient: string;
-}
-export interface DateObject {
-    day: number;
-    month: number;
-    year: number;
-    hour: number;
-    minute: number;
-    time: string;
 }
 export interface Appointment {
     _id: string;
-    date: DateObject;
+    date: Date;
     state: number;
     patient: {
         _id: string;
