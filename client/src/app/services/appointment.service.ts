@@ -20,4 +20,10 @@ export class AppointmentService {
     get(state: number = 0) {
         return this.http.get(this.url + 'get', { params: { state } });
     }
+    upcoming() {
+        return this.http.get(this.url + 'upcoming');
+    }
+    active() {
+        return this.http.get(this.url + 'active');
+    }
 }
