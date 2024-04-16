@@ -15,33 +15,21 @@ export class AppointmentsComponent implements OnInit {
     constructor(private appointmentService: AppointmentService) {}
 
     newForm = false;
-    pendingAppointments: Appointment[] = [];
-    exchange: Appointment[] = [];
+    upcomingAppointments: Appointment[] = [];
+    activeAppointments: Appointment[] = [];
 
     ngOnInit(): void {
-        this.appointmentService.get().subscribe({
+        this.appointmentService.upcoming().subscribe({
             next: (data: Appointment[] | any) => {
-                this.pendingAppointments = data;
-                this.cutPending();
+                this.upcomingAppointments = data;
             },
         });
-    }
 
-    cutPending(iteration: number = 0, max: number = 5) {
-        let step = false;
-        const dateAppointment = new Date(this.pendingAppointments[iteration].date);
-        const date = new Date();
-
-        if (dateAppointment > date) {
-            this.exchange.push(this.pendingAppointments[iteration]);
-        } else {
-            step = true;
-            this.pendingAppointments = this.exchange;
-            this.exchange = [];
-        }
-
-        if (iteration <= max && !step) {
-            this.cutPending(iteration + 1);
-        }
+        this.appointmentService.active().subscribe({
+            next: (data: Appointment[] | any) => {
+                this.activeAppointments = data;
+                console.log(this.activeAppointments);
+            },
+        });
     }
 }
