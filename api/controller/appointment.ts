@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Patient from '../model/patient';
 import Appointment from '../model/appointment';
 import { ResponseInternalError, calculateGEB, calculateGET, calculateIMC, getAge } from '../utils/functions';
+import appointment from '../model/appointment';
 
 export default {
     new: async function (req: Request, res: Response) {
@@ -61,6 +62,57 @@ export default {
             const appointments = await Appointment.find({ user: req.user, state }).sort({ date: 'desc' }).populate('patient', 'name lastname').lean();
 
             res.status(200).json(appointments);
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
+    getUpcoming: async function (req: Request, res: Response) {
+        const date = new Date();
+        date.setHours(date.getHours() + 2);
+
+        try {
+            const upcomingAppointments = await Appointment.find({
+                date: {
+                    $gte: date,
+                },
+                state: 0,
+                user: req.user,
+            })
+                .populate('patient', 'name lastname')
+                .lean();
+
+            res.status(200).json(upcomingAppointments);
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
+    getActive: async function (req: Request, res: Response) {
+        const date = new Date();
+        const endDate = new Date();
+        endDate.setHours(endDate.getHours() + 2);
+
+        try {
+            let activeAppointments = await Appointment.find({
+                state: 0,
+                user: req.user,
+            })
+                .populate('patient', 'name lastname')
+                .lean();
+
+            activeAppointments = activeAppointments.filter((appointment) => {
+                const appointmentDate = new Date(appointment.date);
+                const appointmentEndDate = new Date(appointment.date);
+                appointmentEndDate.setHours(appointmentEndDate.getHours() + 2);
+
+                if (date >= appointmentDate && date <= appointmentEndDate) {
+                    return true;
+                }
+                return false;
+            });
+
+            console.log(activeAppointments);
+
+            res.status(200).json(activeAppointments);
         } catch (error: any) {
             ResponseInternalError(res, error);
         }
