@@ -3,6 +3,7 @@ import { NewAppointmentComponent } from './new-appointment/new-appointment.compo
 import { AppointmentCardComponent } from './appointment-card/appointment-card.component';
 import { AppointmentService } from '../../services/appointment.service';
 import { Appointment } from '../../interfaces/appointment.interface';
+import { DatetimeService } from '../../services/datetime.service';
 
 @Component({
     selector: 'appointments',
@@ -12,7 +13,7 @@ import { Appointment } from '../../interfaces/appointment.interface';
     styleUrl: './appointments.component.scss',
 })
 export class AppointmentsComponent implements OnInit {
-    constructor(private appointmentService: AppointmentService) {}
+    constructor(private appointmentService: AppointmentService, private datetimeService: DatetimeService) {}
 
     newForm = false;
     upcomingAppointments: Appointment[] = [];
@@ -28,8 +29,13 @@ export class AppointmentsComponent implements OnInit {
         this.appointmentService.active().subscribe({
             next: (data: Appointment[] | any) => {
                 this.activeAppointments = data;
-                console.log(this.activeAppointments);
             },
         });
+    }
+
+    datetimeString(date: Date): string {
+        const datetime = new Date(date);
+
+        return this.datetimeService.to12(datetime.getHours(), datetime.getMinutes());
     }
 }

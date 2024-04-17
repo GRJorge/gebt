@@ -2,7 +2,7 @@
 TODO
 - Cita activa 
 (Si una cita ya paso no se puede registrar los datos y se cambia como no asistida, se tendria que crear una nueva cita)
-- Citas proximas
+X Citas proximas
 -- FILTRAR SIGUIENTES 5 DIAS Y DEMAS PENDIENTES EN LA SECCION GENERAL DE CITAS
 X Crear citas
 - Citas pasadas
@@ -28,12 +28,25 @@ X Crear citas
     <new-appointment />
     } @else {
     <div class="content">
-        <div class="active bg-yellow"></div>
+        @if (activeAppointments.length > 0) {
+            <div class="active bg-yellow">
+                @for (appointment of activeAppointments; track appointment._id) {
+                    <div class="activeAppointment">
+                        <span>{{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
+                        <span>{{ datetimeString(appointment.date) }}</span>
+                    </div>
+                }
+                <div class="activeAppointment">
+                    <span>Jorge Garcia Rodriguez</span>
+                    <span>12:00 pm</span>
+                </div>
+            </div>
+        }
         <div class="appointments">
             <div class="approximate bg-current">
                 <h1>Proximas citas:</h1>
-                <div>
-                    @for (appointment of pendingAppointments; track appointment._id) {
+                <div class="approximateAppointments">
+                    @for (appointment of upcomingAppointments; track appointment._id) {
                         <appointment-card [appointment]="appointment" />
                     }
                 </div>
