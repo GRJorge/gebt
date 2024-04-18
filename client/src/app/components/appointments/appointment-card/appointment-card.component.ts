@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Appointment } from '../../../interfaces/appointment.interface';
 import { DatetimeService } from '../../../services/datetime.service';
+import { AppointmentService } from '../../../services/appointment.service';
 
 @Component({
     selector: 'appointment-card',
@@ -10,7 +11,7 @@ import { DatetimeService } from '../../../services/datetime.service';
     styleUrl: './appointment-card.component.scss',
 })
 export class AppointmentCardComponent {
-    constructor(private datetimeService: DatetimeService) {}
+    constructor(private appointmentService: AppointmentService, private datetimeService: DatetimeService) {}
 
     @Input() appointment!: Appointment;
 
@@ -52,5 +53,14 @@ export class AppointmentCardComponent {
         const date = new Date(this.appointment.date);
 
         return this.datetimeService.to12(date.getHours(), date.getMinutes());
+    }
+
+    sureCancel = false;
+
+    cancelAppointment() {
+        if (this.sureCancel) {
+            this.appointmentService.cancel(this.appointment._id).subscribe();
+        }
+        this.sureCancel = true;
     }
 }

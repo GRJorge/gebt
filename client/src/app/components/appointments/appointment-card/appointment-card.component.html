@@ -11,7 +11,13 @@
         <span>Para: {{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
         <div class="options">
             <button class="btn bg-current2" title="Reagendar"><i class="fi fi-rr-time-forward"></i></button>
-            <button class="btn bg-current2" title="Cancelar"><i class="fi fi-rr-ban"></i></button>
+            <button (click)="cancelAppointment()" (mouseleave)="sureCancel = false" class="btn" [class.bg-current2]="!sureCancel" [class.bg-red]="sureCancel" title="Cancelar">
+                @if (!sureCancel) {
+                    <i class="fi fi-rr-ban"></i>
+                } @else {
+                    ¿Estas seguro?
+                }
+            </button>
         </div>
     </div>
 </div>
