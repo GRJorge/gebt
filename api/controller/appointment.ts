@@ -69,6 +69,17 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    cancel: async function (req: Request, res: Response) {
+        const { appointment } = req.body;
+
+        try {
+            await Appointment.updateOne({ _id: appointment, user: req.user }, { state: 2 });
+
+            res.status(200).json({ msg: 'Canceled appointment' });
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
     getUpcoming: async function (req: Request, res: Response) {
         const date = new Date();
         date.setHours(date.getHours() + 2);

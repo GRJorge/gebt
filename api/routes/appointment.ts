@@ -8,5 +8,6 @@ router.post('/overlap', verifyToken, controller.overlapAppointment);
 router.get('/get', verifyToken, controller.get);
 router.get('/upcoming', verifyToken, controller.getUpcoming);
 router.get('/active', verifyToken, controller.getActive);
+router.patch('/cancel', verifyToken, controller.cancel);
 
 export default router;
