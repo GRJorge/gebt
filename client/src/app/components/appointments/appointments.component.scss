@@ -61,6 +61,14 @@
                 gap: 8px;
                 flex-direction: column-reverse;
             }
+            .empty {
+                flex-direction: column;
+                align-items: center;
+
+                i {
+                    font-size: 24px;
+                }
+            }
         }
         .active {
             animation: active 0.8s ease-in-out infinite alternate;

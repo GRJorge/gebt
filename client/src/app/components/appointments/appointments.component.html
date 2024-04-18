@@ -1,13 +1,3 @@
-<!--
-TODO
-- Cita activa 
-(Si una cita ya paso no se puede registrar los datos y se cambia como no asistida, se tendria que crear una nueva cita)
-X Citas proximas
--- FILTRAR SIGUIENTES 5 DIAS Y DEMAS PENDIENTES EN LA SECCION GENERAL DE CITAS
-X Crear citas
-- Citas pasadas
-- Todas las citas
--->
 <div class="main">
     <div class="info">
         <button (click)="newForm = !newForm" class="btn" [class.bg-green]="!newForm" [class.bg-red]="newForm">
@@ -46,8 +36,15 @@ X Crear citas
             <div class="approximate bg-current">
                 <h1>Proximas citas:</h1>
                 <div class="approximateAppointments">
-                    @for (appointment of upcomingAppointments; track appointment._id) {
-                        <appointment-card [appointment]="appointment" />
+                    @if (upcomingAppointments.length > 0) {
+                        @for (appointment of upcomingAppointments; track appointment._id) {
+                            <appointment-card [appointment]="appointment" />
+                        }
+                    } @else {
+                        <div class="empty">
+                            <i class="fi fi-rr-bed"></i>
+                            <span>No hay citas proximas</span>
+                        </div>
                     }
                 </div>
             </div>
