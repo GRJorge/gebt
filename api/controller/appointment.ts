@@ -59,7 +59,10 @@ export default {
         const { state } = req.query;
 
         try {
-            const appointments = await Appointment.find({ user: req.user, state }).sort({ date: 'desc' }).populate('patient', 'name lastname').lean();
+            const appointments = await Appointment.find({ user: req.user, state: { $in: state } })
+                .sort({ date: 'desc' })
+                .populate('patient', 'name lastname')
+                .lean();
 
             res.status(200).json(appointments);
         } catch (error: any) {
@@ -109,8 +112,6 @@ export default {
                 }
                 return false;
             });
-
-            console.log(activeAppointments);
 
             res.status(200).json(activeAppointments);
         } catch (error: any) {

@@ -17,7 +17,7 @@ export class AppointmentService {
     overlap(date: Date) {
         return this.http.post(this.url + 'overlap', { date });
     }
-    get(state: number = 0) {
+    get(state: number[] = [1,2,3]) {
         return this.http.get(this.url + 'get', { params: { state } });
     }
     upcoming() {
