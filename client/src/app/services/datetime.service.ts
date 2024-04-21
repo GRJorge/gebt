@@ -15,9 +15,16 @@ export class DatetimeService {
         const ampm = hour < 12 ? 'am' : 'pm';
 
         if (hour < 12) {
-            return `${hour === 0 ? 12 : hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')} ${ampm}`;
+            return `${hour === 0 ? 12 : this.twoDigits(hour)}:${this.twoDigits(minute)} ${ampm}`;
         } else {
-            return `${(hour === 12 ? hour : hour - 12).toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')} ${ampm}`;
+            return `${this.twoDigits(hour === 12 ? hour : hour - 12)}:${this.twoDigits(minute)} ${ampm}`;
         }
+    }
+    dateToString(date: Date): string {
+        return `${this.twoDigits(date.getDate())}/${this.twoDigits(date.getMonth())}/${date.getFullYear()}`;
+    }
+
+    twoDigits(number: number): string {
+        return number.toString().padStart(2, '0');
     }
 }
