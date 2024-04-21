@@ -15,7 +15,7 @@
     </div>
 
     @if (newForm) {
-    <new-appointment />
+        <new-appointment (savedEvent)="updateSection()" />
     } @else {
     <div class="content">
         @if (activeAppointments.length > 0) {
@@ -26,10 +26,6 @@
                         <span>{{ datetimeString(appointment.date) }}</span>
                     </div>
                 }
-                <div class="activeAppointment">
-                    <span>Jorge Garcia Rodriguez</span>
-                    <span>12:00 pm</span>
-                </div>
             </div>
         }
         <div class="appointments">
@@ -38,7 +34,7 @@
                 <div class="approximateAppointments">
                     @if (upcomingAppointments.length > 0) {
                         @for (appointment of upcomingAppointments; track appointment._id) {
-                            <appointment-card [appointment]="appointment" />
+                            <appointment-card [appointment]="appointment" (canceledEvent)="updateSection()" />
                         }
                     } @else {
                         <div class="empty">

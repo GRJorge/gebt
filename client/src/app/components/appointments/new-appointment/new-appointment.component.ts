@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PatientService } from '../../../services/patient.service';
 import { Patient } from '../../../interfaces/patient.interface';
 import { PatientAppointmentComponent } from './patient-appointment/patient-appointment.component';
@@ -33,6 +33,7 @@ export class NewAppointmentComponent implements OnInit {
     lastnamePatient: string = '';
 
     date!: Date;
+    @Output() savedEvent = new EventEmitter();
 
     saveAppointment() {
         const newAppointment: NewAppointment = {
@@ -40,7 +41,11 @@ export class NewAppointmentComponent implements OnInit {
             patient: this.idPatient!,
         };
 
-        this.appointmentService.new(newAppointment).subscribe();
+        this.appointmentService.new(newAppointment).subscribe({
+            next: () => {
+                this.savedEvent.emit();
+            },
+        });
     }
 
     setPatient(data: string[]) {

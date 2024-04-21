@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Appointment } from '../../../interfaces/appointment.interface';
 import { DatetimeService } from '../../../services/datetime.service';
 import { AppointmentService } from '../../../services/appointment.service';
@@ -34,12 +34,12 @@ export class AppointmentCardComponent {
     dayWeekString(): string {
         const date = new Date();
         const dateAppointment = new Date(this.appointment.date);
-        const dayDifference = dateAppointment.getDate() - date.getDate()
+        const dayDifference = dateAppointment.getDate() - date.getDate();
 
-        if(dayDifference >= -1) {
+        if (dayDifference >= -1) {
             switch (dayDifference) {
                 case -1:
-                    return 'Ayer'
+                    return 'Ayer';
                 case 0:
                     return 'Hoy';
                 case 1:
@@ -48,7 +48,7 @@ export class AppointmentCardComponent {
                     return dayToString(dateAppointment.getDay());
             }
         } else {
-            return this.datetimeService.dateToString(dateAppointment)
+            return this.datetimeService.dateToString(dateAppointment);
         }
 
         function dayToString(day: number) {
@@ -64,10 +64,15 @@ export class AppointmentCardComponent {
     }
 
     sureCancel = false;
+    @Output() canceledEvent = new EventEmitter();
 
     cancelAppointment() {
         if (this.sureCancel) {
-            this.appointmentService.cancel(this.appointment._id).subscribe();
+            this.appointmentService.cancel(this.appointment._id).subscribe({
+                next: () => {
+                    this.canceledEvent.emit();
+                },
+            });
         }
         this.sureCancel = true;
     }

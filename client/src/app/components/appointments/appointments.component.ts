@@ -22,6 +22,18 @@ export class AppointmentsComponent implements OnInit {
     appointments: Appointment[] = [];
 
     ngOnInit(): void {
+        this.updateSection();
+    }
+
+    datetimeString(date: Date): string {
+        const datetime = new Date(date);
+
+        return this.datetimeService.to12(datetime.getHours(), datetime.getMinutes());
+    }
+
+    updateSection() {
+        this.newForm = false;
+
         this.appointmentService.upcoming().subscribe({
             next: (data: Appointment[] | any) => {
                 this.upcomingAppointments = data;
@@ -40,11 +52,5 @@ export class AppointmentsComponent implements OnInit {
                 this.recentAppointments = this.appointments.splice(0, 4);
             },
         });
-    }
-
-    datetimeString(date: Date): string {
-        const datetime = new Date(date);
-
-        return this.datetimeService.to12(datetime.getHours(), datetime.getMinutes());
     }
 }
