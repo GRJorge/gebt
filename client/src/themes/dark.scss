@@ -67,8 +67,8 @@
     .bg-yellow {
         color: $dark;
 
-        i,
-        p {
+        > i,
+        > p {
             color: $dark;
         }
     }
