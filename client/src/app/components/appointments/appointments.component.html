@@ -48,8 +48,18 @@
                     }
                 </div>
             </div>
-            <div class="past bg-current">
-                <h1>Citas anteriores:</h1>
+            <div class="recent bg-current">
+                <h1>Citas recientes:</h1>
+                @if (recentAppointments.length > 0) {
+                    @for (appointment of recentAppointments; track appointment._id) {
+                        <appointment-card  [appointment]="appointment" [options]="false" />
+                    }
+                } @else {
+                    <div class="empty">
+                        <i class="fi fi-rr-hourglass"></i>
+                        <span>No hay citas recientes</span>
+                    </div>
+                }
             </div>
         </div>
         <div class="all bg-current"></div>

@@ -14,6 +14,7 @@ export class AppointmentCardComponent {
     constructor(private appointmentService: AppointmentService, private datetimeService: DatetimeService) {}
 
     @Input() appointment!: Appointment;
+    @Input() options = true;
 
     //ESTADO DE LA CITA
     //0: Pendiente, 1: Activo, 2: Cancelado, 3: No asistido
@@ -22,7 +23,7 @@ export class AppointmentCardComponent {
             case 0:
                 return 'Pendiente';
             case 1:
-                return 'Activo';
+                return 'Atendido';
             case 2:
                 return 'Cancelado';
             default:
@@ -33,14 +34,21 @@ export class AppointmentCardComponent {
     dayWeekString(): string {
         const date = new Date();
         const dateAppointment = new Date(this.appointment.date);
+        const dayDifference = dateAppointment.getDate() - date.getDate()
 
-        switch (dateAppointment.getDate() - date.getDate()) {
-            case 0:
-                return 'Hoy';
-            case 1:
-                return 'Mañana';
-            default:
-                return dayToString(dateAppointment.getDay());
+        if(dayDifference >= -1) {
+            switch (dayDifference) {
+                case -1:
+                    return 'Ayer'
+                case 0:
+                    return 'Hoy';
+                case 1:
+                    return 'Mañana';
+                default:
+                    return dayToString(dateAppointment.getDay());
+            }
+        } else {
+            return this.datetimeService.dateToString(dateAppointment)
         }
 
         function dayToString(day: number) {

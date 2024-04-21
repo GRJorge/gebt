@@ -5,19 +5,21 @@
             <span>-</span>
             <span class="datetime">{{ hourString() }}</span>
         </div>
-        <span class="state bg-yellow">{{ stateString() }}</span>
+        <span class="state" [class.bg-yellow]="appointment.state === 0" [class.bg-red]="appointment.state === 2" [class.bg-green]="appointment.state === 1" [class.bg-blue]="appointment.state === 3" >{{ stateString() }}</span>
     </div>
     <div>
         <span>Para: {{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
-        <div class="options">
-            <button class="btn bg-current2" title="Reagendar"><i class="fi fi-rr-time-forward"></i></button>
-            <button (click)="cancelAppointment()" (mouseleave)="sureCancel = false" class="btn" [class.bg-current2]="!sureCancel" [class.bg-red]="sureCancel" title="Cancelar">
-                @if (!sureCancel) {
-                    <i class="fi fi-rr-ban"></i>
-                } @else {
-                    ¿Estas seguro?
-                }
-            </button>
-        </div>
+        @if (options) {
+            <div class="options">
+                <button class="btn bg-current2" title="Reagendar"><i class="fi fi-rr-time-forward"></i></button>
+                <button (click)="cancelAppointment()" (mouseleave)="sureCancel = false" class="btn" [class.bg-current2]="!sureCancel" [class.bg-red]="sureCancel" title="Cancelar">
+                    @if (!sureCancel) {
+                        <i class="fi fi-rr-ban"></i>
+                    } @else {
+                        ¿Estas seguro?
+                    }
+                </button>
+            </div>
+        }
     </div>
 </div>

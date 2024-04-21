@@ -18,6 +18,8 @@ export class AppointmentsComponent implements OnInit {
     newForm = false;
     upcomingAppointments: Appointment[] = [];
     activeAppointments: Appointment[] = [];
+    recentAppointments: Appointment[] = [];
+    appointments: Appointment[] = [];
 
     ngOnInit(): void {
         this.appointmentService.upcoming().subscribe({
@@ -29,6 +31,13 @@ export class AppointmentsComponent implements OnInit {
         this.appointmentService.active().subscribe({
             next: (data: Appointment[] | any) => {
                 this.activeAppointments = data;
+            },
+        });
+
+        this.appointmentService.get().subscribe({
+            next: (data: Appointment[] | any) => {
+                this.appointments = data;
+                this.recentAppointments = this.appointments.splice(0, 4);
             },
         });
     }
