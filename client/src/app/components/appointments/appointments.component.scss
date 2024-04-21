@@ -60,6 +60,7 @@
             .approximateAppointments {
                 gap: 8px;
                 flex-direction: column-reverse;
+                justify-content: start;
                 height: 100%;
             }
             .empty {
@@ -75,21 +76,6 @@
         }
         .active {
             animation: active 0.8s ease-in-out infinite alternate;
-
-            .activeAppointment {
-                cursor: pointer;
-                border: 1px solid rgba($color: #000000, $alpha: 0.2);
-                justify-content: space-between;
-                padding: 16px;
-                border-radius: 16px;
-
-                span {
-                    color: $dark;
-                    &:first-child {
-                        font-weight: 800;
-                    }
-                }
-            }
         }
     }
 }

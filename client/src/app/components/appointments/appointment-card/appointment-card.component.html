@@ -1,14 +1,19 @@
-<div class="card bg-current2">
+<div [class.bg-current2]="!active" [class.card]="!active" [class.cardActive]="active">
     <div>
         <div>
-            <span>{{ dayWeekString() }}</span>
-            <span>-</span>
+            @if (!active) {
+                <span>{{ dayWeekString() }}</span>
+                <span>-</span>
+            }
+            <span class="nameActive" [hidden]="!active">{{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
             <span class="datetime">{{ hourString() }}</span>
         </div>
-        <span class="state" [class.bg-yellow]="appointment.state === 0" [class.bg-red]="appointment.state === 2" [class.bg-green]="appointment.state === 1" [class.bg-blue]="appointment.state === 3" >{{ stateString() }}</span>
+        @if (!active) {
+            <span class="state" [class.bg-yellow]="appointment.state === 0" [class.bg-red]="appointment.state === 2" [class.bg-green]="appointment.state === 1" [class.bg-blue]="appointment.state === 3" >{{ stateString() }}</span>
+        }
     </div>
     <div>
-        <span>Para: {{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
+        <span [hidden]="active">Para: {{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
         @if (options) {
             <div class="options">
                 <button class="btn bg-current2" title="Reagendar"><i class="fi fi-rr-time-forward"></i></button>

@@ -1,7 +1,20 @@
+@import '../../../../colors';
+
+.card,
+.cardActive {
+    border-radius: 16px;
+
+    .options {
+        gap: 2px;
+
+        button {
+            padding: 0;
+        }
+    }
+}
 .card {
     flex-direction: column;
     padding: 16px 16px 8px 16px;
-    border-radius: 16px;
     gap: 4px;
 
     > div {
@@ -22,12 +35,33 @@
             font-weight: 600;
             cursor: default;
         }
-        .options {
-            gap: 2px;
+    }
+}
+.cardActive {
+    justify-content: space-between;
+    border: 2px solid rgba($color: #000000, $alpha: 0.2);
+    padding: 8px;
+    cursor: pointer;
+    
+    div {
+        align-items: center;
 
-            button {
-                padding: 0;
-            }
+        span {
+            color: $dark;
+        }
+    }
+    .nameActive {
+        border-right: 2px solid rgba($color: #000000, $alpha: 0.3);
+        padding-right: 16px;
+        margin-right: 16px;
+        margin-left: 8px;
+    }
+
+    button {
+        background-color: $yellow;
+
+        i {
+            color: $dark;
         }
     }
 }

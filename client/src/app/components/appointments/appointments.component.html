@@ -21,10 +21,7 @@
         @if (activeAppointments.length > 0) {
             <div class="active bg-yellow">
                 @for (appointment of activeAppointments; track appointment._id) {
-                    <div class="activeAppointment">
-                        <span>{{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
-                        <span>{{ datetimeString(appointment.date) }}</span>
-                    </div>
+                    <appointment-card [appointment]="appointment" [active]="true" />
                 }
             </div>
         }

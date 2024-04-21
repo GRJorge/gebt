@@ -15,6 +15,7 @@ export class AppointmentCardComponent {
 
     @Input() appointment!: Appointment;
     @Input() options = true;
+    @Input() active = false;
 
     //ESTADO DE LA CITA
     //0: Pendiente, 1: Activo, 2: Cancelado, 3: No asistido
