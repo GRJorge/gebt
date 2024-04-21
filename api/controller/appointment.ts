@@ -25,7 +25,7 @@ export default {
         const { date } = req.body;
 
         try {
-            const equalAppointment = await Appointment.find({ date, user: req.user }).lean();
+            const equalAppointment = await Appointment.find({ date, user: req.user, state: 0 }).lean();
 
             if (equalAppointment.length > 0) {
                 res.status(400).json({ type: 'same', msg: 'Appointment at the same time', appointment: equalAppointment });
@@ -41,6 +41,7 @@ export default {
                         $lte: endDate,
                     },
                     user: req.user,
+                    state: 0,
                 })
                     .populate('patient', 'name lastname')
                     .lean();
