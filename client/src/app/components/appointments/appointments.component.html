@@ -62,7 +62,13 @@
                 }
             </div>
         </div>
-        <div class="all bg-current"></div>
+        @if (appointments.length > 0) {
+            <div class="all bg-current">
+                @for (appointment of appointments; track appointment._id) {
+                    <appointment-card [appointment]="appointment" [options]="false" />
+                }
+            </div>
+        }
     </div>
     }
 </div>
