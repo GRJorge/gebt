@@ -13,15 +13,4 @@ const schema = new Schema(
     }
 );
 
-/*
-    data: {
-        height: { type: Number, required: true },
-        weight: { type: Number, required: true },
-        imc: { type: Number, required: true },
-        af: { type: Number, required: true },
-        gebData: { type: Number, required: true },
-        getData: { type: Number, required: true },
-    },
-*/
-
 export default model('Appointment', schema);
