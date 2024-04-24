@@ -4,11 +4,12 @@ import { AppointmentCardComponent } from './appointment-card/appointment-card.co
 import { AppointmentService } from '../../services/appointment.service';
 import { Appointment } from '../../interfaces/appointment.interface';
 import { DatetimeService } from '../../services/datetime.service';
+import { AppointmentActiveComponent } from './appointment-active/appointment-active.component';
 
 @Component({
     selector: 'appointments',
     standalone: true,
-    imports: [NewAppointmentComponent, AppointmentCardComponent],
+    imports: [NewAppointmentComponent, AppointmentCardComponent, AppointmentActiveComponent],
     templateUrl: './appointments.component.html',
     styleUrl: './appointments.component.scss',
 })
@@ -20,6 +21,7 @@ export class AppointmentsComponent implements OnInit {
     activeAppointments: Appointment[] = [];
     recentAppointments: Appointment[] = [];
     appointments: Appointment[] = [];
+    activeAppointment?: Appointment;
 
     ngOnInit(): void {
         this.updateSection();
@@ -52,5 +54,13 @@ export class AppointmentsComponent implements OnInit {
                 this.recentAppointments = this.appointments.splice(0, 4);
             },
         });
+    }
+
+    closeForms() {
+        if (this.activeAppointment) {
+            this.activeAppointment = undefined;
+        } else {
+            this.newForm = !this.newForm;
+        }
     }
 }

@@ -1,8 +1,9 @@
 <div class="main">
     <div class="info">
-        <button (click)="newForm = !newForm" class="btn" [class.bg-green]="!newForm" [class.bg-red]="newForm">
-            @if (!newForm) {
-            <i class="fi fi-rr-add"></i> Agendar una cita } @else { Cancelar }
+        <button (click)="closeForms()" class="btn" [class.bg-green]="!newForm" [class.bg-red]="newForm || activeAppointment">
+            @if (!newForm && !activeAppointment) {
+                <i class="fi fi-rr-add"></i> Agendar una cita 
+            } @else { Cancelar }
         </button>
         <div class="bg-current">
             <span>15</span>
@@ -16,12 +17,14 @@
 
     @if (newForm) {
         <new-appointment (savedEvent)="updateSection()" />
+    } @else if (activeAppointment) {
+        <appointment-active />
     } @else {
     <div class="content">
         @if (activeAppointments.length > 0) {
             <div class="active bg-yellow">
                 @for (appointment of activeAppointments; track appointment._id) {
-                    <appointment-card [appointment]="appointment" [active]="true" />
+                    <appointment-card (click)="activeAppointment = appointment" [appointment]="appointment" [active]="true" />
                 }
             </div>
         }
