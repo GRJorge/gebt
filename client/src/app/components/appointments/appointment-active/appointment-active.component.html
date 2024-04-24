@@ -1,15 +1,51 @@
-<form class="bg-current">
-    <div class="input bg-current2">
-        <label for="weight"><i class="fi fi-rr-gym"></i></label>
-        <input id="weight" type="number" min="0" max="300" step="1" placeholder="Peso (kg)">
+<div class="main">
+    <form class="bg-current">
+        <div>
+            <div class="input bg-current2">
+                <label for="weight"><i class="fi fi-rr-gym"></i></label>
+                <input id="weight" type="number" min="0" max="300" step="1" placeholder="Peso (kg)">
+            </div>
+            <div class="input bg-current2">
+                <label for="height"><i class="fi fi-rr-arrow-small-up"></i></label>
+                <input id="height" type="number" min="0" max="300" step="1" placeholder="Altura (cm)">
+            </div>
+            <div class="input bg-current2">
+                <label for="af"><i class="fi fi-rr-biking-mountain"></i></label>
+                <input id="af" type="number" min="0" max="100" step="10" placeholder="Actividad Fisica (%)">
+            </div>
+        </div>
+        <button disabled class="btn bg-green" type="submit">Calcular</button>
+    </form>
+    <div class="dataSection bg-current">
+        <div>
+            <span class="bg-current2">Peso:</span>
+            <span class="data bg-current2">65kg</span>
+        </div>
+        <div>
+            <span class="bg-current2">Talla:</span>
+            <span class="data bg-current2">184cm</span>
+        </div>
+        <div>
+            <span class="bg-current2" title="Actividad Fisica">AF:</span>
+            <span class="data bg-current2">30%</span>
+            <div>
+                <span class="bg-current2"><i class="fi fi-rr-angle-small-up"></i> Sedentario</span>
+            </div>
+        </div>
+        <div>
+            <span class="bg-current2" title="Indice de Masa Muscular">IMC:</span>
+            <span class="data bg-current2">40.4</span>
+            <div>
+                <span class="bg-current2"><i class="fi fi-rr-grip-lines"></i> Normal</span>
+            </div>
+        </div>
+        <div>
+            <span class="bg-current2" title="Gasto Energetico Basal">GEB:</span>
+            <span class="data bg-current2">22.1</span>
+        </div>
+        <div>
+            <span class="bg-current2" title="Gasto Energetico Total">GET:</span>
+            <span class="data bg-current2">22.1</span>
+        </div>
     </div>
-    <div class="input bg-current2">
-        <label for="height"><i class="fi fi-rr-arrow-small-up"></i></label>
-        <input id="height" type="number" min="0" max="300" step="1" placeholder="Altura (cm)">
-    </div>
-    <div class="input bg-current2">
-        <label for="af"><i class="fi fi-rr-biking-mountain"></i></label>
-        <input id="af" type="number" min="0" max="100" step="10" placeholder="Actividad Fisica (%)">
-    </div>
-    <button class="btn bg-green" type="submit">Calcular</button>
-</form>
+</div>
