@@ -18,7 +18,7 @@
     @if (newForm) {
         <new-appointment (savedEvent)="updateSection()" />
     } @else if (activeAppointment) {
-        <appointment-active />
+        <appointment-active [appointment]="activeAppointment" />
     } @else {
     <div class="content">
         @if (activeAppointments.length > 0) {

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../general/notification/notification.component';
+import { Appointment } from '../../../interfaces/appointment.interface';
+import { DatetimeService } from '../../../services/datetime.service';
 
 @Component({
     selector: 'appointment-active',
@@ -10,6 +12,10 @@ import { NotificationComponent } from '../../general/notification/notification.c
     styleUrl: './appointment-active.component.scss',
 })
 export class AppointmentActiveComponent {
+    constructor(public datetimeService: DatetimeService) {}
+
+    @Input() appointment!: Appointment;
+
     form = new FormGroup({
         weight: new FormControl('', [Validators.required, Validators.min(1), Validators.max(300)]),
         height: new FormControl('', [Validators.required, Validators.min(1), Validators.max(300)]),
@@ -18,5 +24,10 @@ export class AppointmentActiveComponent {
 
     getFormError(form: string, error: string): boolean {
         return this.form.get(form)!.getError(error);
+    }
+
+    hour(): string {
+        const date = new Date(this.appointment.date)
+        return this.datetimeService.to12(date.getHours(), date.getMinutes());
     }
 }

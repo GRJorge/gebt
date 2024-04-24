@@ -1,39 +1,61 @@
-.main {
+.main { 
     gap: 8px;
+    flex-direction: column;
 
-    form,
-    .dataSection {
-        flex-direction: column;
+    .patient {
         padding: 16px;
         border-radius: 16px;
-        gap: 8px;
-    }
-    form {
         justify-content: space-between;
-        max-width: 256px;
+        align-items: center;
 
-        > div {
-            flex-direction: column;
-            gap: 8px;
+        .name {
+            span {
+                font-size: 20px;
+
+                &:first-child {
+                    font-weight: 800;
+                    margin-right: 6px;
+                }
+            }
         }
     }
-    .dataSection {
-        flex: 1;
+    .content {
+        gap: 8px;
 
-        > div {
+        form,
+        .dataSection {
+            flex-direction: column;
+            padding: 16px;
+            border-radius: 16px;
             gap: 8px;
-
-            .data {
-                flex: 1;
-            }
-            span {
-                padding: 8px 16px;
-                border-radius: 16px;
-                gap: 8px;
-                min-width: 90px;
-                cursor: default;
-            }
+        }
+        form {
             justify-content: space-between;
+            max-width: 256px;
+
+            > div {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+        .dataSection {
+            flex: 1;
+
+            > div {
+                gap: 8px;
+
+                .data {
+                    flex: 1;
+                }
+                span {
+                    padding: 8px 16px;
+                    border-radius: 16px;
+                    gap: 8px;
+                    min-width: 90px;
+                    cursor: default;
+                }
+                justify-content: space-between;
+            }
         }
     }
 }

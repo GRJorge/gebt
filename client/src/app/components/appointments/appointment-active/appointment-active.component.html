@@ -1,57 +1,68 @@
 <div class="main">
-    <form class="bg-current" [formGroup]="form">
-        <div>
-            <div class="input bg-current2">
-                <label for="weight"><i class="fi fi-rr-gym"></i></label>
-                <input formControlName="weight" id="weight" type="number" min="1" max="300" step="1" placeholder="Peso (kg)" />
-            </div>
-            <notification color="yellow" text="Peso debe estar entre 1 y 300" [hidden]="!(getFormError('weight','min') || getFormError('weight','max'))" />
-            <notification text="Peso es obligatorio" [hidden]="!(getFormError('weight', 'required') && form.get('weight')!.dirty)" />
-            <div class="input bg-current2">
-                <label for="height"><i class="fi fi-rr-arrow-small-up"></i></label>
-                <input formControlName="height" id="height" type="number" min="1" max="300" step="1" placeholder="Altura (cm)" />
-            </div>
-            <notification color="yellow" text="Talla debe estar entre 1 y 300" [hidden]="!(getFormError('height','min') || getFormError('height','max'))" />
-            <notification text="Talla es obligatorio" [hidden]="!(getFormError('height', 'required') && form.get('height')!.dirty)" />
-            <div class="input bg-current2">
-                <label for="af"><i class="fi fi-rr-biking-mountain"></i></label>
-                <input formControlName="af" id="af" type="number" min="0" max="100" step="10" placeholder="Actividad Fisica (%)" />
-            </div>
-            <notification color="yellow" text="Actividad fisica debe estar entre 0 y 100" [hidden]="!(getFormError('af','min') || getFormError('af','max'))" />
-            <notification text="Actividad fisica es obligatorio" [hidden]="!(getFormError('af', 'required') && form.get('af')!.dirty)" />
-        </div>
-        <button [disabled]="!form.valid" class="btn bg-green" type="submit">Calcular</button>
-    </form>
-    <div class="dataSection bg-current">
-        <div>
-            <span class="bg-current2">Peso:</span>
-            <span class="data bg-current2">65kg</span>
+    <div class="patient bg-current">
+        <div class="name">
+            <span>{{ appointment.patient.name }}</span>
+            <span>{{ appointment.patient.lastname }}</span>
         </div>
         <div>
-            <span class="bg-current2">Talla:</span>
-            <span class="data bg-current2">184cm</span>
+            <span><i class="fi fi-rr-clock-three"></i> {{ hour() }}</span>
         </div>
-        <div>
-            <span class="bg-current2" title="Actividad Fisica">AF:</span>
-            <span class="data bg-current2">30%</span>
+    </div>
+    <div class="content">
+        <form class="bg-current" [formGroup]="form">
             <div>
-                <span class="bg-current2"><i class="fi fi-rr-angle-small-up"></i> Sedentario</span>
+                <div class="input bg-current2">
+                    <label for="weight"><i class="fi fi-rr-gym"></i></label>
+                    <input formControlName="weight" id="weight" type="number" min="1" max="300" step="1" placeholder="Peso (kg)" />
+                </div>
+                <notification color="yellow" text="Peso debe estar entre 1 y 300" [hidden]="!(getFormError('weight','min') || getFormError('weight','max'))" />
+                <notification text="Peso es obligatorio" [hidden]="!(getFormError('weight', 'required') && form.get('weight')!.dirty)" />
+                <div class="input bg-current2">
+                    <label for="height"><i class="fi fi-rr-arrow-small-up"></i></label>
+                    <input formControlName="height" id="height" type="number" min="1" max="300" step="1" placeholder="Altura (cm)" />
+                </div>
+                <notification color="yellow" text="Talla debe estar entre 1 y 300" [hidden]="!(getFormError('height','min') || getFormError('height','max'))" />
+                <notification text="Talla es obligatorio" [hidden]="!(getFormError('height', 'required') && form.get('height')!.dirty)" />
+                <div class="input bg-current2">
+                    <label for="af"><i class="fi fi-rr-biking-mountain"></i></label>
+                    <input formControlName="af" id="af" type="number" min="0" max="100" step="10" placeholder="Actividad Fisica (%)" />
+                </div>
+                <notification color="yellow" text="Actividad fisica debe estar entre 0 y 100" [hidden]="!(getFormError('af','min') || getFormError('af','max'))" />
+                <notification text="Actividad fisica es obligatorio" [hidden]="!(getFormError('af', 'required') && form.get('af')!.dirty)" />
             </div>
-        </div>
-        <div>
-            <span class="bg-current2" title="Indice de Masa Muscular">IMC:</span>
-            <span class="data bg-current2">40.4</span>
+            <button [disabled]="!form.valid" class="btn bg-green" type="submit">Calcular</button>
+        </form>
+        <div class="dataSection bg-current">
             <div>
-                <span class="bg-current2"><i class="fi fi-rr-grip-lines"></i> Normal</span>
+                <span class="bg-current2">Peso:</span>
+                <span class="data bg-current2">65kg</span>
             </div>
-        </div>
-        <div>
-            <span class="bg-current2" title="Gasto Energetico Basal">GEB:</span>
-            <span class="data bg-current2">22.1</span>
-        </div>
-        <div>
-            <span class="bg-current2" title="Gasto Energetico Total">GET:</span>
-            <span class="data bg-current2">22.1</span>
+            <div>
+                <span class="bg-current2">Talla:</span>
+                <span class="data bg-current2">184cm</span>
+            </div>
+            <div>
+                <span class="bg-current2" title="Actividad Fisica">AF:</span>
+                <span class="data bg-current2">30%</span>
+                <div>
+                    <span class="bg-current2"><i class="fi fi-rr-angle-small-up"></i> Sedentario</span>
+                </div>
+            </div>
+            <div>
+                <span class="bg-current2" title="Indice de Masa Muscular">IMC:</span>
+                <span class="data bg-current2">40.4</span>
+                <div>
+                    <span class="bg-current2"><i class="fi fi-rr-grip-lines"></i> Normal</span>
+                </div>
+            </div>
+            <div>
+                <span class="bg-current2" title="Gasto Energetico Basal">GEB:</span>
+                <span class="data bg-current2">22.1</span>
+            </div>
+            <div>
+                <span class="bg-current2" title="Gasto Energetico Total">GET:</span>
+                <span class="data bg-current2">22.1</span>
+            </div>
         </div>
     </div>
 </div>
