@@ -6,20 +6,38 @@ import { ResponseInternalError, calculateGEB, calculateGET, calculateIMC, getAge
 
 export default {
     set: async function (req: Request, res: Response) {
-        const { height, weight, af, appointment } = req.body;
+        const { appointment, height, weight, af, patient } = req.body;
 
         try {
-            const appointmentData = await Appointment.findById(appointment).select('patient').populate('patient', '_id').lean();
-            const patientData = await Patient.findById(appointmentData!.patient.prototype!._id).select('birthday gender').lean();
+            const patientData = await Patient.findById(patient).select('birthday gender').lean();
 
-            if (appointmentData && patientData) {
-                const imc = calculateIMC(weight, height);
-                const gebData = calculateGEB(weight, height, imc, patientData!.gender, getAge(patientData!.birthday));
-                const getData = calculateGET(gebData, af, imc);
+            const imc = calculateIMC(weight, height);
+            const gebData = calculateGEB(weight, height, imc, patientData!.gender, getAge(patientData!.birthday));
+            const getData = calculateGET(gebData, af, imc);
 
-                const newAppointmentData = await new AppointmentData({ height, weight, af, imc, gebData, getData, appointment }).save();
+            const data = {
+                height,
+                weight,
+                af,
+                imc,
+                gebData,
+                getData,
+                appointment,
+            };
 
-                res.status(200).json({ msg: 'Data saved', data: newAppointmentData });
+            if (patientData) {
+                const appointmentData = await AppointmentData.findOne({ appointment }).lean();
+
+                if (!appointmentData) {
+                    const newAppointmentData = await new AppointmentData(data).save();
+                    await Appointment.findByIdAndUpdate(appointment, { state: 1 });
+
+                    res.status(200).json({ msg: 'Data saved', data: newAppointmentData });
+                } else {
+                    const editedAppointmentData = await AppointmentData.findByIdAndUpdate(appointmentData._id, data);
+
+                    res.status(200).json({ msg: 'Data edited', data: editedAppointmentData });
+                }
             } else {
                 res.status(400).json({ msg: 'Appointment or patient doesnt exist' });
             }
