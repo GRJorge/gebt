@@ -64,11 +64,15 @@
             color: $dark;
         }
     }
-    .bg-yellow {
+    .bg-yellow,
+    .bg-blue,
+    .bg-green,
+    .bg-red,
+    .bg-purple {
         color: $dark;
 
-        > i,
-        > p {
+        > p,
+        > i {
             color: $dark;
         }
     }
