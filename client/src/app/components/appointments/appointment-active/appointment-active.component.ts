@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { Appointment } from '../../../interfaces/appointment.interface';
 import { DatetimeService } from '../../../services/datetime.service';
+import { AppointmentData } from '../../../interfaces/appointmentData.interface';
 
 @Component({
     selector: 'appointment-active',
@@ -15,6 +16,7 @@ export class AppointmentActiveComponent {
     constructor(public datetimeService: DatetimeService) {}
 
     @Input() appointment!: Appointment;
+    appointmentData?: AppointmentData;
 
     form = new FormGroup({
         weight: new FormControl('', [Validators.required, Validators.min(1), Validators.max(300)]),
@@ -27,7 +29,7 @@ export class AppointmentActiveComponent {
     }
 
     hour(): string {
-        const date = new Date(this.appointment.date)
+        const date = new Date(this.appointment.date);
         return this.datetimeService.to12(date.getHours(), date.getMinutes());
     }
 }

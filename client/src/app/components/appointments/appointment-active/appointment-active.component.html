@@ -33,36 +33,42 @@
             <button [disabled]="!form.valid" class="btn bg-green" type="submit">Calcular</button>
         </form>
         <div class="dataSection bg-current">
-            <div>
-                <span class="bg-current2">Peso:</span>
-                <span class="data bg-current2">65kg</span>
-            </div>
-            <div>
-                <span class="bg-current2">Talla:</span>
-                <span class="data bg-current2">184cm</span>
-            </div>
-            <div>
-                <span class="bg-current2" title="Actividad Fisica">AF:</span>
-                <span class="data bg-current2">30%</span>
+            @if (appointmentData) {
                 <div>
-                    <span class="bg-current2"><i class="fi fi-rr-angle-small-up"></i> Sedentario</span>
+                    <span class="bg-current2">Peso:</span>
+                    <span class="data bg-current2">65kg</span>
                 </div>
-            </div>
-            <div>
-                <span class="bg-current2" title="Indice de Masa Muscular">IMC:</span>
-                <span class="data bg-current2">40.4</span>
                 <div>
-                    <span class="bg-current2"><i class="fi fi-rr-grip-lines"></i> Normal</span>
+                    <span class="bg-current2">Talla:</span>
+                    <span class="data bg-current2">184cm</span>
                 </div>
-            </div>
-            <div>
-                <span class="bg-current2" title="Gasto Energetico Basal">GEB:</span>
-                <span class="data bg-current2">22.1</span>
-            </div>
-            <div>
-                <span class="bg-current2" title="Gasto Energetico Total">GET:</span>
-                <span class="data bg-current2">22.1</span>
-            </div>
+                <div>
+                    <span class="bg-current2" title="Actividad Fisica">AF:</span>
+                    <span class="data bg-current2">30%</span>
+                    <div>
+                        <span class="bg-current2"><i class="fi fi-rr-angle-small-up"></i> Sedentario</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="bg-current2" title="Indice de Masa Muscular">IMC:</span>
+                    <span class="data bg-current2">40.4</span>
+                    <div>
+                        <span class="bg-current2"><i class="fi fi-rr-grip-lines"></i> Normal</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="bg-current2" title="Gasto Energetico Basal">GEB:</span>
+                    <span class="data bg-current2">22.1</span>
+                </div>
+                <div>
+                    <span class="bg-current2" title="Gasto Energetico Total">GET:</span>
+                    <span class="data bg-current2">22.1</span>
+                </div>
+            } @else {
+                <div class="empty">
+                    <span>Aun no hay datos</span>
+                </div>
+            }
         </div>
     </div>
 </div>
