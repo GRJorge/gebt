@@ -34,7 +34,8 @@ export default {
 
                     res.status(200).json({ msg: 'Data saved', data: newAppointmentData });
                 } else {
-                    const editedAppointmentData = await AppointmentData.findByIdAndUpdate(appointmentData._id, data);
+                    await AppointmentData.updateOne({ _id: appointmentData._id }, data);
+                    const editedAppointmentData = await AppointmentData.findById(appointmentData._id).lean();
 
                     res.status(200).json({ msg: 'Data edited', data: editedAppointmentData });
                 }
