@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="content">
-        <form class="bg-current" [formGroup]="form">
+        <form (submit)="submitForm()" class="bg-current" [formGroup]="form">
             <div>
                 <div class="input bg-current2">
                     <label for="weight"><i class="fi fi-rr-gym"></i></label>
@@ -36,33 +36,51 @@
             @if (appointmentData) {
                 <div>
                     <span class="bg-current2">Peso:</span>
-                    <span class="data bg-current2">65kg</span>
+                    <span class="data bg-current2">{{ appointmentData.weight }}kg</span>
                 </div>
                 <div>
                     <span class="bg-current2">Talla:</span>
-                    <span class="data bg-current2">184cm</span>
+                    <span class="data bg-current2">{{ appointmentData.height }}cm</span>
                 </div>
                 <div>
                     <span class="bg-current2" title="Actividad Fisica">AF:</span>
-                    <span class="data bg-current2">30%</span>
+                    <span class="data bg-current2">{{ appointmentData.af }}%</span>
                     <div>
-                        <span class="bg-current2"><i class="fi fi-rr-angle-small-up"></i> Sedentario</span>
+                        <span class="bg-current2">
+                            @if (appointmentData.af <= 30) {
+                                <i class="fi fi-rr-chevron-double-down"></i> Muy sedentario
+                            } @else if (appointmentData.af <= 50) {
+                                <i class="fi fi-rr-angle-small-down"></i> Sedentario
+                            } @else if (appointmentData.af <= 75) {
+                                <i class="fi fi-rr-angle-small-up"></i> Moderado
+                            } @else {
+                                <i class="fi fi-rr-chevron-double-up"></i> Intenso
+                            }
+                        </span>
                     </div>
                 </div>
                 <div>
                     <span class="bg-current2" title="Indice de Masa Muscular">IMC:</span>
-                    <span class="data bg-current2">40.4</span>
+                    <span class="data bg-current2">{{ appointmentData.imc }}</span>
                     <div>
-                        <span class="bg-current2"><i class="fi fi-rr-grip-lines"></i> Normal</span>
+                        <span class="bg-current2">
+                            @if (appointmentData.imc < 18.5) {
+                                <i class="fi fi-rr-angle-small-down"></i> Bajo peso
+                            } @else if (appointmentData.imc < 25) {
+                                <i class="fi fi-rr-grip-lines"></i> Normal
+                            } @else {
+                                <i class="fi fi-rr-angle-small-up"></i> Sobrepeso
+                            }
+                        </span>
                     </div>
                 </div>
                 <div>
                     <span class="bg-current2" title="Gasto Energetico Basal">GEB:</span>
-                    <span class="data bg-current2">22.1</span>
+                    <span class="data bg-current2">{{ appointmentData.gebData }}</span>
                 </div>
                 <div>
                     <span class="bg-current2" title="Gasto Energetico Total">GET:</span>
-                    <span class="data bg-current2">22.1</span>
+                    <span class="data bg-current2">{{ appointmentData.getData }}</span>
                 </div>
             } @else {
                 <div class="empty">

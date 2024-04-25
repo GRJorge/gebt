@@ -3,7 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { Appointment } from '../../../interfaces/appointment.interface';
 import { DatetimeService } from '../../../services/datetime.service';
-import { AppointmentData } from '../../../interfaces/appointmentData.interface';
+import { AppointmentData, NewAppointmentData } from '../../../interfaces/appointmentData.interface';
+import { AppointmentDataService } from '../../../services/appointment-data.service';
 
 @Component({
     selector: 'appointment-active',
@@ -13,7 +14,7 @@ import { AppointmentData } from '../../../interfaces/appointmentData.interface';
     styleUrl: './appointment-active.component.scss',
 })
 export class AppointmentActiveComponent {
-    constructor(public datetimeService: DatetimeService) {}
+    constructor(private appointmentDataService: AppointmentDataService, public datetimeService: DatetimeService) {}
 
     @Input() appointment!: Appointment;
     appointmentData?: AppointmentData;
@@ -31,5 +32,22 @@ export class AppointmentActiveComponent {
     hour(): string {
         const date = new Date(this.appointment.date);
         return this.datetimeService.to12(date.getHours(), date.getMinutes());
+    }
+
+    submitForm() {
+        const newAppointmentData: NewAppointmentData = {
+            appointment: this.appointment._id,
+            weight: parseInt(this.form.get('weight')!.value!),
+            height: parseInt(this.form.get('height')!.value!),
+            af: parseInt(this.form.get('af')!.value!),
+            patient: this.appointment.patient._id,
+        };
+
+        this.appointmentDataService.set(newAppointmentData).subscribe({
+            next: (data: AppointmentData | any) => {
+                this.appointmentData = data.data;
+                console.log(this.appointmentData);
+            },
+        });
     }
 }
