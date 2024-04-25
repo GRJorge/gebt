@@ -46,7 +46,6 @@ export class AppointmentActiveComponent {
         this.appointmentDataService.set(newAppointmentData).subscribe({
             next: (data: AppointmentData | any) => {
                 this.appointmentData = data.data;
-                console.log(this.appointmentData);
             },
         });
     }
