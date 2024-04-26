@@ -36,6 +36,9 @@
             cursor: default;
         }
     }
+    .reschedule{
+        justify-content: flex-end;
+    }
 }
 .cardActive {
     justify-content: space-between;
@@ -63,5 +66,8 @@
         i {
             color: $dark;
         }
+    }
+    .reschedule {
+        background-color: red;
     }
 }

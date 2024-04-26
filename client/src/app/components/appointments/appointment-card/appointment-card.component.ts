@@ -1,22 +1,29 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Appointment } from '../../../interfaces/appointment.interface';
 import { DatetimeService } from '../../../services/datetime.service';
 import { AppointmentService } from '../../../services/appointment.service';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
     selector: 'appointment-card',
     standalone: true,
-    imports: [],
+    imports: [ReactiveFormsModule],
     templateUrl: './appointment-card.component.html',
     styleUrl: './appointment-card.component.scss',
 })
-export class AppointmentCardComponent {
+export class AppointmentCardComponent implements OnInit {
     constructor(private appointmentService: AppointmentService, private datetimeService: DatetimeService) {}
 
     @Input() appointment!: Appointment;
     @Input() options = true;
     @Input() active = false;
 
+    reschedule!: FormControl;
+
+    ngOnInit(): void {
+        const appointmentDate = new Date(this.appointment.date);
+        this.reschedule = new FormControl(`${appointmentDate.getFullYear()}-${(appointmentDate.getMonth() + 1).toString().padStart(2, '0')}-${appointmentDate.getDate().toString().padStart(2, '0')}T${appointmentDate.getHours().toString().padStart(2, '0')}:${appointmentDate.getMinutes().toString().padStart(2, '0')}`, Validators.required);
+    }
     //ESTADO DE LA CITA
     //0: Pendiente, 1: Activo, 2: Cancelado, 3: No asistido
     stateString(): string {
