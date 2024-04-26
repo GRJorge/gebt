@@ -16,7 +16,13 @@
         <span [hidden]="active">Para: {{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
         @if (options) {
             <div class="options">
-                <button [hidden]="active" class="btn bg-current2" title="Reagendar"><i class="fi fi-rr-time-forward"></i></button>
+                <button (click)="showReschedule = !showReschedule" [hidden]="active" class="btn" [class.bg-current2]="!showReschedule" [class.bg-red]="showReschedule" title="Reagendar">
+                    @if (!showReschedule) {
+                        <i class="fi fi-rr-time-forward"></i>
+                    } @else {
+                        <i class="fi fi-rr-cross-small"></i>
+                    }
+                </button>
                 <button (click)="cancelAppointment()" (mouseleave)="sureCancel = false" class="btn" [class.bg-current2]="!sureCancel" [class.bg-red]="sureCancel" title="Cancelar">
                     @if (!sureCancel) {
                         <i class="fi fi-rr-ban"></i>
@@ -27,7 +33,7 @@
             </div>
         }
     </div>
-    @if (!active) {
+    @if (!active && showReschedule) {
         <form class="reschedule">
             <div class="input bg-current3">
                 <label for="reschedule"><i class="fi fi-rr-time-forward"></i></label>

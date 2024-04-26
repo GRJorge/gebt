@@ -18,6 +18,7 @@ export class AppointmentCardComponent implements OnInit {
     @Input() options = true;
     @Input() active = false;
 
+    showReschedule = false;
     reschedule!: FormControl;
 
     ngOnInit(): void {
