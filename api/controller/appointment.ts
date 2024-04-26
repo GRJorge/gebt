@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import Patient from '../model/patient';
 import Appointment from '../model/appointment';
-import { ResponseInternalError, calculateGEB, calculateGET, calculateIMC, getAge } from '../utils/functions';
-import appointment from '../model/appointment';
+import { ResponseInternalError } from '../utils/functions';
 
 export default {
     new: async function (req: Request, res: Response) {
@@ -77,6 +76,17 @@ export default {
             await Appointment.updateOne({ _id: appointment, user: req.user }, { state: 2 });
 
             res.status(200).json({ msg: 'Canceled appointment' });
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
+    reschedule: async function (req: Request, res: Response) {
+        const { appointment, date } = req.body;
+
+        try {
+            await Appointment.updateOne({ _id: appointment, user: req.user }, { date });
+
+            res.status(200).json({ msg: 'Appointment reschedule ok' });
         } catch (error: any) {
             ResponseInternalError(res, error);
         }
