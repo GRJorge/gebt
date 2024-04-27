@@ -37,7 +37,31 @@
         }
     }
     .reschedule{
-        justify-content: flex-end;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+
+        div {
+            gap: 8px;
+        }
+
+        .approximateAppointments{
+            flex-direction: column;
+            padding: 8px;
+            border-radius: 16px;
+
+            span {
+                font-size: 14px;
+            }
+            .title {
+                font-size: 14px;
+                font-weight: 800;
+            }
+            div {
+                padding: 8px;
+                border-radius: 16px;
+            }
+        }
     }
 }
 .cardActive {

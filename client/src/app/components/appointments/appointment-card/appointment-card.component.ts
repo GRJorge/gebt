@@ -3,11 +3,12 @@ import { Appointment } from '../../../interfaces/appointment.interface';
 import { DatetimeService } from '../../../services/datetime.service';
 import { AppointmentService } from '../../../services/appointment.service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NotificationComponent } from '../../general/notification/notification.component';
 
 @Component({
     selector: 'appointment-card',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, NotificationComponent],
     templateUrl: './appointment-card.component.html',
     styleUrl: './appointment-card.component.scss',
 })
@@ -66,8 +67,8 @@ export class AppointmentCardComponent implements OnInit {
             return days[day];
         }
     }
-    hourString(): string {
-        const date = new Date(this.appointment.date);
+    hourString(datetime: Date): string {
+        const date = new Date(datetime);
 
         return this.datetimeService.to12(date.getHours(), date.getMinutes());
     }
@@ -84,5 +85,23 @@ export class AppointmentCardComponent implements OnInit {
             });
         }
         this.sureCancel = true;
+    }
+
+    approximateAppointments?: Appointment[];
+    equalAppointment = false;
+
+    rescheduleAppointment() {
+        this.approximateAppointments = undefined;
+        this.equalAppointment = false;
+
+        this.appointmentService.overlap(new Date(this.reschedule.value)).subscribe({
+            error: (error) => {
+                if (error.error.type === 'approximate') {
+                    this.approximateAppointments = error.error.appointments;
+                } else {
+                    this.equalAppointment = true;
+                }
+            },
+        });
     }
 }

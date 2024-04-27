@@ -6,7 +6,7 @@
                 <span>-</span>
             }
             <span class="nameActive" [hidden]="!active">{{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
-            <span class="datetime">{{ hourString() }}</span>
+            <span class="datetime">{{ hourString(appointment.date) }}</span>
         </div>
         @if (!active) {
             <span class="state" [class.bg-yellow]="appointment.state === 0" [class.bg-red]="appointment.state === 2" [class.bg-green]="appointment.state === 1" [class.bg-blue]="appointment.state === 3" >{{ stateString() }}</span>
@@ -35,10 +35,25 @@
     </div>
     @if (!active && showReschedule) {
         <form class="reschedule">
-            <div class="input bg-current3">
-                <label for="reschedule"><i class="fi fi-rr-time-forward"></i></label>
-                <input [formControl]="reschedule" id="reschedule" type="datetime-local" placeholder="Reagendar">
+            <div>
+                <div class="input bg-current3">
+                    <label for="reschedule"><i class="fi fi-rr-time-forward"></i></label>
+                    <input (change)="rescheduleAppointment()" [formControl]="reschedule" id="reschedule" type="datetime-local" placeholder="Reagendar">
+                </div>
+                <button [disabled]="!(reschedule.valid && !equalAppointment)" class="btn bg-yellow" type="submit"><i class="fi fi-rr-angle-small-right"></i></button>
             </div>
+            <notification text="Ya hay una cita a esta hora" [hidden]="!(equalAppointment)" />
+            @if (approximateAppointments) {
+                <div class="approximateAppointments bg-current3">
+                    <span class="title">Citas cercanas:</span>
+                    @for (appointment of approximateAppointments; track appointment._id) {}
+                    <div class="bg-current2">
+                        <span>{{ appointment.patient.name }} {{ appointment.patient.lastname }}</span>
+                        <span>-</span>
+                        <span>{{ hourString(appointment.date) }}</span>
+                    </div>
+                </div>
+            }
         </form>
     }
 </div>
