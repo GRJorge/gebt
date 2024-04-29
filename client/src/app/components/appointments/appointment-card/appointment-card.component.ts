@@ -74,13 +74,13 @@ export class AppointmentCardComponent implements OnInit {
     }
 
     sureCancel = false;
-    @Output() canceledEvent = new EventEmitter();
+    @Output() updateEvent = new EventEmitter();
 
     cancelAppointment() {
         if (this.sureCancel) {
             this.appointmentService.cancel(this.appointment._id).subscribe({
                 next: () => {
-                    this.canceledEvent.emit();
+                    this.updateEvent.emit();
                 },
             });
         }
@@ -90,7 +90,7 @@ export class AppointmentCardComponent implements OnInit {
     approximateAppointments?: Appointment[];
     equalAppointment = false;
 
-    rescheduleAppointment() {
+    rescheduleAppointmentOverlap() {
         this.approximateAppointments = undefined;
         this.equalAppointment = false;
 
@@ -101,6 +101,16 @@ export class AppointmentCardComponent implements OnInit {
                 } else {
                     this.equalAppointment = true;
                 }
+            },
+        });
+    }
+    rescheduleAppointment(event: Event) {
+        event.preventDefault();
+
+        this.appointmentService.reschedule(this.appointment._id, new Date(this.reschedule.value)).subscribe({
+            next: () => {
+                this.showReschedule = false;
+                this.updateEvent.emit();
             },
         });
     }

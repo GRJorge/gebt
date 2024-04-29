@@ -34,11 +34,11 @@
         }
     </div>
     @if (!active && showReschedule) {
-        <form class="reschedule">
+        <form class="reschedule" (submit)="rescheduleAppointment($event)">
             <div>
                 <div class="input bg-current3">
                     <label for="reschedule"><i class="fi fi-rr-time-forward"></i></label>
-                    <input (change)="rescheduleAppointment()" [formControl]="reschedule" id="reschedule" type="datetime-local" placeholder="Reagendar">
+                    <input (change)="rescheduleAppointmentOverlap()" [formControl]="reschedule" id="reschedule" type="datetime-local" placeholder="Reagendar">
                 </div>
                 <button [disabled]="!(reschedule.valid && !equalAppointment)" class="btn bg-yellow" type="submit"><i class="fi fi-rr-angle-small-right"></i></button>
             </div>
