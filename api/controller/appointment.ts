@@ -84,7 +84,7 @@ export default {
         const { appointment, date } = req.body;
 
         try {
-            await Appointment.updateOne({ _id: appointment, user: req.user }, { date });
+            await Appointment.updateOne({ _id: appointment, user: req.user }, { date: new Date(date) });
 
             res.status(200).json({ msg: 'Appointment reschedule ok' });
         } catch (error: any) {
