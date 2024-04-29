@@ -34,7 +34,7 @@
                 <div class="approximateAppointments">
                     @if (upcomingAppointments.length > 0) {
                         @for (appointment of upcomingAppointments; track appointment._id) {
-                            <appointment-card [appointment]="appointment" (canceledEvent)="updateSection()" />
+                            <appointment-card [appointment]="appointment" (updateEvent)="updateSection()" />
                         }
                     } @else {
                         <div class="empty">
