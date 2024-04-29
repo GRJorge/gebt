@@ -29,4 +29,7 @@ export class AppointmentService {
     cancel(appointment: string) {
         return this.http.patch(this.url + 'cancel', { appointment });
     }
+    reschedule(appointment: string, date: Date) {
+        return this.http.patch(this.url + 'reschedule', { appointment, date });
+    }
 }
