@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../general/notification/notification.component';
 import { Appointment } from '../../../interfaces/appointment.interface';
@@ -34,6 +34,8 @@ export class AppointmentActiveComponent {
         return this.datetimeService.to12(date.getHours(), date.getMinutes());
     }
 
+    @Output() updateEvent = new EventEmitter();
+
     submitForm() {
         const newAppointmentData: NewAppointmentData = {
             appointment: this.appointment._id,
@@ -46,6 +48,7 @@ export class AppointmentActiveComponent {
         this.appointmentDataService.set(newAppointmentData).subscribe({
             next: (data: AppointmentData | any) => {
                 this.appointmentData = data.data;
+                this.updateEvent.emit();
             },
         });
     }
