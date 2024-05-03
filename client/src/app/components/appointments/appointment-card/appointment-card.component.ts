@@ -4,6 +4,8 @@ import { DatetimeService } from '../../../services/datetime.service';
 import { AppointmentService } from '../../../services/appointment.service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationComponent } from '../../general/notification/notification.component';
+import { AppointmentData } from '../../../interfaces/appointmentData.interface';
+import { AppointmentDataService } from '../../../services/appointment-data.service';
 
 @Component({
     selector: 'appointment-card',
@@ -13,7 +15,7 @@ import { NotificationComponent } from '../../general/notification/notification.c
     styleUrl: './appointment-card.component.scss',
 })
 export class AppointmentCardComponent implements OnInit {
-    constructor(private appointmentService: AppointmentService, private datetimeService: DatetimeService) {}
+    constructor(private appointmentService: AppointmentService, private appointmentDataService: AppointmentDataService, private datetimeService: DatetimeService) {}
 
     @Input() appointment!: Appointment;
     @Input() options = true;
@@ -21,10 +23,19 @@ export class AppointmentCardComponent implements OnInit {
 
     showReschedule = false;
     reschedule!: FormControl;
+    appointmentData?: AppointmentData;
 
     ngOnInit(): void {
         const appointmentDate = new Date(this.appointment.date);
         this.reschedule = new FormControl(`${appointmentDate.getFullYear()}-${(appointmentDate.getMonth() + 1).toString().padStart(2, '0')}-${appointmentDate.getDate().toString().padStart(2, '0')}T${appointmentDate.getHours().toString().padStart(2, '0')}:${appointmentDate.getMinutes().toString().padStart(2, '0')}`, Validators.required);
+
+        if (this.appointment.state === 1) {
+            this.appointmentDataService.get(this.appointment._id).subscribe({
+                next: (data: AppointmentData | any) => {
+                    this.appointmentData = data;
+                },
+            });
+        }
     }
     //ESTADO DE LA CITA
     //0: Pendiente, 1: Activo, 2: Cancelado, 3: No asistido
@@ -46,7 +57,7 @@ export class AppointmentCardComponent implements OnInit {
         const dateAppointment = new Date(this.appointment.date);
         const dayDifference = dateAppointment.getDate() - date.getDate();
 
-        if (dayDifference >= -1) {
+        if (dayDifference >= -1 && dateAppointment.getMonth() === date.getMonth() && dateAppointment.getFullYear() === date.getFullYear()) {
             switch (dayDifference) {
                 case -1:
                     return 'Ayer';
