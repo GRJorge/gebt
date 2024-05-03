@@ -14,4 +14,7 @@ export class AppointmentDataService {
     set(data: NewAppointmentData) {
         return this.http.post(this.apiUrl + 'set', data);
     }
+    get(appointment: string) {
+        return this.http.get(this.apiUrl + 'get',{params: {appointment}})
+    }
 }
