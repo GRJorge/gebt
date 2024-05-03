@@ -46,4 +46,15 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    get: async function (req: Request, res: Response) {
+        const { appointment } = req.query;
+
+        try {
+            const data = await AppointmentData.findOne({ appointment }).lean();
+
+            res.status(200).json(data);
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
 };
