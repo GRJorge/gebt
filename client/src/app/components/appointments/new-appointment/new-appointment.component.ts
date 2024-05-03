@@ -59,7 +59,6 @@ export class NewAppointmentComponent implements OnInit {
 
     setDate(date: Date) {
         this.date = date;
-        console.log(date);
         this.approximateAppointments = undefined;
         this.equalAppointment = false;
 

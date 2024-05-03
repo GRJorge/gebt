@@ -56,4 +56,14 @@
             }
         </form>
     }
+    @if (appointment.state === 1) {
+        <div class="appointmentData bg-current3">
+            <span>Peso: {{ appointmentData?.weight }}kg</span>
+            <span>Talla: {{ appointmentData?.height }}cm</span>
+            <span>AF: {{ appointmentData?.af }}%</span>
+            <span>IMC: {{ appointmentData?.imc?.toString()?.slice(0,5) }}</span>
+            <span>GEB: {{ appointmentData?.gebData }}</span>
+            <span>GET: {{ appointmentData?.getData }}</span>
+        </div>
+    }
 </div>
