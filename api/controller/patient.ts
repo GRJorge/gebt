@@ -27,6 +27,17 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    getById: async function (req: Request, res: Response) {
+        const { patient } = req.query;
+
+        try {
+            const patientQuery = await Patient.findById(patient);
+
+            res.status(200).json(patientQuery);
+        } catch (error) {
+            ResponseInternalError(res, error);
+        }
+    },
     new: async function (req: Request, res: Response) {
         const { name, lastname, phone, birthday, gender } = req.body;
 
