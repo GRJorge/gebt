@@ -69,6 +69,17 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    getByPatient: async function (req: Request, res: Response) {
+        const { patient } = req.query;
+
+        try {
+            const appointments = await Appointment.find({ user: req.user, patient }).populate('patient', 'name lastname').lean();
+
+            res.status(200).json(appointments);
+        } catch (error) {
+            ResponseInternalError(res, error);
+        }
+    },
     cancel: async function (req: Request, res: Response) {
         const { appointment } = req.body;
 
