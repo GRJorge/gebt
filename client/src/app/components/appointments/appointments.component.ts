@@ -22,6 +22,7 @@ export class AppointmentsComponent implements OnInit {
     recentAppointments: Appointment[] = [];
     appointments: Appointment[] = [];
     activeAppointment?: Appointment;
+    servedAppointments = 0;
 
     ngOnInit(): void {
         this.updateSection();
@@ -52,6 +53,12 @@ export class AppointmentsComponent implements OnInit {
             next: (data: Appointment[] | any) => {
                 this.appointments = data;
                 this.recentAppointments = this.appointments.splice(0, 4);
+            },
+        });
+
+        this.appointmentService.get([1]).subscribe({
+            next: (data: Appointment[] | any) => {
+                this.servedAppointments = data.length;
             },
         });
     }
