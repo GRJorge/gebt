@@ -16,6 +16,7 @@ export class PatientCardComponent {
 
     @Output() update = new EventEmitter();
     @Output() edit = new EventEmitter<Patient>();
+    @Output() clickEvent = new EventEmitter<string>();
     sureDelete = false;
 
     editEvent() {

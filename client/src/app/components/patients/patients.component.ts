@@ -3,17 +3,20 @@ import { NewPatientComponent } from './new-patient/new-patient.component';
 import { PatientCardComponent } from './patient-card/patient-card.component';
 import { PatientService } from '../../services/patient.service';
 import { Patient } from '../../interfaces/patient.interface';
+import { PatientDetailComponent } from './patient-detail/patient-detail.component';
 
 @Component({
     selector: 'patients',
     standalone: true,
-    imports: [NewPatientComponent, PatientCardComponent],
+    imports: [NewPatientComponent, PatientCardComponent, PatientDetailComponent],
     templateUrl: './patients.component.html',
     styleUrl: './patients.component.scss',
 })
 export class PatientsComponent implements OnInit {
     constructor(private patientService: PatientService) {}
     patients: Patient[] = [];
+
+    patientDetail?: string;
 
     viewNewForm = false;
     patientEdit?: Patient;
@@ -43,5 +46,11 @@ export class PatientsComponent implements OnInit {
         this.patientEdit = patient;
         this.viewNewForm = true;
         console.log(this.patientEdit);
+    }
+
+    setPatientDetail(id: string) {
+        this.viewNewForm = false;
+
+        this.patientDetail = id;
     }
 }
