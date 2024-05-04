@@ -20,6 +20,9 @@ export class AppointmentService {
     get(state: number[] = [1, 2, 3]) {
         return this.http.get(this.url + 'get', { params: { state } });
     }
+    getByPatient(patient: string) {
+        return this.http.get(this.url + 'getByPatient', { params: { patient } });
+    }
     upcoming() {
         return this.http.get(this.url + 'upcoming');
     }
