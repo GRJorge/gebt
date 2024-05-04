@@ -17,13 +17,16 @@ export class PatientService {
     get(sort: string = 'createdAt', order: string = 'asc') {
         return this.http.get(this.url + 'get', { params: { sort, order } });
     }
+    getById(patient: string) {
+        return this.http.get(this.url + 'getById', { params: { patient } });
+    }
     edit(patient: Patient) {
         return this.http.patch(this.url + 'edit', patient);
     }
     delete(id: string) {
         return this.http.delete(this.url + 'delete', { body: { id } });
     }
-    getAge(birthday: Date): string{
+    getAge(birthday: Date): string {
         const birthdayDate = new Date(birthday);
         const date = new Date();
 
