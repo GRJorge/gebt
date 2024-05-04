@@ -1,1 +1,8 @@
-<p>patient-detail works!</p>
+<div class="main">
+    <div class="patient">
+        <span>{{ patient.name }} {{ patient.lastname }}</span>
+        <span>{{ patientService.getAge(patient.birthday) }}</span>
+        <span>{{ patient.gender }}</span>
+        <span>{{ patient.phone }}</span>
+    </div>
+</div>
