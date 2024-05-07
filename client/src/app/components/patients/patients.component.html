@@ -22,7 +22,7 @@
             <new-patient (update)="updatePatient()" [patientEdit]="patientEdit" [modeEdit]="modeEdit" />
         }
         @if (patientDetail) {
-            <patient-detail />
+            <patient-detail [id]="patientDetail" />
         } @else {
             @if (patients!.length > 0) {
                 <div class="patients bg-current">
