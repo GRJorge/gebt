@@ -1,4 +1,4 @@
-<div (click)="clickEvent.emit(patient._id)" class="card bg-current2">
+<div class="card bg-current2">
     <div>
         <span class="name">{{ patient.name }}</span>
         <span class="lastname">{{ patient.lastname }}</span>
@@ -18,6 +18,7 @@
     <div>
         <span class="phone"><i [hidden]="!patient.phone" class="fi fi-rr-mobile-notch"></i>{{ patient.phone }}</span>
         <div class="controls">
+            <button (click)="clickEvent.emit(patient._id)" class="bg-current2 bg-current-hover"><i class="fi fi-rr-chart-histogram"></i></button>
             <button (click)="editEvent()" class="bg-current2 bg-current-hover"><i class="fi fi-rr-pencil"></i></button>
             <button class="bg-current2 bg-current-hover" (mouseleave)="sureDelete = false" (click)="delete()" [class.sureDelete]="sureDelete">
                 @if (!sureDelete) {
