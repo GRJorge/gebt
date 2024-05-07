@@ -37,6 +37,7 @@
     }
 
     .content {
+        max-height: calc(100% - 46px - 16px);
         flex: 1;
         gap: 8px;
 
@@ -67,6 +68,9 @@
             span {
                 font-weight: 400;
             }
+        }
+        patient-detail {
+            width: 100%;
         }
     }
 }
