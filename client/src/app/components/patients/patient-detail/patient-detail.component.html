@@ -1,8 +1,27 @@
 <div class="main">
-    <div class="patient">
+    <div class="patient bg-current">
         <span>{{ patient.name }} {{ patient.lastname }}</span>
         <span>{{ patientService.getAge(patient.birthday) }}</span>
-        <span>{{ patient.gender }}</span>
-        <span>{{ patient.phone }}</span>
+        <span>
+            @if (patient.gender === "M") {
+                <i class="fi fi-rr-mars"></i>
+            } @else {
+                <i class="fi fi-rr-venus"></i>
+            }
+        </span>
+        <span><i class="fi fi-rr-mobile-notch"></i> {{ patient.phone }}</span>
+    </div>
+    <div class="content">
+        <div class="appointments bg-current">
+            <h1>Citas realizadas:</h1>
+            <div>
+                @for (appointment of appointments; track appointment._id) {
+                    <appointment-card [appointment]="appointment" [options]="false" />
+                }
+            </div>
+        </div>
+        <div class="bg-current">
+            
+        </div>
     </div>
 </div>

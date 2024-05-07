@@ -1,0 +1,34 @@
+.main {
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+
+    .patient {
+        padding: 16px;
+        border-radius: 16px;
+        justify-content: space-between;
+    }
+
+    .content {
+        max-height: calc(100% - 54px - 8px);
+        gap: 8px;
+
+        > div {
+            flex: 1;
+            padding: 16px;
+            border-radius: 16px;
+        }
+
+        .appointments {
+            flex-direction: column;
+            height: 100%;
+            overflow: auto;
+            gap: 8px;
+
+            > div {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    }
+}
