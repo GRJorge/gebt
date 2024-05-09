@@ -1,35 +1,42 @@
 <div class="main">
-    <div class="patient bg-current">
-        <span>{{ patient.name }} {{ patient.lastname }}</span>
-        <span>{{ patientService.getAge(patient.birthday) }}</span>
-        <span>
-            @if (patient.gender === "M") {
-                <i class="fi fi-rr-mars"></i>
-            } @else {
-                <i class="fi fi-rr-venus"></i>
-            }
-        </span>
-        <span><i class="fi fi-rr-mobile-notch"></i> {{ patient.phone }}</span>
-    </div>
-    <div class="content">
-        <div class="appointments bg-current">
-            <h1>Citas realizadas:</h1>
-            <div>
-                @for (appointment of appointments; track appointment._id) {
-                    <appointment-card [appointment]="appointment" [options]="false" />
+    @if (patient && appointments && weightChartData.length > 0 && imcChartData.length > 0 && labelsChart.length > 0) {
+        <div class="patient bg-current">
+            <span>{{ patient.name }} {{ patient.lastname }}</span>
+            <span>{{ patientService.getAge(patient.birthday) }}</span>
+            <span>
+                @if (patient.gender === "M") {
+                    <i class="fi fi-rr-mars"></i>
+                } @else {
+                    <i class="fi fi-rr-venus"></i>
                 }
+            </span>
+            <span><i class="fi fi-rr-mobile-notch"></i> {{ patient.phone }}</span>
+        </div>
+        <div class="content">
+            <div class="appointments bg-current">
+                <h1>Citas realizadas:</h1>
+                <div>
+                    @for (appointment of appointments; track appointment._id) {
+                        <appointment-card [appointment]="appointment" [options]="false" />
+                    }
+                </div>
+            </div>
+            <div class="charts bg-current">
+                <h1>Progresos:</h1>
+                <div>
+                    <span class="title bg-current2">Peso:</span>
+                    <canvas baseChart [type]="'line'" [data]="weightLineChartData" [options]="lineChartOptions" [legend]="false" ></canvas>
+                </div>
+                <div>
+                    <span class="title bg-current2">IMC:</span>
+                    <canvas baseChart [type]="'line'" [data]="imcLineChartData" [options]="lineChartOptions" [legend]="false"></canvas>
+                </div>
             </div>
         </div>
-        <div class="charts bg-current">
-            <h1>Progresos:</h1>
-            <div>
-                <span class="title bg-current2">Peso:</span>
-                <canvas baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions" [legend]="false" ></canvas>
-            </div>
-            <div>
-                <span class="title bg-current2">IMC:</span>
-                <canvas baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions" [legend]="false" ></canvas>
-            </div>
+    } @else {
+        <div class="loading">
+            <loading />
         </div>
-    </div>
+    }
 </div>
+
