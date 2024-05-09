@@ -57,4 +57,16 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    getByPatient: async function (req: Request, res: Response) {
+        const { patient } = req.query;
+
+        try {
+            const appointments = await Appointment.find({ patient, state: 1 }).select('_id').lean();
+            const appointmentsData = await AppointmentData.find({ appointment: { $in: appointments } }).lean();
+
+            res.status(200).json(appointmentsData);
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
 };
