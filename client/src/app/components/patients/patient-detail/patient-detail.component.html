@@ -20,8 +20,16 @@
                 }
             </div>
         </div>
-        <div class="bg-current">
-            
+        <div class="charts bg-current">
+            <h1>Progresos:</h1>
+            <div>
+                <span class="title bg-current2">Peso:</span>
+                <canvas baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions" [legend]="false" ></canvas>
+            </div>
+            <div>
+                <span class="title bg-current2">IMC:</span>
+                <canvas baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions" [legend]="false" ></canvas>
+            </div>
         </div>
     </div>
 </div>
