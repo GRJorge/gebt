@@ -8,6 +8,10 @@
             <label for="search"><i class="fi fi-rr-search"></i></label>
             <input id="search" type="text" placeholder="Buscar...">
         </div>
-        <button class="btn bg-current">Nombre del usuario<i class="fi fi-rr-angle-small-down"></i></button>
+        <button (click)="showMore = !showMore" class="btn bg-current">{{ user.name }} {{ user.lastname }}<i class="fi fi-rr-angle-small-right"></i></button>
+        @if (showMore) {
+            <button class="btn bg-current" title="Configuración"><i class="fi fi-rr-settings"></i></button>
+            <button class="btn bg-red" title="Cerrar sesión"><i class="fi fi-rr-sign-out-alt"></i></button>
+        }
     </div>
 </div>
