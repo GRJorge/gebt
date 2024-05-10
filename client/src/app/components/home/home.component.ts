@@ -3,17 +3,18 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { TopPanelComponent } from './top-panel/top-panel.component';
 import { PatientsComponent } from '../patients/patients.component';
 import { AppointmentsComponent } from '../appointments/appointments.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [NavigationComponent, TopPanelComponent, PatientsComponent, AppointmentsComponent],
+    imports: [NavigationComponent, TopPanelComponent, PatientsComponent, AppointmentsComponent, SettingsComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-    numSection = 2;
-    titleTopPanel = ['Dashboard', 'Pacientes', 'Citas', 'Dietas'];
+    numSection = 4;
+    titleTopPanel = ['Dashboard', 'Pacientes', 'Citas', 'Dietas', 'Configuración'];
 
     //CAMBIO DE NUMSECTION
     changeSection(numSection: number) {

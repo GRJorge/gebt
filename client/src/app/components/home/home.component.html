@@ -5,8 +5,13 @@
         <top-panel [title]="titleTopPanel[numSection]" />
 
         <div class="content">
-            <patients [hidden]="!(numSection === 1)" />
-            <appointments [hidden]="!(numSection === 2)" />
+            @if (numSection === 1) {
+                <patients />
+            } @else if (numSection === 2) {
+                <appointments />
+            } @else if (numSection === 4) {
+                <settings />
+            }
         </div>
     </section>
 </main>
