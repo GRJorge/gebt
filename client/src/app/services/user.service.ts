@@ -26,11 +26,14 @@ export class UserService {
             this.http.post(this.url + 'verifytoken', {}).subscribe({
                 error: () => {
                     this.router.navigate(['/signin']);
-                    this.cookieService.delete('session')
+                    this.cookieService.delete('session');
                 },
             });
         } else {
             this.router.navigate(['/signin']);
         }
+    }
+    get() {
+        return this.http.get(this.url + 'get');
     }
 }
