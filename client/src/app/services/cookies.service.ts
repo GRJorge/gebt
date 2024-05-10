@@ -1,4 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class CookiesService {
     expirationDate = new Date();
 
-    constructor(private cookieService: CookieService) {
+    constructor(private cookieService: CookieService, private router: Router) {
         this.expirationDate.setDate(this.expirationDate.getDate() + 30);
     }
 
@@ -20,5 +21,9 @@ export class CookiesService {
     }
     getThemeCookie(): string {
         return this.cookieService.get('theme');
+    }
+    deleteSessionCookie() {
+        this.cookieService.delete('session');
+        this.router.navigate(['/signin']);
     }
 }
