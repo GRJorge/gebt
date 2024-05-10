@@ -70,4 +70,13 @@ export default {
             res.status(400).json({ msg: 'Data required', valuesWithError: missingData });
         }
     },
+    get: async function (req: Request, res: Response) {
+        try {
+            const user = await User.findById(req.user).select('name lastname email').lean();
+
+            res.status(200).json(user);
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
 };

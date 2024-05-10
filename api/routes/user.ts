@@ -8,5 +8,6 @@ router.post('/signIn', controller.signIn);
 router.post('/verifytoken', verifyToken, (req: Request, res: Response) => {
     res.status(200).json({ msg: 'Ok Token' });
 });
+router.get('/get', verifyToken, controller.get);
 
 export default router;
