@@ -151,4 +151,19 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    notAssisted: async function (req: Request, res: Response) {
+        const date = new Date();
+
+        try {
+            const appointments = await Appointment.find({ date: { $lte: date }, state: 0, user: req.user })
+                .select('_id')
+                .lean();
+
+            await Appointment.updateMany({ _id: { $in: appointments } }, { state: 3 });
+
+            res.status(200).json({ msg: `${appointments.length} appointments updated` });
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
 };

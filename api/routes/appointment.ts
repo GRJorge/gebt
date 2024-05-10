@@ -11,5 +11,6 @@ router.get('/upcoming', verifyToken, controller.getUpcoming);
 router.get('/active', verifyToken, controller.getActive);
 router.patch('/cancel', verifyToken, controller.cancel);
 router.patch('/reschedule', verifyToken, controller.reschedule);
+router.post('/notAssisted', verifyToken, controller.notAssisted);
 
 export default router;
