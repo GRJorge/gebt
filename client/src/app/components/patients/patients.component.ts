@@ -27,9 +27,13 @@ export class PatientsComponent implements OnInit {
     }
 
     toggleNewForm() {
-        this.modeEdit = false;
-        this.patientEdit = undefined;
-        this.viewNewForm = !this.viewNewForm;
+        if (this.patientDetail) {
+            this.patientDetail = undefined
+        } else {
+            this.modeEdit = false;
+            this.patientEdit = undefined;
+            this.viewNewForm = !this.viewNewForm;
+        }
     }
 
     updatePatient(sort: string = 'createdAt', order: string = 'desc') {

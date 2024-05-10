@@ -1,9 +1,12 @@
 <div class="main">
     <div class="info">
-        <button (click)="toggleNewForm()" [class.bg-green]="!viewNewForm" [class.bg-red]="viewNewForm" class="btn">
-            @if (!viewNewForm) {
+        <button (click)="toggleNewForm()" [class.bg-green]="!viewNewForm && !patientDetail" [class.bg-red]="viewNewForm || patientDetail" class="btn">
+            @if (!viewNewForm && !patientDetail) {
                 <i class="fi fi-rr-add"></i>
                 Nuevo paciente
+            } @else if (patientDetail) {
+                <i class="fi fi-rr-angle-small-left"></i>
+                Volver
             } @else {
                 Cancelar
             }
