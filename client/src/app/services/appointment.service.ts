@@ -35,4 +35,7 @@ export class AppointmentService {
     reschedule(appointment: string, date: Date) {
         return this.http.patch(this.url + 'reschedule', { appointment, date });
     }
+    notAssisted() {
+        return this.http.post(this.url + 'notAssisted', {});
+    }
 }
