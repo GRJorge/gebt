@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../interfaces/user.interface';
+import { CookiesService } from '../../../services/cookies.service';
 
 @Component({
     selector: 'top-panel',
@@ -10,7 +11,7 @@ import { User } from '../../../interfaces/user.interface';
     styleUrl: './top-panel.component.scss',
 })
 export class TopPanelComponent implements OnInit {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private cookiesService: CookiesService) {}
 
     @Input() title!: string;
     user!: User;
@@ -23,5 +24,9 @@ export class TopPanelComponent implements OnInit {
         });
     }
 
-    showMore = false
+    showMore = false;
+
+    signOut() {
+        this.cookiesService.deleteSessionCookie();
+    }
 }
