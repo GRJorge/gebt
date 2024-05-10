@@ -1,5 +1,5 @@
 <div class="main">
-    @if (patient && appointments && weightChartData.length > 0 && imcChartData.length > 0 && labelsChart.length > 0) {
+    @if (patient && appointments) {
         <div class="patient bg-current">
             <span>{{ patient.name }} {{ patient.lastname }}</span>
             <span>{{ patientService.getAge(patient.birthday) }}</span>
@@ -15,11 +15,17 @@
         <div class="content">
             <div class="appointments bg-current">
                 <h1>Citas realizadas:</h1>
-                <div>
-                    @for (appointment of appointments; track appointment._id) {
-                        <appointment-card [appointment]="appointment" [options]="false" />
-                    }
-                </div>
+                @if (appointments.length > 0) {
+                    <div>
+                        @for (appointment of appointments; track appointment._id) {
+                            <appointment-card [appointment]="appointment" [options]="false" />
+                        }
+                    </div>
+                } @else {
+                    <div class="empty">
+                        <span>No hay citas registradas</span>
+                    </div>
+                }
             </div>
             <div class="charts bg-current">
                 <h1>Progresos:</h1>
