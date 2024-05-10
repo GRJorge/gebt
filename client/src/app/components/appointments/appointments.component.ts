@@ -25,6 +25,8 @@ export class AppointmentsComponent implements OnInit {
     servedAppointments = 0;
 
     ngOnInit(): void {
+        this.appointmentService.notAssisted().subscribe();
+
         this.updateSection();
     }
 
