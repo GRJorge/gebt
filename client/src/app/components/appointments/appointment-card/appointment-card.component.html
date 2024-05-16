@@ -62,8 +62,8 @@
             <span>Talla: {{ appointmentData?.height }}cm</span>
             <span>AF: {{ appointmentData?.af }}%</span>
             <span>IMC: {{ appointmentData?.imc?.toString()?.slice(0,5) }}</span>
-            <span>GEB: {{ appointmentData?.gebData }}</span>
-            <span>GET: {{ appointmentData?.getData }}</span>
+            <span>GEB: {{ appointmentData?.gebData?.toString()?.slice(0,8) }}</span>
+            <span>GET: {{ appointmentData?.getData?.toString()?.slice(0,8) }}</span>
         </div>
     }
 </div>
