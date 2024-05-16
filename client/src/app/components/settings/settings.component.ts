@@ -22,6 +22,9 @@ export class SettingsComponent implements OnInit {
         confirm: new FormControl('', Validators.required),
     });
 
+    editNameShowForm = false;
+    editPasswordShowForm = false;
+
     ngOnInit(): void {
         this.userService.get().subscribe({
             next: (data: User | any) => {

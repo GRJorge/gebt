@@ -2,57 +2,64 @@
     @if (user) {
         <div class="content bg-current">
             <div class="nameSection bg-current2">
-                <div>
-                    <span class="name">{{ user.name }} {{ user.lastname }}</span>
-                    <button class="btn bg-current">Editar</button>
-                </div>
-                <form [formGroup]="nameForm">
-                    <div class="input bg-current">
-                        <label for="name"><i class="fi fi-rr-user"></i></label>
-                        <input formControlName="name" id="name" type="text" placeholder="Nombre">
-                    </div>
-                    <notification text="Nombre es obligatorio" [hidden]="!(nameForm.get('name')!.getError('required') && nameForm.get('name')!.dirty)"/>
-                    <notification color="yellow" icon="circle-3" text="Nombre debe contener minimo tres caracteres" [hidden]="!(nameForm.get('name')!.getError('minlength'))" />
-                    <div class="input bg-current">
-                        <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
-                        <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)">    
-                    </div>
-                    <notification text="Apellido es obligatorio" [hidden]="!(nameForm.get('lastname')!.getError('required') && nameForm.get('lastname')!.dirty)"/>
-                    <notification color="yellow" icon="circle-3" text="Apellido debe contener minimo tres caracteres" [hidden]="!(nameForm.get('lastname')!.getError('minlength'))" />
+                @if (!editNameShowForm) {
                     <div>
-                        <button class="btn bg-red">Cancelar</button>
-                        <button [disabled]="!nameForm.valid" class="btn bg-green" type="submit">Guardar</button>
+                        <span class="name">{{ user.name }} {{ user.lastname }}</span>
+                        <button (click)="editNameShowForm = true" class="btn bg-current">Editar</button>
                     </div>
-                </form>
+                } @else {
+                    <form [formGroup]="nameForm">
+                        <div class="input bg-current">
+                            <label for="name"><i class="fi fi-rr-user"></i></label>
+                            <input formControlName="name" id="name" type="text" placeholder="Nombre">
+                        </div>
+                        <notification text="Nombre es obligatorio" [hidden]="!(nameForm.get('name')!.getError('required') && nameForm.get('name')!.dirty)"/>
+                        <notification color="yellow" icon="circle-3" text="Nombre debe contener minimo tres caracteres" [hidden]="!(nameForm.get('name')!.getError('minlength'))" />
+                        <div class="input bg-current">
+                            <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
+                            <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)">    
+                        </div>
+                        <notification text="Apellido es obligatorio" [hidden]="!(nameForm.get('lastname')!.getError('required') && nameForm.get('lastname')!.dirty)"/>
+                        <notification color="yellow" icon="circle-3" text="Apellido debe contener minimo tres caracteres" [hidden]="!(nameForm.get('lastname')!.getError('minlength'))" />
+                        <div>
+                            <button (click)="editNameShowForm = false" class="btn bg-red">Cancelar</button>
+                            <button [disabled]="!nameForm.valid" class="btn bg-green" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                }
             </div>
             <div class="bg-current2">
                 <span>{{ user.email }}</span>
             </div>
-            <button class="btn bg-yellow">Cambiar contraseña</button>
-            <form [formGroup]="passwordForm">
-                <div class="input bg-current2">
-                    <label for="actualPassword"><i class="fi fi-rr-lock-open-alt"></i></label>
-                    <input formControlName="actualPassword" id="actualPassword" type="password" placeholder="Contraseña actual">
-                </div>
-                <notification text="La contraseña actual es un campo obligatorio" [hidden]="!(getFormControlError(passwordForm, 'actualPassword', 'required') && passwordForm.get('actualPassword')!.dirty)" />
-                <notification color="yellow" icon="circle-6" text="La contraseña actual es de minimo seis caracteres" [hidden]="!(getFormControlError(passwordForm, 'actualPassword', 'minlength'))" />
-                <div class="input bg-current2">
-                    <label for="newPassword"><i class="fi fi-rr-lock"></i></label>
-                    <input formControlName="newPassword" id="newPassword" type="password" placeholder="Nueva contraseña">
-                </div>
-                <notification text="La contraseña nueva es obligatoria" [hidden]="!(getFormControlError(passwordForm, 'newPassword', 'required') && passwordForm.get('newPassword')!.dirty)" />
-                <notification color="yellow" icon="circle-6" text="La contraseña nueva debe contener minimo seis caracteres" [hidden]="!(getFormControlError(passwordForm, 'newPassword', 'minlength'))" />
-                <div class="input bg-current2">
-                    <label for="confirm"><i class="fi fi-rr-rotate-left"></i></label>
-                    <input formControlName="confirm" id="confirm" type="password" placeholder="Confirmar">
-                </div>
-                <notification text="Debes confirmar la nueva contraseña" [hidden]="!(getFormControlError(passwordForm, 'confirm', 'required') && passwordForm.get('confirm')!.dirty)" />
-                <notification text="Las contraseñas no coinciden" [hidden]="confirmPassword()" />
-                <div>
-                    <button class="btn bg-red">Cancelar</button>
-                    <button [disabled]="!(passwordForm.valid && confirmPassword())" class="btn bg-green" type="submit">Guardar</button>
-                </div>
-            </form>
+            @if (!editPasswordShowForm) {
+                <button (click)="editPasswordShowForm = true" class="btn bg-yellow">Cambiar contraseña</button>
+            } @else {
+                <form [formGroup]="passwordForm">
+                    <h1>Cambiar contraseña</h1>
+                    <div class="input bg-current2">
+                        <label for="actualPassword"><i class="fi fi-rr-lock-open-alt"></i></label>
+                        <input formControlName="actualPassword" id="actualPassword" type="password" placeholder="Contraseña actual">
+                    </div>
+                    <notification text="La contraseña actual es un campo obligatorio" [hidden]="!(getFormControlError(passwordForm, 'actualPassword', 'required') && passwordForm.get('actualPassword')!.dirty)" />
+                    <notification color="yellow" icon="circle-6" text="La contraseña actual es de minimo seis caracteres" [hidden]="!(getFormControlError(passwordForm, 'actualPassword', 'minlength'))" />
+                    <div class="input bg-current2">
+                        <label for="newPassword"><i class="fi fi-rr-lock"></i></label>
+                        <input formControlName="newPassword" id="newPassword" type="password" placeholder="Nueva contraseña">
+                    </div>
+                    <notification text="La contraseña nueva es obligatoria" [hidden]="!(getFormControlError(passwordForm, 'newPassword', 'required') && passwordForm.get('newPassword')!.dirty)" />
+                    <notification color="yellow" icon="circle-6" text="La contraseña nueva debe contener minimo seis caracteres" [hidden]="!(getFormControlError(passwordForm, 'newPassword', 'minlength'))" />
+                    <div class="input bg-current2">
+                        <label for="confirm"><i class="fi fi-rr-rotate-left"></i></label>
+                        <input formControlName="confirm" id="confirm" type="password" placeholder="Confirmar">
+                    </div>
+                    <notification text="Debes confirmar la nueva contraseña" [hidden]="!(getFormControlError(passwordForm, 'confirm', 'required') && passwordForm.get('confirm')!.dirty)" />
+                    <notification text="Las contraseñas no coinciden" [hidden]="confirmPassword()" />
+                    <div>
+                        <button (click)="editPasswordShowForm = false" class="btn bg-red">Cancelar</button>
+                        <button [disabled]="!(passwordForm.valid && confirmPassword())" class="btn bg-green" type="submit">Guardar</button>
+                    </div>
+                </form>
+            }
         </div>
         <div class="more">
             <button class="btn bg-green">Iniciar sesión en otra cuenta</button>
