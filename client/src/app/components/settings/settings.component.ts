@@ -24,6 +24,7 @@ export class SettingsComponent implements OnInit {
 
     editNameShowForm = false;
     editPasswordShowForm = false;
+    incorrectPasswordError = false;
 
     ngOnInit(): void {
         this.userService.get().subscribe({
@@ -43,5 +44,33 @@ export class SettingsComponent implements OnInit {
     }
     confirmPassword(): boolean {
         return this.passwordForm.get('newPassword')!.value === this.passwordForm.get('confirm')!.value;
+    }
+    viewNameForm() {
+        this.editNameShowForm = !this.editNameShowForm;
+
+        if (this.editPasswordShowForm) {
+            this.editPasswordShowForm = false;
+        }
+    }
+    viewPasswordForm() {
+        this.editPasswordShowForm = !this.editPasswordShowForm;
+        this.incorrectPasswordError = false;
+        this.passwordForm.reset();
+
+        if (this.editNameShowForm) {
+            this.editNameShowForm = false;
+        }
+    }
+    changePasswordSubmit() {
+        this.userService.changePassword(this.passwordForm.get('actualPassword')!.value!.toString(), this.passwordForm.get('newPassword')!.value!.toString()).subscribe({
+            next: () => {
+                this.viewPasswordForm();
+            },
+            error: (error: any) => {
+                if (error.status === 400) {
+                    this.incorrectPasswordError = true;
+                }
+            },
+        });
     }
 }

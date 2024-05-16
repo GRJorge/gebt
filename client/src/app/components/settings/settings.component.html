@@ -32,14 +32,15 @@
                 <span>{{ user.email }}</span>
             </div>
             @if (!editPasswordShowForm) {
-                <button (click)="editPasswordShowForm = true" class="btn bg-yellow">Cambiar contraseña</button>
+                <button (click)="viewPasswordForm()" class="btn bg-yellow">Cambiar contraseña</button>
             } @else {
-                <form [formGroup]="passwordForm">
+                <form [formGroup]="passwordForm" (submit)="changePasswordSubmit()">
                     <h1>Cambiar contraseña</h1>
                     <div class="input bg-current2">
                         <label for="actualPassword"><i class="fi fi-rr-lock-open-alt"></i></label>
                         <input formControlName="actualPassword" id="actualPassword" type="password" placeholder="Contraseña actual">
                     </div>
+                    <notification text="Contraseña incorrecta" [hidden]="!incorrectPasswordError" />
                     <notification text="La contraseña actual es un campo obligatorio" [hidden]="!(getFormControlError(passwordForm, 'actualPassword', 'required') && passwordForm.get('actualPassword')!.dirty)" />
                     <notification color="yellow" icon="circle-6" text="La contraseña actual es de minimo seis caracteres" [hidden]="!(getFormControlError(passwordForm, 'actualPassword', 'minlength'))" />
                     <div class="input bg-current2">
