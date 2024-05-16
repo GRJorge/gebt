@@ -79,6 +79,17 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    changeName: async function (req: Request, res: Response) {
+        const { name, lastname } = req.body;
+
+        try {
+            await User.findByIdAndUpdate(req.user, { name, lastname });
+
+            res.status(200).json({ msg: 'Name changed' });
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
     changePassword: async function (req: Request, res: Response) {
         const { actualPassword, newPassword } = req.body;
 
