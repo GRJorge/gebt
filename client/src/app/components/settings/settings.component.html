@@ -63,8 +63,8 @@
             }
         </div>
         <div class="more">
-            <button class="btn bg-green">Iniciar sesión en otra cuenta</button>
-            <button class="btn bg-red">Cerrar sesión</button>
+            <button (click)="router.navigate(['/signup'])" class="btn bg-green">Nueva cuenta</button>
+            <button (click)="cookiesService.deleteSessionCookie()" class="btn bg-red">Cerrar sesión</button>
         </div>
     }
 </div>

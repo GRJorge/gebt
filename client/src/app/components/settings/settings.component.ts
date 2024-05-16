@@ -3,6 +3,8 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interface';
 import { NotificationComponent } from '../general/notification/notification.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CookiesService } from '../../services/cookies.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'settings',
@@ -12,7 +14,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     styleUrl: './settings.component.scss',
 })
 export class SettingsComponent implements OnInit {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, public cookiesService: CookiesService, public router: Router) {}
 
     user!: User;
     nameForm!: FormGroup;
