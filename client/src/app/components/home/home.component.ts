@@ -14,7 +14,7 @@ import { SettingsComponent } from '../settings/settings.component';
 })
 export class HomeComponent {
     numSection = 0;
-    titleTopPanel = ['Dashboard', 'Pacientes', 'Citas', 'Dietas', 'Configuración'];
+    titleTopPanel = ['Citas', 'Pacientes', 'Dietas', 'Configuración'];
 
     //CAMBIO DE NUMSECTION
     changeSection(numSection: number) {
