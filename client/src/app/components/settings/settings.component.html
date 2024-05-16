@@ -1,1 +1,54 @@
-<p>settings works!</p>
+<div class="main">
+    <div class="content bg-current">
+        <div class="nameSection bg-current2">
+            <div>
+                <span class="name">{{ user.name }} {{ user.lastname }}</span>
+                <button class="btn bg-current">Editar</button>
+            </div>
+            <form>
+                <div class="input bg-current">
+                    <label for="name"><i class="fi fi-rr-user"></i></label>
+                    <input formControlName="name" id="name" type="text" placeholder="Nombre">
+                </div>
+                <notification text="Nombre es obligatorio" />
+                <notification color="yellow" icon="circle-3" text="Nombre debe contener minimo tres caracteres" />
+                <div class="input bg-current">
+                    <label for="lastname"><i class="fi fi-rr-pen-field"></i></label>
+                    <input formControlName="lastname" id="lastname" type="text" placeholder="Apellido(s)">    
+                </div>
+                <notification text="Apellido es obligatorio" />
+                <notification color="yellow" icon="circle-3" text="Apellido debe contener minimo tres caracteres" />
+                <div>
+                    <button class="btn bg-red">Cancelar</button>
+                    <button class="btn bg-green" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div class="bg-current2">
+            <span>{{ user.email }}</span>
+        </div>
+        <button class="btn bg-yellow">Cambiar contraseña</button>
+        <form>
+            <div class="input bg-current2">
+                <label for="password"><i class="fi fi-rr-lock"></i></label>
+                <input formControlName="password" id="password" type="password" placeholder="Contraseña">
+            </div>
+            <notification text="La contraseña es obligatorio" />
+            <notification color="yellow" icon="circle-6" text="La contraseña debe contener minimo seis caracteres"/>
+            <div class="input bg-current2">
+                <label for="confirm"><i class="fi fi-rr-rotate-left"></i></label>
+                <input formControlName="confirm" id="confirm" type="password" placeholder="Confirmar">
+            </div>
+            <notification text="Debes confirmar la contraseña" />
+            <notification text="Las contraseñas no coinciden"/>
+            <div>
+                <button class="btn bg-red">Cancelar</button>
+                <button class="btn bg-green" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div class="more">
+        <button class="btn bg-green">Iniciar sesión en otra cuenta</button>
+        <button class="btn bg-red">Cerrar sesión</button>
+    </div>
+</div>

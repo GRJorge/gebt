@@ -1,0 +1,47 @@
+.main {
+    flex-direction: column;
+    height: calc(100% - 16px);
+    margin: 8px;
+    gap: 8px;
+
+    .content {
+        flex: 1;
+        flex-direction: column;
+        padding: 16px;
+        border-radius: 16px;
+        gap: 8px;
+
+        > div {
+            padding: 16px;
+            border-radius: 16px;
+        }
+        .nameSection {
+            flex-direction: column;
+
+            > div {
+                justify-content: space-between;
+                align-items: center;
+            }
+            .name {
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+        form {
+            flex-direction: column;
+            gap: 8px;
+
+            div:last-child {
+                justify-content: end;
+                gap: 8px;
+            }
+        }
+    }
+    .more {
+        gap: 8px;
+
+        button {
+            flex: 1;
+        }
+    }
+}
