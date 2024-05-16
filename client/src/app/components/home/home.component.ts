@@ -13,7 +13,7 @@ import { SettingsComponent } from '../settings/settings.component';
     styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-    numSection = 4;
+    numSection = 0;
     titleTopPanel = ['Dashboard', 'Pacientes', 'Citas', 'Dietas', 'Configuración'];
 
     //CAMBIO DE NUMSECTION

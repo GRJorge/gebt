@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../interfaces/user.interface';
 import { CookiesService } from '../../../services/cookies.service';
@@ -24,6 +24,7 @@ export class TopPanelComponent implements OnInit {
         });
     }
 
+    @Output() showSettingEvent = new EventEmitter();
     showMore = false;
 
     signOut() {

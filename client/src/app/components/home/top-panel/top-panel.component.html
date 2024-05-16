@@ -8,9 +8,11 @@
             <label for="search"><i class="fi fi-rr-search"></i></label>
             <input id="search" type="text" placeholder="Buscar...">
         </div>
-        <button (click)="showMore = !showMore" class="btn bg-current">{{ user.name }} {{ user.lastname }}<i class="fi fi-rr-angle-small-right"></i></button>
+        @if (user) {
+            <button (click)="showMore = !showMore" class="btn bg-current">{{ user.name }} {{ user.lastname }}<i class="fi fi-rr-angle-small-right"></i></button>
+        }
         @if (showMore) {
-            <button class="btn bg-current" title="Configuración"><i class="fi fi-rr-settings"></i></button>
+            <button (click)="showSettingEvent.emit()" class="btn bg-current" title="Configuración"><i class="fi fi-rr-settings"></i></button>
             <button (click)="signOut()" class="btn bg-red" title="Cerrar sesión"><i class="fi fi-rr-sign-out-alt"></i></button>
         }
     </div>
