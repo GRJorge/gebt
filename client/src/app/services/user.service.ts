@@ -36,4 +36,7 @@ export class UserService {
     get() {
         return this.http.get(this.url + 'get');
     }
+    changePassword(actualPassword: string, newPassword: string) {
+        return this.http.patch(this.url + 'changePassword', { actualPassword, newPassword });
+    }
 }
