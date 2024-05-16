@@ -27,6 +27,10 @@ export class SettingsComponent implements OnInit {
     incorrectPasswordError = false;
 
     ngOnInit(): void {
+        this.updateData();
+    }
+
+    updateData() {
         this.userService.get().subscribe({
             next: (data: User | any) => {
                 this.user = data;
@@ -60,6 +64,14 @@ export class SettingsComponent implements OnInit {
         if (this.editNameShowForm) {
             this.editNameShowForm = false;
         }
+    }
+    changeNameSubmit() {
+        this.userService.changeName(this.nameForm.get('name')!.value!.toString(), this.nameForm.get('lastname')!.value!.toString()).subscribe({
+            next: () => {
+                this.updateData();
+                this.viewNameForm();
+            },
+        });
     }
     changePasswordSubmit() {
         this.userService.changePassword(this.passwordForm.get('actualPassword')!.value!.toString(), this.passwordForm.get('newPassword')!.value!.toString()).subscribe({

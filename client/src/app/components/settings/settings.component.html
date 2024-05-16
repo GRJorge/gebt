@@ -8,7 +8,7 @@
                         <button (click)="editNameShowForm = true" class="btn bg-current">Editar</button>
                     </div>
                 } @else {
-                    <form [formGroup]="nameForm">
+                    <form [formGroup]="nameForm" (submit)="changeNameSubmit()">
                         <div class="input bg-current">
                             <label for="name"><i class="fi fi-rr-user"></i></label>
                             <input formControlName="name" id="name" type="text" placeholder="Nombre">
