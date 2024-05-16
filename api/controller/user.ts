@@ -79,4 +79,32 @@ export default {
             ResponseInternalError(res, error);
         }
     },
+    changePassword: async function (req: Request, res: Response) {
+        const { actualPassword, newPassword } = req.body;
+
+        try {
+            const userPassword = await User.findById(req.user).select('password').lean();
+
+            bcrypt.compare(actualPassword, userPassword!.password, (error, result) => {
+                if (!error) {
+                    if (result) {
+                        bcrypt.hash(newPassword, 10, async (err, encrypted) => {
+                            if (!error) {
+                                await User.findByIdAndUpdate(req.user, { password: encrypted });
+                                res.status(200).json({ msg: 'Password edited' });
+                            } else {
+                                ResponseInternalError(res, err);
+                            }
+                        });
+                    } else {
+                        res.status(400).json({ msg: 'Incorrect password' });
+                    }
+                } else {
+                    ResponseInternalError(res, error);
+                }
+            });
+        } catch (error: any) {
+            ResponseInternalError(res, error);
+        }
+    },
 };
