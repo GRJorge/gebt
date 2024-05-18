@@ -25,7 +25,7 @@
             <h1>Selecciona un paciente</h1>
             <div class="input bg-current2">
                 <label for="search"><i class="fi fi-rr-search"></i></label>
-                <input type="text" id="search" placeholder="Buscar..." />
+                <input (input)="searchPatient()" [formControl]="searchPatientControl" type="text" id="search" placeholder="Buscar..." />
             </div>
         </div>
         <div class="content">

@@ -7,11 +7,12 @@ import { AppointmentService } from '../../../services/appointment.service';
 import { DateFormComponent } from '../../general/date-form/date-form.component';
 import { Appointment, NewAppointment } from '../../../interfaces/appointment.interface';
 import { DatetimeService } from '../../../services/datetime.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'new-appointment',
     standalone: true,
-    imports: [PatientAppointmentComponent, NotificationComponent, DateFormComponent],
+    imports: [PatientAppointmentComponent, NotificationComponent, DateFormComponent, ReactiveFormsModule],
     templateUrl: './new-appointment.component.html',
     styleUrl: './new-appointment.component.scss',
 })
@@ -19,11 +20,20 @@ export class NewAppointmentComponent implements OnInit {
     constructor(private patientService: PatientService, private appointmentService: AppointmentService, private datetimeService: DatetimeService) {}
 
     patients?: Patient[];
+    searchPatientControl = new FormControl('');
 
     ngOnInit(): void {
         this.patientService.get('createdAt', 'asc').subscribe({
             next: (result: Patient[] | any) => {
                 this.patients = result;
+            },
+        });
+    }
+
+    searchPatient() {
+        this.patientService.get('createdAt', 'asc', this.searchPatientControl.value!.toString()).subscribe({
+            next: (data: Patient[] | any) => {
+                this.patients = data;
             },
         });
     }
