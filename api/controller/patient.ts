@@ -5,6 +5,7 @@ import Patient from '../model/patient';
 
 export default {
     get: async function (req: Request, res: Response) {
+        let name = req.query.name;
         let sort = req.query.sort;
         let order: SortOrder = 1;
         //INICIALIZACION DE PARAMETROS SORT
@@ -17,7 +18,7 @@ export default {
 
         try {
             //BUSQUEDA EN DB
-            const patients = await Patient.find({ user: req.user })
+            const patients = await Patient.find({ user: req.user, name: { $regex: name, $options: 'i' } })
                 .sort([[`${sort}`, order]])
                 .select('name lastname phone birthday gender')
                 .lean();
